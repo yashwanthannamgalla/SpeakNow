@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiUrl } from "../config/api";
 
 export default function Login({ onLogin, onSignup, onClose }) {
 
@@ -30,7 +31,7 @@ export default function Login({ onLogin, onSignup, onClose }) {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:8000/api/login",
+        apiUrl("/api/login"),
         {
           method: "POST",
 
@@ -67,7 +68,7 @@ export default function Login({ onLogin, onSignup, onClose }) {
 
       onLogin(data.user);
 
-    } catch (err) {
+    } catch {
 
       setError(
         "Unable to connect to the server."

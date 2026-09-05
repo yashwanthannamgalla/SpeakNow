@@ -1,6 +1,6 @@
 import json
+import os
 import random
-
 from typing import Optional
 
 from fastapi import (
@@ -8,9 +8,14 @@ from fastapi import (
     Depends,
     Query,
     HTTPException,
+    Request,
 )
 
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
+from dotenv import load_dotenv
 
 from pydantic import BaseModel, EmailStr
 
@@ -19,7 +24,6 @@ from pwdlib import PasswordHash
 from jose import jwt
 
 from sqlalchemy.orm import Session
-
 from sqlalchemy import func
 
 from services.cohere_evaluator import cohere_evaluate
@@ -30,10 +34,76 @@ from models import Topic, TopicUsage, User
 
 
 # ============================================================
+# ENVIRONMENT
+# ============================================================
+
+load_dotenv()
+
+
+ENVIRONMENT = os.getenv(
+    "ENVIRONMENT",
+    "development",
+).lower()
+
+
+IS_PRODUCTION = ENVIRONMENT in {
+    "production",
+    "prod",
+}
+
+
+DEFAULT_CORS_ORIGINS = (
+    "http://localhost:5173,"
+    "http://127.0.0.1:5173"
+)
+
+
+def csv_env(
+    name,
+    default="",
+):
+    raw_value = os.getenv(
+        name,
+        default,
+    )
+
+    return [
+        item.strip().rstrip("/")
+        for item in raw_value.split(",")
+        if item.strip()
+    ]
+
+
+CORS_ORIGINS = csv_env(
+    "CORS_ORIGINS",
+    DEFAULT_CORS_ORIGINS,
+)
+
+
+if IS_PRODUCTION and (
+    not CORS_ORIGINS
+    or "*" in CORS_ORIGINS
+):
+    raise RuntimeError(
+        "Set CORS_ORIGINS to your deployed frontend origin."
+    )
+
+
+MAX_REQUEST_BYTES = int(
+    os.getenv(
+        "MAX_REQUEST_BYTES",
+        "131072",
+    )
+)
+
+
+# ============================================================
 # DATABASE
 # ============================================================
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(
+    bind=engine
+)
 
 
 # ============================================================
@@ -52,9 +122,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
 
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,
 
-    allow_credentials=True,
+    allow_credentials=False,
 
     allow_methods=["*"],
 
@@ -63,14 +133,83 @@ app.add_middleware(
 
 
 # ============================================================
+# REQUEST SIZE LIMIT
+# ============================================================
+
+@app.middleware("http")
+async def limit_request_size(
+    request: Request,
+    call_next,
+):
+    content_length = request.headers.get(
+        "content-length"
+    )
+
+    if content_length:
+        try:
+            request_size = int(
+                content_length
+            )
+
+        except ValueError:
+            request_size = 0
+
+        if request_size > MAX_REQUEST_BYTES:
+            return JSONResponse(
+                status_code=413,
+
+                content={
+                    "detail": "Request body is too large."
+                },
+            )
+
+    return await call_next(request)
+
+
+# ============================================================
 # AUTHENTICATION CONFIGURATION
 # ============================================================
 
 password_hash = PasswordHash.recommended()
 
-SECRET_KEY = "skillenhancer-change-this-secret-key"
+
+SECRET_KEY = os.getenv(
+    "SECRET_KEY"
+)
+
+
+if not SECRET_KEY:
+
+    if IS_PRODUCTION:
+        raise RuntimeError(
+            "SECRET_KEY must be configured in production."
+        )
+
+    SECRET_KEY = (
+        "skillenhancer-development-secret-key"
+    )
+
+
+if IS_PRODUCTION and len(SECRET_KEY) < 32:
+    raise RuntimeError(
+        "SECRET_KEY must be at least 32 characters in production."
+    )
+
 
 ALGORITHM = "HS256"
+
+
+ACCESS_TOKEN_EXPIRE_MINUTES = int(
+    os.getenv(
+        "ACCESS_TOKEN_EXPIRE_MINUTES",
+        str(60 * 24 * 7),
+    )
+)
+
+
+security_scheme = HTTPBearer(
+    auto_error=False
+)
 
 
 # ============================================================
@@ -355,12 +494,9 @@ def login(
     # VERIFY PASSWORD
     # ========================================================
 
-    password_valid = (
-        password_hash.verify(
-            data.password,
-
-            user.password_hash,
-        )
+    password_valid = password_hash.verify(
+        data.password,
+        user.password_hash,
     )
 
 
@@ -431,7 +567,7 @@ def login(
 
 @app.post("/api/evaluate")
 async def evaluate_speech(
-    data: EvaluationRequest
+    data: EvaluationRequest,
 ):
 
     payload = data.model_dump()
@@ -505,11 +641,8 @@ async def evaluate_speech(
             "vocabulary_upgrades": [],
 
             "review": (
-
                 "Not enough speech was captured. "
-
                 "Please speak for longer and try again."
-
             ),
 
         }
@@ -594,9 +727,7 @@ async def evaluate_speech(
             "vocabulary_upgrades": [],
 
             "review": (
-
                 "The speech could not be analyzed."
-
             ),
 
         }
@@ -900,9 +1031,7 @@ def random_topic(
     # ========================================================
 
     usage = TopicUsage(
-
         topic_id=selected.id
-
     )
 
 
@@ -918,14 +1047,12 @@ def random_topic(
     try:
 
         questions = json.loads(
-
             selected.questions or "[]"
-
         )
 
     except (
         json.JSONDecodeError,
-        TypeError
+        TypeError,
     ):
 
         questions = []
@@ -938,15 +1065,12 @@ def random_topic(
     try:
 
         useful_vocabulary = json.loads(
-
-            selected.useful_vocabulary
-            or "[]"
-
+            selected.useful_vocabulary or "[]"
         )
 
     except (
         json.JSONDecodeError,
-        TypeError
+        TypeError,
     ):
 
         useful_vocabulary = []
@@ -988,7 +1112,7 @@ def random_topic(
 
 @app.get("/api/categories")
 def get_categories(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
 
     result = []
@@ -1007,7 +1131,7 @@ def get_categories(
                 func.lower(
                     Topic.category
                 )
-                == category.lower()
+                == category.lower(),
 
             )
 
@@ -1041,7 +1165,7 @@ def get_categories(
 
 @app.get("/api/topic/stats")
 def topic_stats(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
 
     # ========================================================
@@ -1081,7 +1205,7 @@ def topic_stats(
                 func.lower(
                     Topic.category
                 )
-                == category.lower()
+                == category.lower(),
 
             )
 
@@ -1101,13 +1225,9 @@ def topic_stats(
 
 
     for difficulty in [
-
         "Beginner",
-
         "Intermediate",
-
-        "Advanced"
-
+        "Advanced",
     ]:
 
         count = (
@@ -1121,7 +1241,7 @@ def topic_stats(
                 func.lower(
                     Topic.difficulty
                 )
-                == difficulty.lower()
+                == difficulty.lower(),
 
             )
 

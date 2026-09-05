@@ -18,6 +18,7 @@
 
   --text: #f5f4ef;
   --text-h: #f5f4ef;
+
   --muted: #858793;
   --muted-2: #5d606b;
 
@@ -28,13 +29,6 @@
   --sans: "DM Sans", Arial, sans-serif;
 }
 
-h1,
-h2,
-h3,
-code {
-  color: var(--text);
-}
-
 html {
   background: var(--bg);
   color-scheme: dark;
@@ -42,16 +36,30 @@ html {
 
 body {
   margin: 0;
+
   background: var(--bg);
   color: var(--text);
+
   font-family: var(--sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+code {
+  color: var(--text);
 }
 
 button,
 input,
 textarea,
 select {
-  font: inherit;
+  font-family: var(--sans);
+  font-size: inherit;
+  line-height: inherit;
 }
 
 button {
@@ -71,13 +79,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+
 /* ============================================================
    APP
 ============================================================ */
 
 .app {
   min-height: 100vh;
+
   position: relative;
+
   overflow-x: hidden;
 
   background:
@@ -123,14 +134,17 @@ button:disabled {
 .glow-one {
   top: -250px;
   left: -150px;
+
   background: #d7ff64;
 }
 
 .glow-two {
   right: -250px;
   bottom: -250px;
+
   background: #656cff;
 }
+
 
 /* ============================================================
    HEADER
@@ -153,13 +167,11 @@ button:disabled {
 
 .logo {
   font-size: 24px;
-
   font-weight: 700;
 
   letter-spacing: -1px;
 
   cursor: pointer;
-
   user-select: none;
 }
 
@@ -169,24 +181,22 @@ button:disabled {
 
 .header-right {
   display: flex;
-
   align-items: center;
 
   gap: 10px;
 }
 
 .streak {
-  color: var(--muted);
-
-  font-size: 12px;
-
-  margin-right: 12px;
-
   display: flex;
-
   align-items: center;
 
   gap: 7px;
+
+  margin-right: 12px;
+
+  color: var(--muted);
+
+  font-size: 12px;
 }
 
 .streak-dot {
@@ -202,19 +212,21 @@ button:disabled {
 
 .header-button,
 .icon-button {
-  background: transparent;
-
   border: 1px solid var(--border);
 
   border-radius: 999px;
 
-  padding: 10px 16px;
-
-  cursor: pointer;
+  background: transparent;
 
   color: var(--muted);
 
+  cursor: pointer;
+
   transition: 0.2s ease;
+}
+
+.header-button {
+  padding: 10px 16px;
 }
 
 .icon-button {
@@ -223,13 +235,11 @@ button:disabled {
 
   padding: 0;
 
-  border-radius: 50%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
+
+  border-radius: 50%;
 }
 
 .header-button:hover,
@@ -241,6 +251,7 @@ button:disabled {
   background: rgba(255, 255, 255, 0.025);
 }
 
+
 /* ============================================================
    LOGIN / LOGOUT HEADER
 ============================================================ */
@@ -248,27 +259,24 @@ button:disabled {
 .login-nav-btn,
 .logout-nav-btn {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
 
+  padding: 9px 15px;
+
   border: 1px solid var(--border);
+
+  border-radius: 999px;
 
   background: transparent;
 
   color: var(--muted);
 
-  padding: 9px 15px;
-
-  border-radius: 999px;
-
   cursor: pointer;
 
   font-size: 11px;
-
   font-weight: 600;
 
   transition:
@@ -278,11 +286,6 @@ button:disabled {
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
-
-
-/* ============================================================
-   LOGIN
-============================================================ */
 
 .login-nav-btn:hover {
   color: #10120a;
@@ -297,11 +300,6 @@ button:disabled {
   transform: translateY(-1px);
 }
 
-
-/* ============================================================
-   LOGOUT
-============================================================ */
-
 .logout-nav-btn:hover {
   color: var(--text);
 
@@ -312,61 +310,27 @@ button:disabled {
   transform: translateY(-1px);
 }
 
-
-/* ============================================================
-   USER MENU
-============================================================ */
-
 .user-menu {
   display: flex;
-
   align-items: center;
 
   gap: 10px;
 }
-
-
-/* ============================================================
-   USER NAME
-============================================================ */
 
 .user-name {
   max-width: 130px;
 
   overflow: hidden;
 
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-
   color: var(--muted);
 
   font-size: 11px;
-
   font-weight: 500;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-
-/* ============================================================
-   MOBILE
-============================================================ */
-
-@media (max-width: 600px) {
-
-  .user-name {
-    display: none;
-  }
-
-  .user-menu {
-    gap: 6px;
-  }
-
-  .login-nav-btn,
-  .logout-nav-btn {
-    padding: 8px 13px;
-  }
-
-}
 
 /* ============================================================
    HOME HERO
@@ -375,33 +339,30 @@ button:disabled {
 .hero {
   width: min(1000px, 90%);
 
-  margin: 0 auto;
-
   min-height: calc(100vh - 140px);
 
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
+  margin: 0 auto;
 
   padding: 70px 0 110px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   text-align: center;
 
   position: relative;
-
   z-index: 2;
 }
 
 .status {
-  font-size: 10px;
-
-  letter-spacing: 2.4px;
+  margin-bottom: 22px;
 
   color: var(--muted);
 
-  margin-bottom: 22px;
+  font-size: 10px;
+
+  letter-spacing: 2.4px;
 }
 
 .mode-switch {
@@ -409,25 +370,25 @@ button:disabled {
 
   padding: 4px;
 
+  margin-bottom: 28px;
+
   border: 1px solid var(--border);
 
   border-radius: 999px;
 
   background: rgba(255, 255, 255, 0.025);
-
-  margin-bottom: 28px;
 }
 
 .mode-switch button {
+  padding: 9px 18px;
+
   border: 0;
+
+  border-radius: 999px;
 
   background: transparent;
 
   color: var(--muted);
-
-  padding: 9px 18px;
-
-  border-radius: 999px;
 
   cursor: pointer;
 
@@ -449,6 +410,7 @@ button:disabled {
     inset 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
+
 /* ============================================================
    CATEGORY
 ============================================================ */
@@ -463,20 +425,19 @@ button:disabled {
 
 .category {
   display: flex;
-
   align-items: center;
 
   gap: 8px;
 
+  padding: 9px 15px;
+
   border: 1px solid var(--border);
+
+  border-radius: 999px;
 
   background: rgba(255, 255, 255, 0.025);
 
   color: var(--muted);
-
-  padding: 9px 15px;
-
-  border-radius: 999px;
 
   cursor: pointer;
 
@@ -501,6 +462,7 @@ button:disabled {
   font-size: 14px;
 }
 
+
 /* ============================================================
    TOPIC
 ============================================================ */
@@ -512,29 +474,28 @@ button:disabled {
 }
 
 .topic-label {
+  margin: 0 0 18px;
+
   color: var(--muted);
 
   font-size: 10px;
-
-  letter-spacing: 2px;
-
   font-weight: 600;
 
-  margin: 0 0 18px;
+  letter-spacing: 2px;
 }
 
 .topic-area h1 {
+  margin: 0;
+
   font-family: var(--serif);
 
-  font-weight: 500;
-
   font-size: clamp(42px, 6vw, 72px);
+
+  font-weight: 500;
 
   line-height: 1.04;
 
   letter-spacing: -2.5px;
-
-  margin: 0;
 
   animation: appear 0.5s ease;
 }
@@ -552,33 +513,31 @@ button:disabled {
 }
 
 .question-list {
-  display: flex;
+  max-width: 850px;
 
+  margin: 26px auto 0;
+
+  display: flex;
   flex-wrap: wrap;
 
   justify-content: center;
 
   gap: 8px;
-
-  margin: 26px auto 0;
-
-  max-width: 850px;
 }
 
 .question-item {
   display: flex;
-
   align-items: center;
 
   gap: 10px;
 
-  border: 1px solid var(--border);
+  padding: 9px 14px;
 
-  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
 
   border-radius: 999px;
 
-  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.025);
 
   color: var(--muted);
 
@@ -603,13 +562,13 @@ button:disabled {
   margin: 0;
 }
 
+
 /* ============================================================
    DIFFICULTY
 ============================================================ */
 
 .difficulty {
   display: flex;
-
   align-items: center;
 
   gap: 6px;
@@ -618,23 +577,23 @@ button:disabled {
 }
 
 .level-label {
+  margin-right: 7px;
+
   color: var(--muted-2);
 
   font-size: 9px;
 
   letter-spacing: 1.7px;
-
-  margin-right: 7px;
 }
 
 .difficulty button {
-  background: transparent;
+  padding: 7px 12px;
 
   border: 1px solid transparent;
 
-  padding: 7px 12px;
-
   border-radius: 999px;
+
+  background: transparent;
 
   color: var(--muted);
 
@@ -657,15 +616,14 @@ button:disabled {
   color: var(--text);
 }
 
+
 /* ============================================================
    CONTROLS
 ============================================================ */
 
 .controls {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
@@ -674,21 +632,20 @@ button:disabled {
 }
 
 .primary-button {
+  padding: 13px 20px;
+
   border: 1px solid var(--accent);
+
+  border-radius: 999px;
 
   background: var(--accent);
 
   color: #10120a;
 
-  padding: 13px 20px;
-
-  border-radius: 999px;
+  cursor: pointer;
 
   font-size: 12px;
-
   font-weight: 700;
-
-  cursor: pointer;
 
   transition: 0.2s;
 }
@@ -701,15 +658,13 @@ button:disabled {
 }
 
 .primary-button:disabled {
-  opacity: 0.5;
-
   cursor: wait;
 }
 
 .refresh-icon {
-  font-size: 17px;
-
   margin-right: 5px;
+
+  font-size: 17px;
 }
 
 .timer-control {
@@ -719,21 +674,19 @@ button:disabled {
 .timer-main {
   min-width: 120px;
 
+  padding: 10px 14px;
+
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
-  padding: 10px 14px;
-
-  background: rgba(255, 255, 255, 0.025);
-
   border: 1px solid var(--border);
 
   border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.025);
 
   cursor: pointer;
 
@@ -754,7 +707,6 @@ button:disabled {
 
 .timer-main strong {
   font-size: 12px;
-
   font-weight: 600;
 }
 
@@ -765,21 +717,20 @@ button:disabled {
 .timer-menu {
   position: absolute;
 
-  bottom: calc(100% + 10px);
-
   left: 50%;
-
-  transform: translateX(-50%);
+  bottom: calc(100% + 10px);
 
   width: 180px;
 
   padding: 10px;
 
-  background: #161820;
+  transform: translateX(-50%);
 
   border: 1px solid var(--border);
 
   border-radius: 14px;
+
+  background: #161820;
 
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.5);
@@ -806,21 +757,21 @@ button:disabled {
 
   width: 100%;
 
-  border: 0;
-
-  background: transparent;
-
   padding: 8px;
 
-  color: var(--muted);
+  border: 0;
 
   border-radius: 8px;
 
-  text-align: left;
+  background: transparent;
+
+  color: var(--muted);
 
   cursor: pointer;
 
   font-size: 12px;
+
+  text-align: left;
 }
 
 .timer-menu button:hover {
@@ -840,13 +791,13 @@ button:disabled {
 
   border-radius: 8px;
 
+  outline: none;
+
   background: rgba(0, 0, 0, 0.2);
 
   color: var(--text);
 
   font-size: 11px;
-
-  outline: none;
 }
 
 .timer-menu input:focus {
@@ -860,26 +811,24 @@ button:disabled {
 .start-button {
   margin-top: 30px;
 
+  padding: 14px 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
   border: 0;
+
+  border-radius: 999px;
 
   background: transparent;
 
   color: var(--text);
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-
-  padding: 14px 20px;
-
-  border-radius: 999px;
-
   cursor: pointer;
 
   font-size: 13px;
-
   font-weight: 600;
 
   transition: 0.2s;
@@ -890,7 +839,6 @@ button:disabled {
   height: 28px;
 
   display: grid;
-
   place-items: center;
 
   border-radius: 50%;
@@ -916,6 +864,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.start-button.small {
+  margin-top: 0;
+
+  border: 1px solid var(--border);
+}
+
+.start-button.small:hover {
+  border-color: var(--border-hover);
+}
+
 .generate-first {
   margin-top: 12px;
 
@@ -925,14 +883,15 @@ button:disabled {
 
   color: var(--muted-2);
 
-  font-size: 11px;
-
   cursor: pointer;
+
+  font-size: 11px;
 }
 
 .generate-first:hover {
   color: var(--muted);
 }
+
 
 /* ============================================================
    CHALLENGE
@@ -948,30 +907,29 @@ button:disabled {
   padding: 45px 0 100px;
 
   position: relative;
-
   z-index: 2;
 }
 
 .challenge-top {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
+
+  gap: 20px;
 
   margin-bottom: 60px;
 }
 
 .back-button {
+  padding: 9px 14px;
+
   border: 1px solid var(--border);
+
+  border-radius: 999px;
 
   background: transparent;
 
   color: var(--muted);
-
-  padding: 9px 14px;
-
-  border-radius: 999px;
 
   cursor: pointer;
 
@@ -981,9 +939,9 @@ button:disabled {
 }
 
 .back-button:hover {
-  color: var(--text);
-
   border-color: var(--border-hover);
+
+  color: var(--text);
 }
 
 .phase-indicator {
@@ -1001,6 +959,7 @@ button:disabled {
 .phase-indicator .active {
   color: var(--accent);
 }
+
 
 /* ============================================================
    LEARNING
@@ -1020,6 +979,8 @@ button:disabled {
 
 .learning-main h2,
 .speaking-header h2 {
+  margin: 0;
+
   font-family: var(--serif);
 
   font-size: clamp(42px, 5vw, 68px);
@@ -1029,20 +990,18 @@ button:disabled {
   line-height: 1.05;
 
   letter-spacing: -2px;
-
-  margin: 0;
 }
 
 .large-description {
   max-width: 650px;
 
-  color: var(--muted);
+  margin: 25px 0;
 
-  line-height: 1.8;
+  color: var(--muted);
 
   font-size: 15px;
 
-  margin: 25px 0;
+  line-height: 1.8;
 }
 
 .big-timer {
@@ -1082,9 +1041,9 @@ button:disabled {
 
   margin-top: 25px;
 
-  background: rgba(255, 255, 255, 0.08);
-
   overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .timer-progress div {
@@ -1117,9 +1076,9 @@ button:disabled {
 }
 
 .pause-button {
-  background: transparent;
-
   border: 1px solid var(--border);
+
+  background: transparent;
 }
 
 .pause-button:hover {
@@ -1138,13 +1097,13 @@ button:disabled {
   transform: translateY(-1px);
 }
 
+
 /* ============================================================
    SIDEBAR
 ============================================================ */
 
 .learning-sidebar {
   display: flex;
-
   flex-direction: column;
 
   gap: 14px;
@@ -1161,13 +1120,13 @@ button:disabled {
 }
 
 .side-card-title {
+  margin-bottom: 16px;
+
   color: var(--muted-2);
 
   font-size: 9px;
 
   letter-spacing: 1.6px;
-
-  margin-bottom: 16px;
 }
 
 .side-question {
@@ -1175,15 +1134,15 @@ button:disabled {
 
   gap: 12px;
 
+  padding: 11px 0;
+
+  border-bottom: 1px solid var(--border);
+
   color: var(--muted);
 
   font-size: 12px;
 
   line-height: 1.6;
-
-  padding: 11px 0;
-
-  border-bottom: 1px solid var(--border);
 }
 
 .side-question:last-child {
@@ -1191,25 +1150,24 @@ button:disabled {
 }
 
 .side-question span {
+  flex-shrink: 0;
+
   color: var(--accent);
 
   font-size: 10px;
-
-  flex-shrink: 0;
 }
 
 .vocabulary {
   display: flex;
-
   flex-wrap: wrap;
 
   gap: 6px;
 }
 
 .vocabulary span {
-  border: 1px solid var(--border);
-
   padding: 6px 9px;
+
+  border: 1px solid var(--border);
 
   border-radius: 999px;
 
@@ -1250,6 +1208,7 @@ button:disabled {
   color: var(--muted-2);
 }
 
+
 /* ============================================================
    SPEAKING
 ============================================================ */
@@ -1269,14 +1228,15 @@ button:disabled {
 }
 
 .speaking-header > p:last-child {
+  margin-top: 20px;
+
   color: var(--muted);
 
   font-size: 14px;
 
   line-height: 1.7;
-
-  margin-top: 20px;
 }
+
 
 /* ============================================================
    SPEAKING TIMER
@@ -1284,7 +1244,6 @@ button:disabled {
 
 .speaking-timer {
   display: flex;
-
   justify-content: center;
 
   margin-top: 45px;
@@ -1292,12 +1251,11 @@ button:disabled {
 
 .timer-ring {
   width: 190px;
-
   height: 190px;
 
-  border-radius: 50%;
-
   padding: 4px;
+
+  border-radius: 50%;
 
   background:
     conic-gradient(
@@ -1310,20 +1268,17 @@ button:disabled {
 
 .ring-inner {
   width: 100%;
-
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
 
   border-radius: 50%;
 
   background: #0c0e13;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
 }
 
 .ring-inner span {
@@ -1344,6 +1299,7 @@ button:disabled {
   font-weight: 500;
 }
 
+
 /* ============================================================
    MICROPHONE
 ============================================================ */
@@ -1352,7 +1308,6 @@ button:disabled {
   position: relative;
 
   width: 100px;
-
   height: 100px;
 
   margin: 35px auto 12px;
@@ -1360,24 +1315,22 @@ button:disabled {
 
 .mic-button {
   width: 70px;
-
   height: 70px;
 
   position: absolute;
-
   inset: 15px;
 
+  z-index: 3;
+
   border: 1px solid var(--border);
+
+  border-radius: 50%;
 
   background: #15171f;
 
   color: var(--muted);
 
-  border-radius: 50%;
-
   cursor: pointer;
-
-  z-index: 3;
 
   transition: 0.25s;
 }
@@ -1389,11 +1342,11 @@ button:disabled {
 }
 
 .mic-container.listening .mic-button {
+  border-color: var(--accent);
+
   background: var(--accent);
 
   color: #111;
-
-  border-color: var(--accent);
 
   box-shadow:
     0 0 30px rgba(215, 255, 100, 0.12);
@@ -1401,12 +1354,11 @@ button:disabled {
 
 .mic-pulse {
   position: absolute;
-
   inset: 0;
 
-  border-radius: 50%;
-
   border: 1px solid transparent;
+
+  border-radius: 50%;
 }
 
 .mic-container.listening .mic-pulse {
@@ -1416,22 +1368,19 @@ button:disabled {
 }
 
 .listening-status {
-  color: var(--muted);
-
-  font-size: 11px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
+
+  color: var(--muted);
+
+  font-size: 11px;
 }
 
 .status-live {
   width: 6px;
-
   height: 6px;
 
   border-radius: 50%;
@@ -1453,12 +1402,13 @@ button:disabled {
 
   border-radius: 10px;
 
+  background: rgba(255, 200, 100, 0.02);
+
   color: #b8a889;
 
   font-size: 11px;
-
-  background: rgba(255, 200, 100, 0.02);
 }
+
 
 /* ============================================================
    TRANSCRIPT
@@ -1469,7 +1419,7 @@ button:disabled {
 
   margin: 35px auto 0;
 
-  text-align: left;
+  overflow: hidden;
 
   border: 1px solid var(--border);
 
@@ -1477,7 +1427,7 @@ button:disabled {
 
   background: rgba(255, 255, 255, 0.02);
 
-  overflow: hidden;
+  text-align: left;
 
   transition: border-color 0.2s;
 }
@@ -1488,7 +1438,6 @@ button:disabled {
 
 .transcript-header {
   display: flex;
-
   justify-content: space-between;
 
   padding: 12px 16px;
@@ -1504,7 +1453,6 @@ button:disabled {
 
 .transcript-body {
   min-height: 130px;
-
   max-height: 300px;
 
   overflow-y: auto;
@@ -1533,6 +1481,7 @@ button:disabled {
 
   font-style: italic;
 }
+
 
 /* ============================================================
    FINISH
@@ -1570,6 +1519,7 @@ button:disabled {
   margin-left: 10px;
 }
 
+
 /* ============================================================
    RESULTS
 ============================================================ */
@@ -1584,23 +1534,22 @@ button:disabled {
   padding: 50px 0 110px;
 
   position: relative;
-
   z-index: 2;
 }
 
 .results-header {
   display: flex;
-
   align-items: flex-start;
-
   justify-content: space-between;
 
-  margin-bottom: 55px;
-
   gap: 30px;
+
+  margin-bottom: 55px;
 }
 
 .results-header h2 {
+  margin: 0;
+
   font-family: var(--serif);
 
   font-size: clamp(38px, 5vw, 60px);
@@ -1608,8 +1557,6 @@ button:disabled {
   font-weight: 500;
 
   letter-spacing: -2px;
-
-  margin: 0;
 }
 
 .results-header p:last-child {
@@ -1618,13 +1565,13 @@ button:disabled {
   font-size: 13px;
 }
 
+
 /* ============================================================
    ANALYSIS SOURCE
 ============================================================ */
 
 .analysis-source {
   display: inline-flex;
-
   align-items: center;
 
   margin-bottom: 20px;
@@ -1635,14 +1582,15 @@ button:disabled {
 
   border-radius: 999px;
 
+  background: rgba(255, 255, 255, 0.02);
+
   color: var(--muted-2);
 
   font-size: 8px;
 
   letter-spacing: 1.5px;
-
-  background: rgba(255, 255, 255, 0.02);
 }
+
 
 /* ============================================================
    EVALUATION LOADING
@@ -1652,11 +1600,9 @@ button:disabled {
   min-height: 400px;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   color: var(--muted);
@@ -1667,6 +1613,8 @@ button:disabled {
 }
 
 .evaluation-loading h3 {
+  margin: 0 0 8px;
+
   color: var(--text);
 
   font-family: var(--serif);
@@ -1674,37 +1622,33 @@ button:disabled {
   font-size: 28px;
 
   font-weight: 500;
-
-  margin: 0 0 8px;
 }
 
 .evaluation-loading p {
   max-width: 500px;
 
-  line-height: 1.7;
-
   margin: 0;
+
+  line-height: 1.7;
 }
 
 .loading-orbit {
   width: 55px;
-
   height: 55px;
 
-  border-radius: 50%;
+  margin-bottom: 25px;
 
   border: 2px solid var(--border);
 
   border-top-color: var(--accent);
 
-  animation: spin 1s linear infinite;
+  border-radius: 50%;
 
-  margin-bottom: 25px;
+  animation: spin 1s linear infinite;
 }
 
 .analysis-status {
   display: flex;
-
   align-items: center;
 
   gap: 8px;
@@ -1720,7 +1664,6 @@ button:disabled {
 
 .analysis-status span {
   width: 6px;
-
   height: 6px;
 
   border-radius: 50%;
@@ -1732,6 +1675,7 @@ button:disabled {
 
   animation: statusPulse 1.2s infinite;
 }
+
 
 /* ============================================================
    SCORE
@@ -1753,7 +1697,6 @@ button:disabled {
 
 .overall-score {
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
@@ -1776,6 +1719,8 @@ button:disabled {
 }
 
 .overall-score strong {
+  margin-top: 8px;
+
   font-family: var(--serif);
 
   font-size: 90px;
@@ -1783,35 +1728,34 @@ button:disabled {
   font-weight: 500;
 
   line-height: 1;
-
-  margin-top: 8px;
 }
 
 .overall-score small {
-  color: var(--muted);
-
   margin-top: 4px;
+
+  color: var(--muted);
 }
 
 .score-message h3 {
+  margin: 0;
+
   font-family: var(--serif);
 
   font-size: 30px;
 
   font-weight: 500;
-
-  margin: 0;
 }
 
 .score-message p {
-  color: var(--muted);
-
   max-width: 600px;
+
+  color: var(--muted);
 
   font-size: 14px;
 
   line-height: 1.8;
 }
+
 
 /* ============================================================
    METRICS
@@ -1849,7 +1793,6 @@ button:disabled {
 
 .metric-top {
   display: flex;
-
   justify-content: space-between;
 
   color: var(--muted);
@@ -1866,23 +1809,69 @@ button:disabled {
 
   margin-top: 15px;
 
-  background: rgba(255, 255, 255, 0.08);
-
   overflow: hidden;
 
   border-radius: 99px;
+
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .metric-bar div {
   height: 100%;
 
-  background: var(--accent);
-
   border-radius: 99px;
 
-  transition:
-    width 0.7s ease;
+  background: var(--accent);
+
+  transition: width 0.7s ease;
 }
+
+
+/* ============================================================
+   FEEDBACK
+============================================================ */
+
+.feedback-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+.feedback-item {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.feedback-item strong {
+  color: var(--text);
+
+  font-size: 11px;
+}
+
+.feedback-item span {
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
 
 /* ============================================================
    SPEECH STATS
@@ -1895,21 +1884,20 @@ button:disabled {
 
   margin-top: 10px;
 
+  overflow: hidden;
+
   border: 1px solid var(--border);
 
   border-radius: 14px;
-
-  overflow: hidden;
 }
 
 .speech-stats div {
-  padding: 20px;
-
   display: flex;
-
   flex-direction: column;
 
   gap: 5px;
+
+  padding: 20px;
 
   border-right: 1px solid var(--border);
 }
@@ -1928,61 +1916,6 @@ button:disabled {
   font-size: 10px;
 }
 
-/* ============================================================
-   FEEDBACK
-============================================================ */
-
-.feedback-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 12px;
-
-  margin-top: 35px;
-}
-
-.feedback-card {
-  padding: 25px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 16px;
-
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.feedback-card h3 {
-  margin: 0 0 18px;
-
-  font-family: var(--serif);
-
-  font-size: 23px;
-
-  font-weight: 500;
-}
-
-.feedback-item {
-  display: flex;
-
-  gap: 12px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.7;
-
-  padding: 10px 0;
-
-  border-top: 1px solid var(--border);
-}
-
-.feedback-item > span:first-child {
-  color: var(--accent);
-
-  flex-shrink: 0;
-}
 
 /* ============================================================
    STRUCTURE
@@ -1997,14 +1930,15 @@ button:disabled {
 }
 
 .structure-card .feedback-item strong {
-  color: var(--text);
-
   min-width: 120px;
+
+  color: var(--text);
 }
 
 .structure-card .feedback-item > span:last-child {
   color: var(--muted);
 }
+
 
 /* ============================================================
    CORRECTIONS
@@ -2015,23 +1949,23 @@ button:disabled {
 }
 
 .section-heading p {
+  margin: 0 0 7px;
+
   color: var(--muted-2);
 
   font-size: 9px;
 
   letter-spacing: 2px;
-
-  margin: 0 0 7px;
 }
 
 .section-heading h3 {
+  margin: 0 0 22px;
+
   font-family: var(--serif);
 
   font-size: 30px;
 
   font-weight: 500;
-
-  margin: 0 0 22px;
 }
 
 .correction {
@@ -2039,17 +1973,17 @@ button:disabled {
 
   grid-template-columns: 1fr 50px 1fr;
 
+  gap: 20px;
+
   align-items: center;
 
-  gap: 20px;
+  margin-bottom: 8px;
 
   padding: 20px;
 
   border: 1px solid var(--border);
 
   border-radius: 14px;
-
-  margin-bottom: 8px;
 
   background: rgba(255, 255, 255, 0.015);
 
@@ -2069,29 +2003,29 @@ button:disabled {
 }
 
 .correction p {
+  margin: 8px 0 0;
+
   color: var(--muted);
 
   font-size: 12px;
 
   line-height: 1.6;
-
-  margin: 8px 0 0;
 }
 
 .correction .arrow {
   color: var(--accent);
 
-  text-align: center;
-
   font-size: 18px;
+
+  text-align: center;
 }
 
 .correction-explanation {
   grid-column: 1 / -1;
 
-  padding-top: 15px;
-
   margin-top: 4px;
+
+  padding-top: 15px;
 
   border-top: 1px solid var(--border);
 }
@@ -2099,6 +2033,7 @@ button:disabled {
 .correction-explanation p {
   margin-top: 6px;
 }
+
 
 /* ============================================================
    NEXT CHALLENGE
@@ -2123,19 +2058,19 @@ button:disabled {
 }
 
 .next-challenge-card .topic-label {
-  color: var(--accent);
-
   margin-bottom: 10px;
+
+  color: var(--accent);
 }
 
 .next-challenge-card h3 {
+  margin: 0;
+
   font-family: var(--serif);
 
   font-size: 30px;
 
   font-weight: 500;
-
-  margin: 0;
 }
 
 .next-challenge-card > p:not(.topic-label) {
@@ -2150,7 +2085,6 @@ button:disabled {
 
 .challenge-rules {
   display: flex;
-
   flex-wrap: wrap;
 
   gap: 7px;
@@ -2165,12 +2099,13 @@ button:disabled {
 
   border-radius: 999px;
 
+  background: rgba(255, 255, 255, 0.02);
+
   color: var(--muted);
 
   font-size: 10px;
-
-  background: rgba(255, 255, 255, 0.02);
 }
+
 
 /* ============================================================
    RESULT ACTIONS
@@ -2179,148 +2114,162 @@ button:disabled {
 .results-actions {
   display: flex;
 
-  justify-content: center;
-
   align-items: center;
+  justify-content: center;
 
   gap: 15px;
 
   margin-top: 40px;
 }
 
-.start-button.small {
-  margin-top: 0;
-
-  border: 1px solid var(--border);
-}
-
-.start-button.small:hover {
-  border-color: var(--border-hover);
-}
 
 /* ============================================================
-   PROGRESS SCREEN
+   PROGRESS PAGE
 ============================================================ */
 
 .progress-screen {
-  width: min(1050px, 90%);
+  width: min(980px, 92%);
 
   min-height: calc(100vh - 140px);
 
   margin: 0 auto;
 
-  padding: 55px 0 100px;
+  padding: 42px 0 110px;
 
   position: relative;
-
   z-index: 2;
 }
 
-.progress-screen-header {
-  margin-bottom: 45px;
+.progress-container {
+  width: 100%;
 }
 
-.progress-screen-header .topic-label {
-  margin-bottom: 10px;
-}
-
-.progress-screen-header h1 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: clamp(42px, 5vw, 64px);
-
-  font-weight: 500;
-
-  letter-spacing: -2px;
-}
-
-.progress-screen-header p {
-  max-width: 550px;
-
-  margin: 15px 0 0;
-
-  color: var(--muted);
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
 
 /* ============================================================
-   PROGRESS CARDS
+   PROGRESS BACK BUTTON
 ============================================================ */
 
-.progress-stats {
-  display: grid;
+.progress-back-button {
+  display: inline-flex;
 
-  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
 
-  gap: 10px;
+  gap: 8px;
 
-  margin-bottom: 35px;
-}
+  margin-bottom: 42px;
 
-.progress-stat-card {
-  padding: 22px;
+  padding: 8px 13px;
 
   border: 1px solid var(--border);
 
-  border-radius: 16px;
+  border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
+
+  color: var(--muted);
+
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 600;
 
   transition:
-    border-color 0.2s,
-    transform 0.2s;
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.progress-stat-card:hover {
+.progress-back-button:hover {
+  color: var(--text);
+
   border-color: var(--border-hover);
 
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.025);
+
+  transform: translateX(-2px);
 }
 
-.progress-stat-label {
+.progress-back-arrow {
   color: var(--muted-2);
 
-  font-size: 9px;
+  font-size: 14px;
 
-  letter-spacing: 1.4px;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   PROGRESS HEADER
+============================================================ */
+
+.progress-header {
+  margin-bottom: 30px;
+
+  animation: progressReveal 0.45s ease both;
+}
+
+.progress-eyebrow {
+  margin: 0 0 10px;
+
+  color: var(--accent);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
 
   text-transform: uppercase;
 }
 
-.progress-stat-value {
-  margin-top: 10px;
+.progress-header h1 {
+  margin: 0;
+
+  color: var(--text);
 
   font-family: var(--serif);
 
-  font-size: 42px;
-
-  line-height: 1;
+  font-size: clamp(40px, 5vw, 62px);
 
   font-weight: 500;
+
+  line-height: 1.04;
+
+  letter-spacing: -2.2px;
 }
 
-.progress-stat-subtitle {
-  margin-top: 8px;
+.progress-header h1 span {
+  color: var(--text);
+}
+
+.progress-intro {
+  max-width: 560px;
+
+  margin: 14px 0 0;
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 12px;
+
+  line-height: 1.75;
 }
 
-/* ============================================================
-   DAILY GOAL
-============================================================ */
-/* ============================================================
-   DAILY PRACTICE
-   ============================================================ */
 
-.daily-practice-card {
-  padding: 25px;
+/* ============================================================
+   HERO PROGRESS CARD
+============================================================ */
+
+.progress-hero-card {
+  display: grid;
+
+  grid-template-columns: 1fr 1px 1fr;
+
+  min-height: 170px;
+
+  margin-bottom: 12px;
+
+  overflow: hidden;
 
   border: 1px solid var(--border);
 
@@ -2328,34 +2277,135 @@ button:disabled {
 
   background:
     radial-gradient(
-      circle at 100% 0%,
+      circle at 10% 0%,
       rgba(215, 255, 100, 0.035),
       transparent 40%
     ),
-    rgba(255, 255, 255, 0.02);
+    rgba(255, 255, 255, 0.018);
 
-  margin-bottom: 12px;
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.05s;
+}
+
+.hero-streak,
+.hero-xp {
+  padding: 25px 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.hero-divider {
+  width: 1px;
+
+  margin: 24px 0;
+
+  background: var(--border);
+}
+
+.hero-label {
+  color: var(--muted-2);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+}
+
+.hero-streak-value {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 52px;
+
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.hero-streak-value span {
+  color: var(--muted);
+
+  font-family: var(--sans);
+
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+.hero-xp-value {
+  margin-top: 10px;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 52px;
+
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.hero-streak p,
+.hero-xp p {
+  margin: 9px 0 0;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
 }
 
 
 /* ============================================================
-   HEADER
-   ============================================================ */
+   DAILY PRACTICE
+============================================================ */
+
+.daily-practice-card {
+  margin-bottom: 12px;
+
+  padding: 24px 26px;
+
+  border: 1px solid rgba(215, 255, 100, 0.13);
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(215, 255, 100, 0.045),
+      transparent 42%
+    ),
+    rgba(255, 255, 255, 0.018);
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.09s;
+}
 
 .daily-practice-top {
   display: flex;
 
   align-items: flex-start;
-
   justify-content: space-between;
 
-  gap: 20px;
-
-  margin-bottom: 22px;
+  gap: 25px;
 }
 
 .daily-practice-info {
-  max-width: 650px;
+  max-width: 700px;
 }
 
 .daily-practice-eyebrow {
@@ -2363,25 +2413,26 @@ button:disabled {
 
   margin-bottom: 8px;
 
-  color: var(--muted);
+  color: var(--accent);
 
-  font-size: 10px;
+  font-size: 8px;
+  font-weight: 700;
 
-  letter-spacing: 1.5px;
-
-  font-weight: 600;
+  letter-spacing: 1.8px;
 }
 
 .daily-practice-info h2 {
   margin: 0;
 
+  color: var(--text);
+
   font-family: var(--serif);
 
   font-size: 24px;
 
-  line-height: 1.3;
-
   font-weight: 500;
+
+  line-height: 1.3;
 }
 
 .daily-practice-info p {
@@ -2389,242 +2440,169 @@ button:disabled {
 
   color: var(--muted);
 
-  font-size: 13px;
+  font-size: 11px;
 
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-
-/* ============================================================
-   PRACTICE NUMBER / CHECK
-   ============================================================ */
-
 .practice-check {
-  width: 42px;
-
-  height: 42px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
+  width: 43px;
+  height: 43px;
 
   flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border: 1px solid var(--border);
 
   border-radius: 50%;
 
-  color: var(--muted);
-
   background: rgba(255, 255, 255, 0.025);
 
-  font-size: 12px;
+  color: var(--muted-2);
 
-  font-weight: 600;
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
 }
-
-.practice-check.completed {
-  border-color: rgba(215, 255, 100, 0.3);
-
-  color: var(--accent);
-
-  background: rgba(215, 255, 100, 0.06);
-
-  box-shadow:
-    0 0 16px rgba(215, 255, 100, 0.08);
-}
-
-
-/* ============================================================
-   PROGRESS
-   ============================================================ */
 
 .practice-progress-section {
-  margin-top: 6px;
+  margin-top: 24px;
 }
 
 .practice-progress-header {
   display: flex;
 
   align-items: center;
-
   justify-content: space-between;
 
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
-.practice-progress-header span {
-  color: var(--muted);
-
-  font-size: 10px;
-
-  letter-spacing: 0.5px;
-}
-
+.practice-progress-header span,
 .practice-progress-header strong {
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 9px;
+}
 
-  font-weight: 500;
+.practice-progress-header strong {
+  color: var(--text);
+
+  font-weight: 600;
 }
 
 .practice-progress-track {
   width: 100%;
-
   height: 4px;
 
   overflow: hidden;
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .practice-progress-fill {
   height: 100%;
 
-  border-radius: 999px;
+  border-radius: inherit;
 
   background: var(--accent);
 
-  transition: width 0.5s ease;
-
   box-shadow:
-    0 0 12px rgba(215, 255, 100, 0.2);
+    0 0 12px rgba(215, 255, 100, 0.16);
+
+  transition: width 0.6s ease;
 }
 
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-
 .practice-footer {
-  margin-top: 22px;
+  display: flex;
 
-  padding-top: 18px;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 18px;
+
+  padding-top: 16px;
 
   border-top: 1px solid var(--border);
 }
 
-
-/* ============================================================
-   START PRACTICE
-   ============================================================ */
-
-.practice-start {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-}
-
 .practice-start-text {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 4px;
-}
-
-.practice-start-text strong {
-  font-size: 12px;
-
-  font-weight: 500;
-}
-
-.practice-start-text span {
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
+
+  line-height: 1.6;
 }
 
-
-/* ============================================================
-   BUTTON
-   ============================================================ */
-
 .practice-start-button {
+  flex-shrink: 0;
+
   display: inline-flex;
 
   align-items: center;
-
   justify-content: center;
 
-  gap: 10px;
-
-  padding: 10px 15px;
+  padding: 9px 15px;
 
   border: 1px solid var(--border);
 
-  border-radius: 10px;
+  border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.025);
 
   color: var(--text);
 
-  font-size: 11px;
-
-  font-weight: 500;
-
   cursor: pointer;
 
+  font-size: 9px;
+  font-weight: 600;
+
   transition:
-    background 0.2s ease,
+    transform 0.2s ease,
     border-color 0.2s ease,
-    transform 0.2s ease;
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .practice-start-button:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(215, 255, 100, 0.28);
+
   background: rgba(215, 255, 100, 0.06);
 
-  border-color: rgba(215, 255, 100, 0.25);
-
   color: var(--accent);
-
-  transform: translateY(-1px);
 }
-
-.practice-start-button span {
-  color: inherit;
-
-  font-size: 15px;
-
-  line-height: 1;
-}
-
-
-/* ============================================================
-   COMPLETED STATE
-   ============================================================ */
 
 .practice-completed-message {
   display: flex;
 
   align-items: center;
 
-  gap: 12px;
+  gap: 9px;
+
+  color: var(--accent);
+
+  font-size: 10px;
 }
 
 .completed-icon {
-  width: 32px;
-
-  height: 32px;
+  width: 27px;
+  height: 27px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
-  flex-shrink: 0;
-
-  border: 1px solid rgba(215, 255, 100, 0.25);
+  border: 1px solid rgba(215, 255, 100, 0.24);
 
   border-radius: 50%;
 
@@ -2632,102 +2610,739 @@ button:disabled {
 
   color: var(--accent);
 
-  font-size: 12px;
-
-  box-shadow:
-    0 0 12px rgba(215, 255, 100, 0.08);
-}
-
-.practice-completed-message div:last-child {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 3px;
-}
-
-.practice-completed-message strong {
-  font-size: 12px;
-
-  font-weight: 500;
-}
-
-.practice-completed-message span {
-  color: var(--muted);
-
   font-size: 11px;
 }
 
 
 /* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-  .daily-practice-card {
-    padding: 20px;
-  }
-
-  .daily-practice-info h2 {
-    font-size: 21px;
-  }
-
-  .daily-practice-top {
-    gap: 12px;
-  }
-
-  .practice-start {
-    align-items: stretch;
-
-    flex-direction: column;
-  }
-
-  .practice-start-button {
-    width: 100%;
-  }
-}
-
-/* ============================================================
-   RECENT ACTIVITY
+   SECTION HEADINGS
 ============================================================ */
 
-.recent-activity {
-  padding: 25px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.02);
+.section-heading {
+  margin-bottom: 14px;
 }
 
-.recent-activity h2 {
-  margin: 0 0 20px;
+.section-heading > div > p,
+.section-heading > p {
+  margin: 0 0 6px;
+
+  color: var(--muted-2);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+}
+
+.section-heading h3 {
+  margin: 0;
+
+  color: var(--text);
 
   font-family: var(--serif);
 
-  font-size: 24px;
+  font-size: 25px;
+
+  font-weight: 500;
+
+  line-height: 1.25;
+}
+
+
+/* ============================================================
+   NEXT MILESTONE
+============================================================ */
+
+.next-milestone-section {
+  margin-top: 38px;
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.13s;
+}
+
+.next-milestone-card {
+  padding: 24px 26px;
+
+  border: 1px solid rgba(215, 255, 100, 0.16);
+
+  border-radius: 17px;
+
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(215, 255, 100, 0.045),
+      transparent 42%
+    ),
+    rgba(255, 255, 255, 0.015);
+}
+
+.next-milestone-top {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.next-milestone-label {
+  color: var(--muted-2);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.6px;
+}
+
+.next-milestone-top h2 {
+  margin: 6px 0 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 28px;
 
   font-weight: 500;
 }
 
-.activity-list {
-  display: flex;
+.next-milestone-xp {
+  flex-shrink: 0;
 
-  flex-direction: column;
+  padding: 7px 10px;
+
+  border: 1px solid rgba(215, 255, 100, 0.18);
+
+  border-radius: 999px;
+
+  background: rgba(215, 255, 100, 0.045);
+
+  color: var(--accent);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
 }
 
-.activity-item {
+.next-milestone-progress {
+  margin-top: 24px;
+}
+
+.next-milestone-numbers {
   display: flex;
 
   align-items: center;
+  justify-content: space-between;
 
+  margin-bottom: 8px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.next-milestone-track {
+  width: 100%;
+  height: 5px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.next-milestone-fill {
+  height: 100%;
+
+  min-width: 2px;
+
+  border-radius: inherit;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 15px rgba(215, 255, 100, 0.18);
+
+  transition: width 0.7s ease;
+}
+
+.next-milestone-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 12px;
+
+  color: var(--muted-2);
+
+  font-size: 9px;
+}
+
+.next-milestone-footer span:first-child {
+  color: var(--text);
+
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   SPEAKING OVERVIEW
+============================================================ */
+
+.speaking-overview {
+  margin-top: 38px;
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.17s;
+}
+
+.overview-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.overview-item {
+  min-height: 125px;
+
+  padding: 21px;
+
+  border-right: 1px solid var(--border);
+
+  transition: background 0.2s ease;
+}
+
+.overview-item:last-child {
+  border-right: 0;
+}
+
+.overview-item:hover {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.overview-item > span {
+  color: var(--muted-2);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.overview-item strong {
+  display: block;
+
+  margin-top: 13px;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 32px;
+
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.overview-item p {
+  margin: 7px 0 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   PROGRESS INSIGHT
+============================================================ */
+
+.progress-insight-card {
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 15px;
+
+  margin-top: 12px;
+
+  padding: 19px 21px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.008)
+    );
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.21s;
+}
+
+.progress-insight-marker {
+  width: 2px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(215, 255, 100, 0.1);
+}
+
+.progress-insight-marker span {
+  display: block;
+
+  width: 100%;
+  height: 55%;
+
+  border-radius: inherit;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 12px rgba(215, 255, 100, 0.2);
+}
+
+.progress-insight-content {
+  min-width: 0;
+}
+
+.progress-insight-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--muted-2);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1.6px;
+}
+
+.progress-insight-content h3 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 19px;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+.progress-insight-content p {
+  max-width: 720px;
+
+  margin: 6px 0 0;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   OTHER GOALS
+============================================================ */
+
+.other-goals-section {
+  margin-top: 38px;
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.24s;
+}
+
+.other-goals-list {
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.goal-row {
+  min-height: 66px;
+
+  display: flex;
+
+  align-items: center;
   justify-content: space-between;
 
   gap: 20px;
 
-  padding: 15px 0;
+  padding: 14px 19px;
+
+  border-bottom: 1px solid var(--border);
+
+  transition: background 0.2s ease;
+}
+
+.goal-row:last-child {
+  border-bottom: 0;
+}
+
+.goal-row:hover {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.goal-row-info {
+  min-width: 0;
+}
+
+.goal-row-title {
+  color: var(--text);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.goal-row-description {
+  margin-top: 4px;
+
+  color: var(--muted-2);
+
+  font-size: 9px;
+}
+
+.goal-row-reward {
+  flex-shrink: 0;
+
+  color: var(--accent);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   MILESTONE HISTORY
+============================================================ */
+
+.achievements-section {
+  margin-top: 38px;
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.27s;
+}
+
+.milestones-toggle {
+  width: 100%;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.012);
+
+  color: var(--muted);
+
+  cursor: pointer;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.milestones-toggle:hover {
+  border-color: var(--border-hover);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--text);
+}
+
+.milestones-arrow {
+  width: 6px;
+  height: 6px;
+
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+
+  transform:
+    rotate(45deg)
+    translateY(-2px);
+
+  transition: transform 0.25s ease;
+}
+
+.milestones-arrow.open {
+  transform:
+    rotate(225deg)
+    translateY(-1px);
+}
+
+.milestone-history {
+  margin-top: 10px;
+}
+
+.achievement-card {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 13px;
+
+  padding: 14px 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.012);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.achievement-card:hover {
+  border-color: var(--border-hover);
+
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.achievement-card.unlocked {
+  border-color: rgba(215, 255, 100, 0.16);
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(215, 255, 100, 0.022),
+      rgba(255, 255, 255, 0.01)
+    );
+}
+
+.achievement-status {
+  width: 26px;
+  height: 26px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+}
+
+.achievement-card.unlocked .achievement-status {
+  border-color: rgba(215, 255, 100, 0.28);
+
+  background: rgba(215, 255, 100, 0.045);
+}
+
+.achievement-status span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--muted-2);
+}
+
+.achievement-card.unlocked
+  .achievement-status span {
+  width: 7px;
+  height: 7px;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 0 4px rgba(215, 255, 100, 0.06);
+}
+
+.achievement-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.achievement-title-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.achievement-title-row h4 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.achievement-title-row > span {
+  flex-shrink: 0;
+
+  color: var(--muted-2);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+
+  text-transform: uppercase;
+}
+
+.achievement-card.unlocked
+  .achievement-title-row > span {
+  color: var(--accent);
+}
+
+.achievement-info p {
+  margin: 5px 0 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+.achievement-meta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 8px;
+}
+
+.achievement-xp {
+  color: var(--accent);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* ============================================================
+   RECENT PRACTICE
+============================================================ */
+
+.recent-activity {
+  margin-top: 38px;
+
+  padding: 22px 24px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.012);
+
+  animation: progressReveal 0.5s ease both;
+  animation-delay: 0.3s;
+}
+
+.recent-activity-header {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 12px;
+}
+
+.recent-activity-header > div > p {
+  margin: 0 0 6px;
+
+  color: var(--muted-2);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+}
+
+.recent-activity-header h3 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 25px;
+
+  font-weight: 500;
+}
+
+.activity-count {
+  color: var(--muted-2);
+
+  font-size: 8px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  min-height: 64px;
+
+  display: grid;
+
+  grid-template-columns: 90px 1fr auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 13px 0;
 
   border-bottom: 1px solid var(--border);
 }
@@ -2736,166 +3351,574 @@ button:disabled {
   border-bottom: 0;
 }
 
+.activity-date {
+  color: var(--muted-2);
+
+  font-size: 8px;
+}
+
 .activity-info {
   min-width: 0;
 
   display: flex;
-
   flex-direction: column;
 
-  gap: 5px;
+  gap: 4px;
 }
 
 .activity-topic {
-  color: var(--text);
-
-  font-size: 12px;
-
-  font-weight: 600;
-
   overflow: hidden;
 
-  text-overflow: ellipsis;
+  color: var(--text);
 
+  font-size: 10px;
+  font-weight: 600;
+
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .activity-meta {
   color: var(--muted-2);
 
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .activity-score {
-  flex-shrink: 0;
-
   color: var(--accent);
 
   font-family: var(--serif);
 
-  font-size: 24px;
+  font-size: 21px;
+
+  white-space: nowrap;
 }
 
 .no-activity {
-  padding: 35px 0;
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
 
   text-align: center;
+}
+
+.empty-history-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+}
+
+.empty-history-icon span {
+  width: 13px;
+  height: 8px;
+
+  border-bottom: 1px solid var(--muted-2);
+}
+
+.no-activity h4 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 19px;
+
+  font-weight: 500;
+}
+
+.no-activity p {
+  max-width: 400px;
+
+  margin: 6px 0 0;
+
+  color: var(--muted);
+
+  font-size: 9px;
+
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   PROGRESS BOTTOM
+============================================================ */
+
+.progress-bottom-message {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  margin-top: 48px;
+
+  text-align: center;
+}
+
+.bottom-message-line {
+  width: 30px;
+  height: 1px;
+
+  margin-bottom: 15px;
+
+  background: var(--accent);
+
+  opacity: 0.35;
+}
+
+.progress-bottom-message p {
+  margin: 0;
 
   color: var(--muted-2);
 
-  font-size: 11px;
+  font-family: var(--serif);
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  line-height: 1.7;
 }
 
+
 /* ============================================================
-   SETTINGS
+   SETTINGS SCREEN
 ============================================================ */
 
 .settings-screen {
-  width: min(800px, 90%);
+  width: min(900px, 92%);
 
   min-height: calc(100vh - 140px);
 
   margin: 0 auto;
 
-  padding: 55px 0 100px;
+  padding: 42px 0 110px;
 
   position: relative;
-
   z-index: 2;
 }
 
+.settings-screen-container {
+  width: 100%;
+}
+
+
+/* ============================================================
+   SETTINGS HEADER
+============================================================ */
+
 .settings-screen-header {
-  margin-bottom: 40px;
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 35px;
+
+  animation: progressReveal 0.45s ease both;
+}
+
+.settings-screen-header > div {
+  min-width: 0;
+}
+
+.settings-screen-eyebrow {
+  margin: 0 0 10px;
+
+  color: var(--accent);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
 }
 
 .settings-screen-header h1 {
   margin: 0;
 
+  color: var(--text);
+
   font-family: var(--serif);
 
-  font-size: clamp(42px, 5vw, 60px);
+  font-size: clamp(40px, 5vw, 60px);
 
   font-weight: 500;
+
+  line-height: 1.05;
 
   letter-spacing: -2px;
 }
 
 .settings-screen-header p {
-  margin-top: 12px;
+  max-width: 560px;
+
+  margin: 12px 0 0;
 
   color: var(--muted);
 
-  font-size: 13px;
+  font-size: 12px;
+
+  line-height: 1.7;
 }
 
+
+/* ============================================================
+   SETTINGS BACK BUTTON
+============================================================ */
+
+.settings-back-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 8px 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.settings-back-button:hover {
+  color: var(--text);
+
+  border-color: var(--border-hover);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  transform: translateX(-2px);
+}
+
+
+/* ============================================================
+   SETTINGS CARD
+============================================================ */
+
 .settings-card {
-  padding: 25px;
+  margin-top: 12px;
+
+  padding: 28px;
 
   border: 1px solid var(--border);
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.02);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(215, 255, 100, 0.025),
+      transparent 40%
+    ),
+    rgba(255, 255, 255, 0.015);
 
-  margin-bottom: 12px;
+  animation: progressReveal 0.5s ease both;
 }
 
-.settings-card h2 {
-  margin: 0 0 20px;
-
-  font-family: var(--serif);
-
-  font-size: 24px;
-
-  font-weight: 500;
+.settings-card:first-of-type {
+  margin-top: 0;
 }
 
-.profile-row {
+.settings-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================================================
+   SETTINGS PROFILE
+============================================================ */
+
+.settings-profile-top {
   display: flex;
 
   align-items: center;
 
-  justify-content: space-between;
-
-  gap: 20px;
-
-  padding: 15px 0;
-
-  border-bottom: 1px solid var(--border);
+  gap: 18px;
 }
 
-.profile-row:last-child {
-  border-bottom: 0;
+.settings-avatar {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(215, 255, 100, 0.18);
+
+  border-radius: 50%;
+
+  background: rgba(215, 255, 100, 0.06);
+
+  color: var(--accent);
+
+  font-size: 16px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
 }
 
-.profile-label {
+.settings-profile-info {
+  min-width: 0;
+}
+
+.settings-profile-info h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 25px;
+
+  font-weight: 500;
+}
+
+.settings-profile-info p {
+  margin: 5px 0 10px;
+
+  overflow: hidden;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-member-badge {
+  display: inline-flex;
+
+  padding: 6px 9px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.settings-profile-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-top: 25px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--border);
+}
+
+.settings-profile-stats > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding-left: 20px;
+
+  border-left: 1px solid var(--border);
+}
+
+.settings-profile-stats > div:first-child {
+  padding-left: 0;
+
+  border-left: 0;
+}
+
+.settings-profile-stats strong {
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 25px;
+
+  font-weight: 500;
+}
+
+.settings-profile-stats span {
   color: var(--muted-2);
+
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   SETTINGS CARD HEADER
+============================================================ */
+
+.settings-card-header {
+  margin-bottom: 25px;
+}
+
+.settings-card-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--serif);
+
+  font-size: 26px;
+
+  font-weight: 500;
+}
+
+.settings-card-header p {
+  margin: 7px 0 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   SETTINGS FIELDS
+============================================================ */
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin-top: 20px;
+}
+
+.settings-field:first-child {
+  margin-top: 0;
+}
+
+.settings-field label {
+  color: var(--muted-2);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.settings-field-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+
+/* ============================================================
+   SETTINGS CHIPS
+============================================================ */
+
+.settings-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.settings-chip {
+  padding: 9px 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.02);
+
+  color: var(--muted);
+
+  cursor: pointer;
 
   font-size: 10px;
 
-  letter-spacing: 1px;
+  transition: 0.2s ease;
 }
 
-.profile-value {
+.settings-chip:hover {
+  border-color: var(--border-hover);
+
+  background: rgba(255, 255, 255, 0.04);
+
   color: var(--text);
-
-  font-size: 12px;
-
-  text-align: right;
 }
 
-.settings-logout {
-  margin-top: 15px;
+.settings-chip.active {
+  border-color: rgba(215, 255, 100, 0.25);
 
-  border: 1px solid rgba(255, 100, 100, 0.15);
+  background: rgba(215, 255, 100, 0.07);
 
-  background: transparent;
+  color: var(--accent);
+}
 
-  color: #c58f8f;
 
-  padding: 10px 16px;
+/* ============================================================
+   SETTINGS SELECT
+============================================================ */
 
-  border-radius: 999px;
+.settings-select {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--text);
 
   cursor: pointer;
 
@@ -2904,11 +3927,244 @@ button:disabled {
   transition: 0.2s;
 }
 
+.settings-select:hover {
+  border-color: var(--border-hover);
+}
+
+.settings-select:focus {
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 3px rgba(215, 255, 100, 0.035);
+}
+
+.settings-select option {
+  background: var(--surface);
+
+  color: var(--text);
+}
+
+
+/* ============================================================
+   SETTINGS TOGGLES
+============================================================ */
+
+.settings-toggle-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-toggle-row:first-of-type {
+  padding-top: 0;
+}
+
+.settings-toggle-row:last-child {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.settings-toggle-row strong {
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-toggle-row p {
+  margin: 5px 0 0;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+.settings-toggle {
+  width: 43px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  padding: 2px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.settings-toggle span {
+  display: block;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: var(--muted-2);
+
+  transition: 0.25s ease;
+}
+
+.settings-toggle.on {
+  border-color: var(--accent);
+
+  background: rgba(215, 255, 100, 0.12);
+}
+
+.settings-toggle.on span {
+  transform: translateX(17px);
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 12px rgba(215, 255, 100, 0.25);
+}
+
+
+/* ============================================================
+   SETTINGS ACTIONS
+============================================================ */
+
+.settings-action-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 17px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-action-row:first-of-type {
+  padding-top: 0;
+}
+
+.settings-action-row:last-child {
+  border-bottom: 0;
+}
+
+.settings-action-row strong {
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-action-row p {
+  margin: 5px 0 0;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+.settings-secondary-btn {
+  flex-shrink: 0;
+
+  padding: 9px 13px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  transition: 0.2s ease;
+}
+
+.settings-secondary-btn:hover {
+  border-color: var(--border-hover);
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: var(--text);
+}
+
+.settings-secondary-btn.danger {
+  border-color: rgba(255, 100, 100, 0.15);
+
+  color: #c58f8f;
+}
+
+.settings-secondary-btn.danger:hover {
+  border-color: rgba(255, 100, 100, 0.3);
+
+  background: rgba(255, 100, 100, 0.035);
+
+  color: #d99a9a;
+}
+
+.settings-danger-card {
+  border-color: rgba(255, 100, 100, 0.08);
+}
+
+.settings-danger-card .settings-card-header {
+  margin-bottom: 20px;
+}
+
+.settings-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  padding-top: 22px;
+}
+
+.settings-logout {
+  padding: 10px 17px;
+
+  border: 1px solid rgba(255, 100, 100, 0.15);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #c58f8f;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  transition: 0.2s ease;
+}
+
 .settings-logout:hover {
   border-color: rgba(255, 100, 100, 0.3);
 
   background: rgba(255, 100, 100, 0.035);
+
+  color: #d99a9a;
+
+  transform: translateY(-1px);
 }
+
 
 /* ============================================================
    AUTH MODAL
@@ -2916,15 +4172,12 @@ button:disabled {
 
 .auth-overlay {
   position: fixed;
-
   inset: 0;
 
   z-index: 100;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   padding: 20px;
@@ -2937,50 +4190,46 @@ button:disabled {
 }
 
 .auth-card,
-  .login-card {
-    position: relative;
+.login-card {
+  position: relative;
 
-    width: min(420px, 100%);
+  width: min(420px, 100%);
 
-    max-height: 90vh;
+  max-height: 90vh;
 
-    overflow-y: auto;
+  overflow-y: auto;
 
-    padding: 35px;
+  padding: 35px;
 
-    border: 1px solid var(--border);
+  border: 1px solid var(--border);
 
-    border-radius: 20px;
+  border-radius: 20px;
 
-    background:
-      radial-gradient(
-        circle at 50% 0%,
-        rgba(215, 255, 100, 0.045),
-        transparent 45%
-      ),
-      var(--surface);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(215, 255, 100, 0.045),
+      transparent 45%
+    ),
+    var(--surface);
 
-    color: var(--text);
+  color: var(--text);
 
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.55);
-  }
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55);
+}
 
 .auth-close {
   position: absolute;
 
   top: 16px;
-
   right: 16px;
 
   width: 32px;
-
   height: 32px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border: 1px solid var(--border);
@@ -2999,23 +4248,22 @@ button:disabled {
 }
 
 .auth-close:hover {
-  color: var(--text);
-
   border-color: var(--border-hover);
 
   background: rgba(255, 255, 255, 0.04);
+
+  color: var(--text);
 }
 
 .login-logo {
+  margin-bottom: 25px;
+
   text-align: center;
 
   font-size: 22px;
-
   font-weight: 700;
 
   letter-spacing: -0.8px;
-
-  margin-bottom: 25px;
 }
 
 .login-logo span {
@@ -3037,9 +4285,9 @@ button:disabled {
 }
 
 .login-subtitle {
-  margin: 10px auto 28px;
-
   max-width: 300px;
+
+  margin: 10px auto 28px;
 
   text-align: center;
 
@@ -3049,13 +4297,14 @@ button:disabled {
 
   line-height: 1.7;
 }
+
+
 /* ============================================================
    AUTH FORM
 ============================================================ */
 
 .login-form {
   display: flex;
-
   flex-direction: column;
 
   gap: 18px;
@@ -3063,7 +4312,6 @@ button:disabled {
 
 .login-field {
   display: flex;
-
   flex-direction: column;
 
   gap: 8px;
@@ -3085,11 +4333,9 @@ button:disabled {
 .login-field select {
   width: 100%;
 
-  box-sizing: border-box;
+  min-height: 42px;
 
   padding: 12px 13px;
-
-  min-height: 42px;
 
   border: 1px solid var(--border);
 
@@ -3100,8 +4346,6 @@ button:disabled {
   background: rgba(255, 255, 255, 0.025);
 
   color: var(--text);
-
-  font-family: inherit;
 
   font-size: 12px;
 
@@ -3140,18 +4384,11 @@ button:disabled {
   color: var(--text);
 }
 
-
-/* ============================================================
-   LOGIN BUTTON
-============================================================ */
-
 .login-button {
   width: 100%;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
@@ -3170,10 +4407,7 @@ button:disabled {
 
   cursor: pointer;
 
-  font-family: inherit;
-
   font-size: 12px;
-
   font-weight: 700;
 
   transition:
@@ -3199,11 +4433,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-
-/* ============================================================
-   AUTH ERROR
-============================================================ */
-
 .auth-error {
   margin-bottom: 17px;
 
@@ -3222,16 +4451,10 @@ button:disabled {
   line-height: 1.5;
 }
 
-
-/* ============================================================
-   SIGN UP
-============================================================ */
-
 .signup-text {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 5px;
@@ -3242,17 +4465,17 @@ button:disabled {
 
   border-top: 1px solid var(--border);
 
-  text-align: center;
-
   color: var(--muted-2);
 
   font-size: 11px;
+
+  text-align: center;
 }
 
 .signup-text button {
-  border: 0;
-
   padding: 0;
+
+  border: 0;
 
   background: transparent;
 
@@ -3260,16 +4483,163 @@ button:disabled {
 
   cursor: pointer;
 
-  font-family: inherit;
-
   font-size: inherit;
-
   font-weight: 600;
 }
 
 .signup-text button:hover {
   text-decoration: underline;
 }
+
+
+/* ============================================================
+   SPEAKING HINTS
+   KEPT AS PROVIDED
+============================================================ */
+
+.speaking-hints {
+  width: 100%;
+  max-width: 760px;
+  margin: 18px auto 0;
+}
+
+.speaking-hints-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin: 0 auto;
+
+  padding: 10px 17px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--muted);
+
+  cursor: pointer;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.speaking-hints-button:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.speaking-hints-arrow {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.speaking-hints-panel {
+  margin-top: 12px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(215, 255, 100, 0.035),
+      transparent 45%
+    ),
+    rgba(255, 255, 255, 0.02);
+}
+
+.speaking-hints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.speaking-hints-header span {
+  display: block;
+
+  color: var(--muted-2);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+}
+
+.speaking-hints-header small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: var(--muted-2);
+
+  font-size: 10px;
+}
+
+.speaking-hints-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding-top: 14px;
+}
+
+.speaking-hint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.speaking-hint-item > span {
+  flex-shrink: 0;
+
+  color: var(--accent);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.speaking-hint-item p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.speaking-hints-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding-top: 14px;
+}
+
+.speaking-hints-empty > span {
+  color: var(--muted-2);
+  font-size: 13px;
+}
+
+.speaking-hints-empty p {
+  margin: 0;
+
+  color: var(--muted-2);
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
 
 /* ============================================================
    FOOTER
@@ -3279,17 +4649,13 @@ button:disabled {
   position: fixed;
 
   left: 0;
-
   right: 0;
-
   bottom: 0;
 
   height: 45px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   padding: 0 5vw;
@@ -3309,13 +4675,13 @@ button:disabled {
   z-index: 10;
 }
 
+
 /* ============================================================
    SCROLLBARS
 ============================================================ */
 
 ::-webkit-scrollbar {
   width: 6px;
-
   height: 6px;
 }
 
@@ -3333,6 +4699,7 @@ button:disabled {
   background: #3a3e48;
 }
 
+
 /* ============================================================
    ANIMATIONS
 ============================================================ */
@@ -3342,6 +4709,20 @@ button:disabled {
     opacity: 0;
 
     transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressReveal {
+  from {
+    opacity: 0;
+
+    transform: translateY(10px);
   }
 
   to {
@@ -3389,6 +4770,21 @@ button:disabled {
   }
 }
 
+@keyframes softPulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.15);
+
+    opacity: 1;
+  }
+}
+
 @keyframes ringGlow {
   0%,
   100% {
@@ -3428,11 +4824,13 @@ button:disabled {
   }
 }
 
+
 /* ============================================================
    TABLET
 ============================================================ */
 
 @media (max-width: 900px) {
+
   .learning-layout {
     grid-template-columns: 1fr;
 
@@ -3472,20 +4870,18 @@ button:disabled {
     border-top: 1px solid var(--border);
   }
 
-  .progress-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .streak {
     display: none;
   }
 }
+
 
 /* ============================================================
    MOBILE
 ============================================================ */
 
 @media (max-width: 700px) {
+
   .header {
     padding: 0 20px;
   }
@@ -3585,11 +4981,11 @@ button:disabled {
   }
 
   .overall-score {
+    width: 100%;
+
     max-width: 260px;
 
     margin: 0 auto;
-
-    width: 100%;
   }
 
   .metrics {
@@ -3642,32 +5038,92 @@ button:disabled {
     padding-top: 40px;
   }
 
-  .progress-stat-card {
+  .progress-header h1 {
+    font-size: 42px;
+
+    letter-spacing: -1.8px;
+  }
+
+  .daily-practice-card {
+    padding: 20px;
+  }
+
+  .daily-practice-info h2 {
+    font-size: 21px;
+  }
+
+  .daily-practice-top {
+    gap: 12px;
+  }
+
+  .progress-insight-card {
     padding: 18px;
   }
 
-  .progress-stat-value {
-    font-size: 34px;
-  }
-
-  .daily-goal-header {
+  .achievement-title-row {
     align-items: flex-start;
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 4px;
   }
 
-  .profile-row {
+  .activity-item {
+    grid-template-columns: 75px 1fr auto;
+
+    gap: 15px;
+  }
+
+  .settings-screen-header {
+    flex-direction: column;
+
+    gap: 22px;
+  }
+
+  .settings-card {
+    padding: 22px;
+  }
+
+  .settings-profile-stats {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .settings-profile-stats > div {
+    padding-left: 0;
+    padding-top: 15px;
+
+    border-left: 0;
+
+    border-top: 1px solid var(--border);
+  }
+
+  .settings-profile-stats > div:first-child {
+    padding-top: 0;
+
+    border-top: 0;
+  }
+
+  .settings-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-toggle-row,
+  .settings-action-row {
     align-items: flex-start;
 
     flex-direction: column;
 
-    gap: 6px;
+    gap: 12px;
   }
 
-  .profile-value {
-    text-align: left;
+  .settings-actions {
+    justify-content: flex-start;
+  }
+
+  .settings-secondary-btn {
+    align-self: flex-start;
   }
 
   .footer {
@@ -3675,11 +5131,96 @@ button:disabled {
   }
 }
 
+
 /* ============================================================
    SMALL MOBILE
 ============================================================ */
 
+@media (max-width: 550px) {
+
+  .progress-screen {
+    width: 92%;
+
+    padding-top: 35px;
+  }
+
+  .progress-header h1 {
+    font-size: 38px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .daily-practice-card {
+    padding: 18px;
+  }
+
+  .daily-practice-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .practice-check {
+    width: 38px;
+    height: 38px;
+  }
+
+  .progress-insight-card {
+    gap: 12px;
+
+    padding: 16px;
+  }
+
+  .progress-insight-content h3 {
+    font-size: 18px;
+  }
+
+  .achievements-section .section-heading h3 {
+    font-size: 25px;
+  }
+
+  .recent-activity {
+    padding: 20px;
+  }
+
+  .activity-item {
+    grid-template-columns: 1fr auto;
+
+    gap: 8px;
+  }
+
+  .activity-date {
+    grid-column: 1 / -1;
+  }
+
+  .activity-score {
+    grid-column: 2;
+
+    grid-row: 2;
+
+    font-size: 21px;
+  }
+
+  .settings-screen-header h1 {
+    font-size: 40px;
+  }
+
+  .settings-profile-top {
+    align-items: flex-start;
+  }
+
+  .settings-profile-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   EXTRA SMALL MOBILE
+============================================================ */
+
 @media (max-width: 450px) {
+
   .header {
     height: 70px;
   }
@@ -3751,7 +5292,6 @@ button:disabled {
 
   .timer-ring {
     width: 165px;
-
     height: 165px;
   }
 
@@ -3777,7 +5317,8 @@ button:disabled {
     padding: 12px;
   }
 
-  .auth-card {
+  .auth-card,
+  .login-card {
     padding: 28px 18px;
   }
 
@@ -3789,1551 +5330,103 @@ button:disabled {
     display: none;
   }
 
-  .progress-stats {
-    grid-template-columns: 1fr;
+  .achievement-card {
+    padding: 14px;
+
+    gap: 11px;
+  }
+
+  .achievement-status {
+    width: 25px;
+    height: 25px;
+  }
+
+  .achievement-title-row {
+    gap: 3px;
   }
 
   .activity-item {
-    align-items: flex-start;
-
+    display: flex;
     flex-direction: column;
 
-    gap: 8px;
+    align-items: flex-start;
+
+    gap: 7px;
   }
 
   .activity-score {
     font-size: 21px;
   }
+
+  .progress-bottom-message {
+    margin-top: 40px;
+  }
 }
 
 
 /* ============================================================
-   PROGRESS — POLISHED STRUCTURE
+   VERY SMALL MOBILE
 ============================================================ */
 
-.progress-screen {
-  width: min(1100px, 90%);
+@media (max-width: 420px) {
 
-  min-height: calc(100vh - 140px);
-
-  margin: 0 auto;
-
-  padding: 65px 0 110px;
-
-  position: relative;
-
-  z-index: 2;
-}
-
-
-/* HEADER */
-
-.progress-screen-header {
-  display: flex;
-
-  align-items: flex-start;
-
-  justify-content: space-between;
-
-  gap: 40px;
-
-  margin-bottom: 48px;
-}
-
-.progress-screen-header > div {
-  max-width: 850px;
-}
-
-.progress-screen-header .topic-label {
-  margin-bottom: 14px;
-
-  color: var(--accent);
-}
-
-.progress-screen-header h1 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: clamp(42px, 5.5vw, 70px);
-
-  font-weight: 500;
-
-  line-height: 1.02;
-
-  letter-spacing: -2.8px;
-}
-
-.progress-screen-header p:last-child {
-  max-width: 550px;
-
-  margin: 18px 0 0;
-
-  color: var(--muted);
-
-  font-size: 13px;
-
-  line-height: 1.8;
-}
-
-
-/* BACK BUTTON */
-
-.progress-screen-header .back-button {
-  flex-shrink: 0;
-
-  margin-top: 5px;
-}
-
-
-/* ============================================================
-   STAT CARDS
-============================================================ */
-
-.progress-stats {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 10px;
-
-  margin-bottom: 35px;
-}
-
-.progress-stat-card {
-  min-height: 150px;
-
-  padding: 24px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.025),
-      rgba(255,255,255,0.01)
-    );
-
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease;
-}
-
-.progress-stat-card:hover {
-  transform: translateY(-3px);
-
-  border-color: var(--border-hover);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.015)
-    );
-}
-
-.progress-stat-label {
-  color: var(--muted-2);
-
-  font-size: 9px;
-
-  font-weight: 600;
-
-  letter-spacing: 1.8px;
-
-  text-transform: uppercase;
-}
-
-.progress-stat-value {
-  margin-top: 15px;
-
-  color: var(--text);
-
-  font-family: var(--serif);
-
-  font-size: 48px;
-
-  font-weight: 500;
-
-  line-height: 1;
-
-  letter-spacing: -1px;
-}
-
-.progress-stat-subtitle {
-  margin-top: 8px;
-
-  color: var(--muted);
-
-  font-size: 10px;
-}
-
-
-/* ============================================================
-   DAILY GOAL
-============================================================ */
-
-.daily-goal-card {
-  position: relative;
-
-  padding: 30px;
-
-  margin-bottom: 12px;
-
-  border: 1px solid rgba(215, 255, 100, 0.12);
-
-  border-radius: 20px;
-
-  background:
-    radial-gradient(
-      circle at 90% 0%,
-      rgba(215,255,100,0.055),
-      transparent 40%
-    ),
-    rgba(255,255,255,0.02);
-}
-
-.daily-goal-header {
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  margin-bottom: 24px;
-}
-
-.daily-goal-header .topic-label {
-  margin: 0 0 10px;
-
-  color: var(--accent);
-}
-
-.daily-goal-header h2 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: 30px;
-
-  font-weight: 500;
-
-  line-height: 1.2;
-}
-
-.daily-goal-status {
-  flex-shrink: 0;
-
-  padding: 8px 12px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  font-size: 10px;
-
-  letter-spacing: 0.5px;
-}
-
-.goal-complete {
-  color: var(--accent);
-
-  border-color:
-    rgba(215,255,100,0.2);
-
-  background:
-    rgba(215,255,100,0.04);
-}
-
-.goal-pending {
-  color: var(--muted);
-}
-
-
-/* PROGRESS BAR */
-
-.goal-progress {
-  width: 100%;
-
-  height: 4px;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.07);
-}
-
-.goal-progress-bar {
-  height: 100%;
-
-  border-radius: inherit;
-
-  background: var(--accent);
-
-  box-shadow:
-    0 0 15px rgba(215,255,100,0.25);
-
-  transition: width 0.5s ease;
-}
-
-
-/* DAILY ACTION */
-
-.daily-goal-action {
-  display: flex;
-
-  justify-content: flex-end;
-
-  margin-top: 22px;
-}
-
-.goal-message {
-  color: var(--accent);
-
-  font-size: 11px;
-}
-
-
-/* ============================================================
-   RECENT ACTIVITY
-============================================================ */
-
-.recent-activity {
-  padding: 30px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  background:
-    rgba(255,255,255,0.018);
-}
-
-.recent-activity-header {
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 20px;
-}
-
-.recent-activity-header .topic-label {
-  margin-bottom: 9px;
-}
-
-.recent-activity h2 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: 30px;
-
-  font-weight: 500;
-}
-
-.activity-count {
-  color: var(--muted-2);
-
-  font-size: 10px;
-}
-
-
-/* ACTIVITY ROW */
-
-.activity-item {
-  min-height: 75px;
-
-  display: grid;
-
-  grid-template-columns: 100px 1fr auto;
-
-  align-items: center;
-
-  gap: 25px;
-
-  padding: 16px 0;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.activity-item:last-child {
-  border-bottom: 0;
-}
-
-.activity-date {
-  color: var(--muted-2);
-
-  font-size: 10px;
-
-  letter-spacing: 0.5px;
-}
-
-.activity-info {
-  min-width: 0;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 6px;
-}
-
-.activity-topic {
-  overflow: hidden;
-
-  color: var(--text);
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-}
-
-.activity-meta {
-  color: var(--muted-2);
-
-  font-size: 9px;
-}
-
-.activity-score {
-  color: var(--accent);
-
-  font-family: var(--serif);
-
-  font-size: 27px;
-
-  white-space: nowrap;
-}
-
-.activity-score span {
-  margin-left: 2px;
-
-  color: var(--muted-2);
-
-  font-family: var(--sans);
-
-  font-size: 9px;
-}
-
-
-/* ============================================================
-   EMPTY STATE
-============================================================ */
-
-.no-activity {
-  padding: 55px 20px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  text-align: center;
-}
-
-.empty-history-icon {
-  width: 50px;
-
-  height: 50px;
-
-  display: grid;
-
-  place-items: center;
-
-  margin-bottom: 18px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 50%;
-
-  color: var(--accent);
-
-  font-size: 24px;
-}
-
-.no-activity h3 {
-  margin: 0;
-
-  color: var(--text);
-
-  font-family: var(--serif);
-
-  font-size: 26px;
-
-  font-weight: 500;
-}
-
-.no-activity p {
-  max-width: 480px;
-
-  margin: 10px 0 22px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.7;
-}
-
-
-/* ============================================================
-   PROGRESS MOBILE
-============================================================ */
-
-@media (max-width: 800px) {
-
-  .progress-screen-header {
-    flex-direction: column;
-
-    gap: 25px;
+  .settings-screen-header h1 {
+    font-size: 40px;
   }
 
-  .progress-screen-header .back-button {
-    margin-top: 0;
+  .settings-profile-top {
+    align-items: flex-start;
   }
 
-  .progress-stats {
-    grid-template-columns: 1fr 1fr;
+  .settings-avatar {
+    width: 50px;
+    height: 50px;
+
+    font-size: 14px;
   }
 
-  .daily-goal-header {
+  .speaking-hints-panel {
+    padding: 15px;
+  }
+
+  .speaking-hints-header {
     align-items: flex-start;
 
     flex-direction: column;
+
+    gap: 4px;
   }
 
-  .daily-goal-action {
-    justify-content: flex-start;
+  .progress-header h1 {
+    font-size: 35px;
   }
 
-  .activity-item {
-    grid-template-columns: 75px 1fr auto;
-
-    gap: 15px;
-  }
-}
-
-
-@media (max-width: 550px) {
-
-  .progress-screen {
-    width: 92%;
-
-    padding-top: 40px;
+  .achievement-title-row h4 {
+    font-size: 11px;
   }
 
-  .progress-screen-header h1 {
-    font-size: 40px;
-
-    letter-spacing: -1.7px;
-  }
-
-  .progress-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .progress-stat-card {
-    min-height: 125px;
-  }
-
-  .daily-goal-card,
-  .recent-activity {
-    padding: 22px;
-  }
-
-  .daily-goal-header h2,
-  .recent-activity h2 {
-    font-size: 25px;
-  }
-
-  .activity-item {
-    grid-template-columns: 1fr auto;
-
-    gap: 8px;
-  }
-
-  .activity-date {
-    grid-column: 1 / -1;
-  }
-
-  .activity-score {
-    grid-column: 2;
-
-    grid-row: 2;
+  .achievement-info p {
+    font-size: 9px;
   }
 }
 
 
 /* ============================================================
-   SETTINGS — CLEAN ACCOUNT PAGE
+   MOBILE HEADER
 ============================================================ */
-
-.settings-screen {
-  width: min(900px, 90%);
-
-  min-height: calc(100vh - 140px);
-
-  margin: 0 auto;
-
-  padding: 65px 0 110px;
-
-  position: relative;
-
-  z-index: 2;
-}
-
-.settings-screen-header {
-  display: flex;
-
-  align-items: flex-start;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  margin-bottom: 45px;
-}
-
-.settings-screen-header > div {
-  max-width: 700px;
-}
-
-.settings-screen-header .topic-label {
-  margin-bottom: 12px;
-
-  color: var(--accent);
-}
-
-.settings-screen-header h1 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: clamp(45px, 6vw, 70px);
-
-  font-weight: 500;
-
-  line-height: 1;
-
-  letter-spacing: -2.5px;
-}
-
-.settings-screen-header p:last-child {
-  margin: 16px 0 0;
-
-  color: var(--muted);
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
-
-.settings-screen-header .back-button {
-  flex-shrink: 0;
-
-  margin-top: 4px;
-}
-
-
-/* ACCOUNT CARD */
-
-.settings-card {
-  padding: 8px 30px 25px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(215, 255, 100, 0.025),
-      transparent 35%
-    ),
-    rgba(255, 255, 255, 0.018);
-}
-
-
-/* PROFILE ROW */
-
-.profile-row {
-  min-height: 75px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.profile-label {
-  color: var(--muted-2);
-
-  font-size: 9px;
-
-  font-weight: 600;
-
-  letter-spacing: 1.7px;
-}
-
-.profile-value {
-  color: var(--text);
-
-  font-size: 13px;
-
-  font-weight: 500;
-
-  text-align: right;
-}
-
-
-/* ACTIONS */
-
-.settings-actions {
-  display: flex;
-
-  justify-content: flex-end;
-
-  padding-top: 22px;
-}
-
-.settings-logout {
-  padding: 10px 17px;
-
-  border: 1px solid rgba(255, 100, 100, 0.15);
-
-  border-radius: 999px;
-
-  background: transparent;
-
-  color: #c58f8f;
-
-  cursor: pointer;
-
-  font-size: 10px;
-
-  transition: 0.2s ease;
-}
-
-.settings-logout:hover {
-  border-color: rgba(255, 100, 100, 0.3);
-
-  background: rgba(255, 100, 100, 0.035);
-
-  transform: translateY(-1px);
-}
-
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
-  .settings-screen {
-    width: 92%;
-
-    padding-top: 40px;
+  .user-name {
+    display: none;
   }
 
-  .settings-screen-header {
-    flex-direction: column;
-
-    gap: 22px;
+  .user-menu {
+    gap: 6px;
   }
 
-  .settings-screen-header h1 {
-    font-size: 43px;
-
-    letter-spacing: -1.8px;
-  }
-
-  .settings-card {
-    padding: 5px 20px 22px;
-  }
-
-  .profile-row {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    gap: 7px;
-
-    padding: 18px 0;
-  }
-
-  .profile-value {
-    text-align: left;
-  }
-
-  .settings-actions {
-    justify-content: flex-start;
-  }
-}
-
-
-
-/* ============================================================
-   SETTINGS — FULL UI
-============================================================ */
-
-.settings-screen {
-  width: min(900px, 90%);
-  min-height: calc(100vh - 140px);
-
-  margin: 0 auto;
-
-  padding: 60px 0 110px;
-
-  position: relative;
-  z-index: 2;
-}
-
-
-/* ------------------------------------------------------------
-   HEADER
------------------------------------------------------------- */
-
-.settings-screen-header {
-  display: flex;
-
-  align-items: flex-start;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  margin-bottom: 40px;
-}
-
-.settings-screen-header > div {
-  max-width: 700px;
-}
-
-.settings-screen-header .topic-label {
-  margin-bottom: 12px;
-  color: var(--accent);
-}
-
-.settings-screen-header h1 {
-  margin: 0;
-
-  font-family: var(--serif);
-
-  font-size: clamp(42px, 6vw, 68px);
-
-  font-weight: 500;
-
-  line-height: 1.02;
-
-  letter-spacing: -2.5px;
-}
-
-.settings-screen-header p:last-child {
-  max-width: 600px;
-
-  margin: 16px 0 0;
-
-  color: var(--muted);
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
-
-.settings-screen-header .back-button {
-  flex-shrink: 0;
-}
-
-
-/* ------------------------------------------------------------
-   NOTICE
------------------------------------------------------------- */
-
-.settings-notice {
-  margin-bottom: 15px;
-
-  padding: 12px 15px;
-
-  border: 1px solid rgba(215, 255, 100, 0.16);
-
-  border-radius: 12px;
-
-  background: rgba(215, 255, 100, 0.035);
-
-  color: var(--accent);
-
-  font-size: 11px;
-
-  animation: appear 0.2s ease;
-}
-
-
-/* ------------------------------------------------------------
-   LAYOUT
------------------------------------------------------------- */
-
-.settings-layout {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-
-/* ------------------------------------------------------------
-   CARD
------------------------------------------------------------- */
-
-.settings-card {
-  padding: 28px;
-
-  margin-bottom: 0;
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(215, 255, 100, 0.025),
-      transparent 35%
-    ),
-    rgba(255, 255, 255, 0.018);
-}
-
-
-/* ------------------------------------------------------------
-   PROFILE
------------------------------------------------------------- */
-
-.settings-profile-top {
-  display: flex;
-
-  align-items: center;
-
-  gap: 18px;
-}
-
-.settings-avatar {
-  width: 58px;
-  height: 58px;
-
-  flex-shrink: 0;
-
-  display: grid;
-
-  place-items: center;
-
-  border: 1px solid rgba(215, 255, 100, 0.18);
-
-  border-radius: 50%;
-
-  background:
-    rgba(215, 255, 100, 0.06);
-
-  color: var(--accent);
-
-  font-size: 16px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.5px;
-}
-
-.settings-profile-info {
-  min-width: 0;
-}
-
-.settings-profile-info h2 {
-  margin: 0;
-
-  color: var(--text);
-
-  font-family: var(--serif);
-
-  font-size: 25px;
-
-  font-weight: 500;
-}
-
-.settings-profile-info p {
-  margin: 5px 0 10px;
-
-  color: var(--muted);
-
-  font-size: 11px;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-}
-
-.settings-member-badge {
-  display: inline-flex;
-
-  padding: 6px 9px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.025);
-
-  color: var(--muted);
-
-  font-size: 9px;
-}
-
-
-/* ------------------------------------------------------------
-   PROFILE STATS
------------------------------------------------------------- */
-
-.settings-profile-stats {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  margin-top: 25px;
-
-  padding-top: 22px;
-
-  border-top: 1px solid var(--border);
-}
-
-.settings-profile-stats > div {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 5px;
-
-  padding-left: 20px;
-
-  border-left: 1px solid var(--border);
-}
-
-.settings-profile-stats > div:first-child {
-  padding-left: 0;
-
-  border-left: 0;
-}
-
-.settings-profile-stats strong {
-  color: var(--text);
-
-  font-family: var(--serif);
-
-  font-size: 25px;
-
-  font-weight: 500;
-}
-
-.settings-profile-stats span {
-  color: var(--muted-2);
-
-  font-size: 9px;
-
-  letter-spacing: 0.5px;
-}
-
-
-/* ------------------------------------------------------------
-   CARD HEADER
------------------------------------------------------------- */
-
-.settings-card-header {
-  margin-bottom: 25px;
-}
-
-.settings-card-header h2 {
-  margin: 0;
-
-  color: var(--text);
-
-  font-family: var(--serif);
-
-  font-size: 26px;
-
-  font-weight: 500;
-}
-
-.settings-card-header p {
-  margin: 7px 0 0;
-
-  color: var(--muted);
-
-  font-size: 11px;
-
-  line-height: 1.6;
-}
-
-
-/* ------------------------------------------------------------
-   FIELDS
------------------------------------------------------------- */
-
-.settings-field {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 9px;
-
-  margin-top: 20px;
-}
-
-.settings-field:first-child {
-  margin-top: 0;
-}
-
-.settings-field label {
-  color: var(--muted-2);
-
-  font-size: 9px;
-
-  font-weight: 600;
-
-  letter-spacing: 1.5px;
-
-  text-transform: uppercase;
-}
-
-.settings-field-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 12px;
-}
-
-
-/* ------------------------------------------------------------
-   CHIPS
------------------------------------------------------------- */
-
-.settings-chip-group {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 7px;
-}
-
-.settings-chip {
-  padding: 9px 13px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.02);
-
-  color: var(--muted);
-
-  cursor: pointer;
-
-  font-size: 10px;
-
-  transition: 0.2s ease;
-}
-
-.settings-chip:hover {
-  color: var(--text);
-
-  border-color: var(--border-hover);
-
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.settings-chip.active {
-  border-color: rgba(215, 255, 100, 0.25);
-
-  background: rgba(215, 255, 100, 0.07);
-
-  color: var(--accent);
-
-  box-shadow:
-    0 0 20px rgba(215, 255, 100, 0.025);
-}
-
-
-/* ------------------------------------------------------------
-   SELECT
------------------------------------------------------------- */
-
-.settings-select {
-  width: 100%;
-
-  padding: 11px 13px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 11px;
-
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.025);
-
-  color: var(--text);
-
-  cursor: pointer;
-
-  font-size: 11px;
-
-  transition: 0.2s;
-}
-
-.settings-select:hover {
-  border-color: var(--border-hover);
-}
-
-.settings-select:focus {
-  border-color: var(--accent);
-
-  box-shadow:
-    0 0 0 3px rgba(215, 255, 100, 0.035);
-}
-
-.settings-select option {
-  background: var(--surface);
-
-  color: var(--text);
-}
-
-
-/* ------------------------------------------------------------
-   TOGGLE ROW
------------------------------------------------------------- */
-
-.settings-toggle-row {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 25px;
-
-  padding: 17px 0;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.settings-toggle-row:first-of-type {
-  padding-top: 0;
-}
-
-.settings-toggle-row:last-child {
-  border-bottom: 0;
-
-  padding-bottom: 0;
-}
-
-.settings-toggle-row strong {
-  color: var(--text);
-
-  font-size: 12px;
-
-  font-weight: 600;
-}
-
-.settings-toggle-row p {
-  margin: 5px 0 0;
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-  line-height: 1.6;
-}
-
-
-/* ------------------------------------------------------------
-   TOGGLE
------------------------------------------------------------- */
-
-.settings-toggle {
-  width: 43px;
-  height: 24px;
-
-  flex-shrink: 0;
-
-  padding: 2px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.06);
-
-  cursor: pointer;
-
-  transition: 0.25s ease;
-}
-
-.settings-toggle span {
-  display: block;
-
-  width: 18px;
-  height: 18px;
-
-  border-radius: 50%;
-
-  background: var(--muted-2);
-
-  transition: 0.25s ease;
-}
-
-.settings-toggle.on {
-  border-color: var(--accent);
-
-  background: rgba(215, 255, 100, 0.12);
-}
-
-.settings-toggle.on span {
-  transform: translateX(17px);
-
-  background: var(--accent);
-
-  box-shadow:
-    0 0 12px rgba(215, 255, 100, 0.25);
-}
-
-
-/* ------------------------------------------------------------
-   ACTION ROWS
------------------------------------------------------------- */
-
-.settings-action-row {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 25px;
-
-  padding: 17px 0;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.settings-action-row:first-of-type {
-  padding-top: 0;
-}
-
-.settings-action-row strong {
-  color: var(--text);
-
-  font-size: 12px;
-
-  font-weight: 600;
-}
-
-.settings-action-row p {
-  margin: 5px 0 0;
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-  line-height: 1.6;
-}
-
-.settings-secondary-btn {
-  flex-shrink: 0;
-
-  padding: 9px 13px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  background: transparent;
-
-  color: var(--muted);
-
-  cursor: pointer;
-
-  font-size: 10px;
-
-  transition: 0.2s ease;
-}
-
-.settings-secondary-btn:hover {
-  color: var(--text);
-
-  border-color: var(--border-hover);
-
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.settings-secondary-btn.danger {
-  color: #c58f8f;
-
-  border-color: rgba(255, 100, 100, 0.15);
-}
-
-.settings-secondary-btn.danger:hover {
-  color: #d99a9a;
-
-  border-color: rgba(255, 100, 100, 0.3);
-
-  background: rgba(255, 100, 100, 0.035);
-}
-
-
-/* ------------------------------------------------------------
-   DANGER CARD
------------------------------------------------------------- */
-
-.settings-danger-card {
-  border-color: rgba(255, 100, 100, 0.08);
-}
-
-.settings-danger-card .settings-card-header {
-  margin-bottom: 20px;
-}
-
-
-/* ------------------------------------------------------------
-   LOGOUT
------------------------------------------------------------- */
-
-.settings-actions {
-  display: flex;
-
-  justify-content: flex-end;
-
-  padding-top: 22px;
-}
-
-.settings-logout {
-  padding: 10px 17px;
-
-  border: 1px solid rgba(255, 100, 100, 0.15);
-
-  border-radius: 999px;
-
-  background: transparent;
-
-  color: #c58f8f;
-
-  cursor: pointer;
-
-  font-size: 10px;
-
-  transition: 0.2s ease;
-}
-
-.settings-logout:hover {
-  border-color: rgba(255, 100, 100, 0.3);
-
-  background: rgba(255, 100, 100, 0.035);
-
-  transform: translateY(-1px);
-}
-
-
-/* ============================================================
-   SETTINGS MOBILE
-============================================================ */
-
-@media (max-width: 650px) {
-
-  .settings-screen {
-    width: 92%;
-
-    padding-top: 40px;
-  }
-
-  .settings-screen-header {
-    flex-direction: column;
-
-    gap: 20px;
-  }
-
-  .settings-screen-header h1 {
-    font-size: 43px;
-
-    letter-spacing: -1.8px;
-  }
-
-  .settings-card {
-    padding: 22px;
-  }
-
-  .settings-profile-stats {
-    grid-template-columns: 1fr;
-    
-    gap: 15px;
-  }
-
-  .settings-profile-stats > div {
-    padding-left: 0;
-
-    padding-top: 15px;
-
-    border-left: 0;
-
-    border-top: 1px solid var(--border);
-  }
-
-  .settings-profile-stats > div:first-child {
-    padding-top: 0;
-
-    border-top: 0;
-  }
-
-  .settings-field-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .settings-toggle-row,
-  .settings-action-row {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 12px;
-  }
-
-  .settings-actions {
-    justify-content: flex-start;
-  }
-
-  .settings-secondary-btn {
-    align-self: flex-start;
+  .login-nav-btn,
+  .logout-nav-btn {
+    padding: 8px 13px;
   }
 }

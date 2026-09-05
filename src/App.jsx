@@ -3,6 +3,19 @@ import "./App.css";
 
 import Login from "./components/login";
 import Signup from "./components/Signup";
+import Progress from "./components/Progress";
+
+import {
+  XP_REWARDS,
+  normalizeGamification,
+  addXp,
+  getPracticeXp,
+  updateDailyMission,
+  resetDailyMissionIfNeeded,
+  resetWeeklyIfNeeded,
+  applyMilestones,
+  getLevel,
+} from "./utils/gamification";
 
 const API_BASE_URL = "http://127.0.0.1:8000";
 
@@ -41,6 +54,7 @@ const SESSION_KEY = "skillenhancer_session";
 
 let cachedSession = undefined;
 
+
 // ============================================================
 // EMPTY PROGRESS
 // ============================================================
@@ -51,6 +65,76 @@ const createEmptyProgress = () => ({
   history: [],
 });
 
+
+// ============================================================
+// NORMALIZE PROGRESS
+// ============================================================
+
+const normalizeProgress = (progressData) => {
+  if (!progressData || typeof progressData !== "object") {
+    return createEmptyProgress();
+  }
+
+  const history = Array.isArray(progressData.history)
+    ? progressData.history
+        .filter(
+          (item) =>
+            item &&
+            typeof item === "object"
+        )
+        .map((item, index) => ({
+          id:
+            item.id ||
+            `${Date.now()}_${index}`,
+
+          date:
+            item.date ||
+            null,
+
+          topic:
+            item.topic ||
+            "Speaking Challenge",
+
+          category:
+            item.category ||
+            "General",
+
+          difficulty:
+            item.difficulty ||
+            "Intermediate",
+
+          score:
+            Number(item.score) || 0,
+
+          wordCount:
+            Number(
+              item.wordCount ??
+                item.word_count ??
+                0
+            ) || 0,
+
+          wpm:
+            Number(
+              item.wpm ??
+                item.estimated_wpm ??
+                0
+            ) || 0,
+        }))
+    : [];
+
+  return {
+    streak:
+      Number(progressData.streak) || 0,
+
+    lastEvaluationDate:
+      progressData.lastEvaluationDate ||
+      null,
+
+    history,
+  };
+};
+
+
 // ============================================================
 // GET USER
 // ============================================================
@@ -58,7 +142,9 @@ const createEmptyProgress = () => ({
 const getInitialUser = () => {
   try {
     const savedUser =
-      localStorage.getItem("skillenhancer_user");
+      localStorage.getItem(
+        "skillenhancer_user"
+      );
 
     return savedUser
       ? JSON.parse(savedUser)
@@ -67,6 +153,7 @@ const getInitialUser = () => {
     return null;
   }
 };
+
 
 // ============================================================
 // PROGRESS KEY
@@ -81,6 +168,7 @@ const getProgressKey = (user) => {
     user.id || user.email
   }`;
 };
+
 
 // ============================================================
 // LOAD PROGRESS
@@ -101,20 +189,9 @@ const loadUserProgress = (user) => {
       return createEmptyProgress();
     }
 
-    const parsed = JSON.parse(saved);
-
-    return {
-      streak:
-        Number(parsed.streak) || 0,
-
-      lastEvaluationDate:
-        parsed.lastEvaluationDate || null,
-
-      history:
-        Array.isArray(parsed.history)
-          ? parsed.history
-          : [],
-    };
+    return normalizeProgress(
+      JSON.parse(saved)
+    );
   } catch (error) {
     console.error(
       "Failed to load progress:",
@@ -125,6 +202,7 @@ const loadUserProgress = (user) => {
   }
 };
 
+
 // ============================================================
 // SAVE USER PROGRESS
 // ============================================================
@@ -133,22 +211,28 @@ const saveUserProgress = (
   user,
   progressData
 ) => {
-  const key = getProgressKey(user);
+  const key =
+    getProgressKey(user);
 
   if (!key) {
     return;
   }
 
   try {
+    const normalized =
+      normalizeProgress(
+        progressData
+      );
+
     localStorage.setItem(
       key,
-      JSON.stringify(progressData)
+      JSON.stringify(normalized)
     );
 
     console.log(
       "PROGRESS SAVED:",
       key,
-      progressData
+      normalized
     );
   } catch (error) {
     console.error(
@@ -157,6 +241,7 @@ const saveUserProgress = (
     );
   }
 };
+
 
 // ============================================================
 // PREFERENCES
@@ -171,6 +256,7 @@ const getPreferencesKey = (user) => {
     user.id || user.email
   }`;
 };
+
 
 const loadPreferences = (user) => {
   const key =
@@ -191,6 +277,7 @@ const loadPreferences = (user) => {
     return null;
   }
 };
+
 
 const savePreferences = (
   user,
@@ -215,6 +302,7 @@ const savePreferences = (
     );
   }
 };
+
 
 // ============================================================
 // SESSION
@@ -242,6 +330,7 @@ const getSavedSession = () => {
   return cachedSession;
 };
 
+
 const clearSavedSession = () => {
   cachedSession = null;
 
@@ -257,13 +346,9 @@ const clearSavedSession = () => {
   }
 };
 
+
 // ============================================================
 // LOCAL DATE
-//
-// IMPORTANT:
-// Do NOT use toISOString() here.
-// toISOString() uses UTC and can produce
-// the wrong calendar day for India.
 // ============================================================
 
 const getLocalDateString = () => {
@@ -284,6 +369,7 @@ const getLocalDateString = () => {
 
   return `${year}-${month}-${day}`;
 };
+
 
 // ============================================================
 // DAY DIFFERENCE
@@ -319,7 +405,13 @@ const getDayDifference = (
   );
 };
 
+
+// ============================================================
+// APP
+// ============================================================
+
 function App() {
+
   const initialUser =
     getInitialUser();
 
@@ -330,6 +422,7 @@ function App() {
     loadPreferences(
       initialUser
     );
+
 
   // ============================================================
   // MAIN STATE
@@ -351,7 +444,7 @@ function App() {
 
   const [currentUser, setCurrentUser] =
     useState(
-      () => initialUser
+      initialUser
     );
 
   const [authModal, setAuthModal] =
@@ -390,141 +483,88 @@ function App() {
         true
     );
 
-  const [showVocabulary, setShowVocabulary] =
+  const [showSpeakingHints, setShowSpeakingHints] =
     useState(
       () =>
+        savedPrefs?.showSpeakingHints ??
         savedPrefs?.showVocabulary ??
         true
     );
 
+  const [
+    showSpeakingHintsPanel,
+    setShowSpeakingHintsPanel,
+  ] = useState(false);
+
+
   // ============================================================
-  // AUTH
+  // GAMIFICATION STATE
   // ============================================================
 
-  const handleLogin = (user) => {
-    setCurrentUser(user);
-    setIsLoggedIn(true);
-    setAuthModal(null);
-    setScreen("home");
+  const [gamification, setGamification] =
+    useState(() => {
 
-    const prefs =
-      loadPreferences(user);
-
-    if (prefs) {
-      if (prefs.englishLevel) {
-        setEnglishLevel(
-          prefs.englishLevel
+      const storedUser =
+        localStorage.getItem(
+          "skillenhancer_user"
         );
+
+      if (!storedUser) {
+        return normalizeGamification({});
       }
 
-      if (prefs.learningGoal) {
-        setLearningGoal(
-          prefs.learningGoal
+      try {
+
+        const user =
+          JSON.parse(
+            storedUser
+          );
+
+        const key =
+          `skillenhancer_gamification_${user.email}`;
+
+        const saved =
+          localStorage.getItem(key);
+
+        if (!saved) {
+          return normalizeGamification({});
+        }
+
+        return normalizeGamification(
+          JSON.parse(saved)
         );
+
+      } catch {
+        return normalizeGamification({});
       }
+    });
 
-      if (prefs.defaultCategory) {
-        setCategory(
-          prefs.defaultCategory
-        );
-      }
 
-      if (prefs.defaultDifficulty) {
-        setDifficulty(
-          prefs.defaultDifficulty
-        );
-      }
+  // ============================================================
+  // GAMIFICATION PERSISTENCE
+  // ============================================================
 
-      if (prefs.defaultMode) {
-        setMode(
-          prefs.defaultMode
-        );
-      }
+  useEffect(() => {
 
-      if (prefs.learningTime) {
-        setLearningTime(
-          prefs.learningTime
-        );
-
-        setLearningRemaining(
-          prefs.learningTime
-        );
-      }
-
-      if (prefs.speakingTime) {
-        setSpeakingTime(
-          prefs.speakingTime
-        );
-
-        setSpeakingRemaining(
-          prefs.speakingTime
-        );
-      }
-
-      setDailyReminder(
-        prefs.dailyReminder ??
-          false
-      );
-
-      setAutoSaveNotes(
-        prefs.autoSaveNotes ??
-          true
-      );
-
-      setShowVocabulary(
-        prefs.showVocabulary ??
-          true
-      );
-    } else if (
-      user.english_level
-    ) {
-      setEnglishLevel(
-        user.english_level
-      );
+    if (!currentUser?.email) {
+      return;
     }
 
-    if (
-      !prefs?.learningGoal &&
-      user.learning_goal
-    ) {
-      setLearningGoal(
-        user.learning_goal
-      );
-    }
-  };
+    const key =
+      `skillenhancer_gamification_${currentUser.email}`;
 
-  const handleSignup = (user) => {
-    handleLogin(user);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem(
-      "skillenhancer_token"
+    localStorage.setItem(
+      key,
+      JSON.stringify(
+        gamification
+      )
     );
 
-    localStorage.removeItem(
-      "skillenhancer_user"
-    );
+  }, [
+    gamification,
+    currentUser
+  ]);
 
-    clearSavedSession();
-
-    setCurrentUser(null);
-    setIsLoggedIn(false);
-    setAuthModal(null);
-    setScreen("home");
-    setProgress(
-      createEmptyProgress()
-    );
-  };
-
-  const requireLogin = () => {
-    if (!isLoggedIn) {
-      setAuthModal("login");
-      return false;
-    }
-
-    return true;
-  };
 
   // ============================================================
   // TOPIC
@@ -564,6 +604,7 @@ function App() {
         "learn"
     );
 
+
   // ============================================================
   // EVALUATION
   // ============================================================
@@ -578,16 +619,30 @@ function App() {
         null
     );
 
+
   // ============================================================
   // PROGRESS
   // ============================================================
 
   const [progress, setProgress] =
-    useState(() =>
-      loadUserProgress(
-        initialUser
-      )
-    );
+    useState(() => {
+
+      try {
+        return loadUserProgress(
+          initialUser
+        );
+      } catch (error) {
+
+        console.error(
+          "Failed to load progress:",
+          error
+        );
+
+        return createEmptyProgress();
+      }
+
+    });
+
 
   // ============================================================
   // TIMERS
@@ -637,6 +692,7 @@ function App() {
   const speakingInterval =
     useRef(null);
 
+
   // ============================================================
   // TIMER MENUS
   // ============================================================
@@ -651,6 +707,7 @@ function App() {
     setShowSpeakingOptions,
   ] = useState(false);
 
+
   // ============================================================
   // NOTES
   // ============================================================
@@ -661,6 +718,7 @@ function App() {
         savedSession?.notes ||
         ""
     );
+
 
   // ============================================================
   // SPEECH
@@ -690,7 +748,7 @@ function App() {
   const transcriptRef =
     useRef(
       savedSession?.transcript ||
-        ""
+      ""
     );
 
   const shouldListenRef =
@@ -702,15 +760,18 @@ function App() {
   const pendingEvaluationRef =
     useRef(false);
 
+  const evaluateSpeechRef =
+    useRef(null);
+
+
   // ============================================================
   // LOAD USER PROGRESS
-  //
-  // Whenever the logged-in user changes,
-  // load ONLY that user's progress.
   // ============================================================
 
   useEffect(() => {
+
     if (!currentUser) {
+
       setProgress(
         createEmptyProgress()
       );
@@ -723,53 +784,65 @@ function App() {
         currentUser
       );
 
-    console.log(
-      "LOADED USER PROGRESS:",
-      loadedProgress
-    );
-
     setProgress(
       loadedProgress
     );
-  }, [currentUser]);
+
+  }, [
+    currentUser
+  ]);
+
 
   // ============================================================
   // PERSIST SESSION
   // ============================================================
 
   useEffect(() => {
+
     const session = {
       screen,
       topic,
       category,
       difficulty,
       mode,
+
       notes:
         autoSaveNotes
           ? notes
           : "",
+
       transcript,
+
       learningTime,
       speakingTime,
+
       learningRemaining,
       speakingRemaining,
+
       results,
     };
 
     try {
+
       localStorage.setItem(
         SESSION_KEY,
-        JSON.stringify(session)
+        JSON.stringify(
+          session
+        )
       );
 
       cachedSession =
         session;
+
     } catch (error) {
+
       console.error(
         "Failed to save session:",
         error
       );
+
     }
+
   }, [
     screen,
     topic,
@@ -786,11 +859,13 @@ function App() {
     autoSaveNotes,
   ]);
 
+
   // ============================================================
   // PERSIST PREFERENCES
   // ============================================================
 
   useEffect(() => {
+
     if (!currentUser) {
       return;
     }
@@ -800,19 +875,28 @@ function App() {
       {
         englishLevel,
         learningGoal,
+
         defaultCategory:
           category,
+
         defaultDifficulty:
           difficulty,
+
         defaultMode:
           mode,
+
         learningTime,
         speakingTime,
+
         dailyReminder,
         autoSaveNotes,
-        showVocabulary,
+        showSpeakingHints,
+
+        showVocabulary:
+          showSpeakingHints,
       }
     );
+
   }, [
     currentUser,
     englishLevel,
@@ -824,8 +908,9 @@ function App() {
     speakingTime,
     dailyReminder,
     autoSaveNotes,
-    showVocabulary,
+    showSpeakingHints,
   ]);
+
 
   // ============================================================
   // SAVE PROGRESS
@@ -834,123 +919,95 @@ function App() {
   const saveProgress = (
     newProgress
   ) => {
-    if (!currentUser) {
-      console.warn(
-        "Cannot save progress: no logged-in user."
-      );
 
+    if (!currentUser) {
       return;
     }
 
-    const cleanedProgress = {
-      streak:
-        Number(
-          newProgress?.streak
-        ) || 0,
-
-      lastEvaluationDate:
+    const cleanedProgress =
+      normalizeProgress(
         newProgress
-          ?.lastEvaluationDate ||
-        null,
+      );
 
-      history:
-        Array.isArray(
-          newProgress?.history
-        )
-          ? newProgress.history
-          : [],
-    };
-
-    // Update React immediately
     setProgress(
       cleanedProgress
     );
 
-    // Persist to this user's own key
     saveUserProgress(
       currentUser,
       cleanedProgress
     );
   };
 
+
   // ============================================================
   // RECORD EVALUATION
-  //
-  // IMPORTANT:
-  // Uses functional React state so it NEVER
-  // depends on stale progress.
-  //
-  // Same day:
-  //     streak stays the same
-  //
-  // Next calendar day:
-  //     streak + 1
-  //
-  // Missed day:
-  //     streak resets to 1
   // ============================================================
 
   const recordEvaluation = (
     evaluationResult
   ) => {
-    if (!currentUser) {
-      console.warn(
-        "Evaluation completed but user is not logged in."
-      );
 
+    if (!currentUser) {
       return;
     }
 
     const today =
       getLocalDateString();
 
+    const wordCount =
+      Number(
+        evaluationResult
+          ?.speech_stats
+          ?.word_count
+      ) || 0;
+
+    const score =
+      Number(
+        evaluationResult
+          ?.overall_score
+      ) || 0;
+
+
+    // ----------------------------------------------------------
+    // UPDATE NORMAL PROGRESS
+    // ----------------------------------------------------------
+
+    let newStreak = 1;
+
     setProgress(
       (previousProgress) => {
+
         const previous =
-          previousProgress ||
-          createEmptyProgress();
+          normalizeProgress(
+            previousProgress
+          );
 
         const lastDate =
           previous.lastEvaluationDate;
 
-        let newStreak =
+        const previousStreak =
           Number(
             previous.streak
           ) || 0;
 
-        // ------------------------------------------------------
-        // FIRST EVER EVALUATION
-        // ------------------------------------------------------
 
         if (!lastDate) {
+
           newStreak = 1;
-        }
 
-        // ------------------------------------------------------
-        // SAME DAY
-        // ------------------------------------------------------
-
-        else if (
+        } else if (
           lastDate === today
         ) {
-          // IMPORTANT:
-          // Multiple evaluations today do NOT
-          // increase the streak.
 
           newStreak =
             Math.max(
               1,
-              Number(
-                previous.streak
-              ) || 1
+              previousStreak
             );
-        }
 
-        // ------------------------------------------------------
-        // NEW DAY
-        // ------------------------------------------------------
+        } else {
 
-        else {
           const difference =
             getDayDifference(
               lastDate,
@@ -960,28 +1017,27 @@ function App() {
           if (
             difference === 1
           ) {
-            // Consecutive calendar day
+
             newStreak =
-              (Number(
-                previous.streak
-              ) || 0) + 1;
+              previousStreak + 1;
+
           } else {
-            // Missed one or more days
+
             newStreak = 1;
+
           }
         }
 
-        // ------------------------------------------------------
-        // CREATE HISTORY ENTRY
-        // ------------------------------------------------------
 
         const entry = {
+
           id:
             `${Date.now()}_${Math.random()
               .toString(36)
               .slice(2, 8)}`,
 
-          date: today,
+          date:
+            today,
 
           topic:
             topic?.topic ||
@@ -997,18 +1053,9 @@ function App() {
             difficulty ||
             "Intermediate",
 
-          score:
-            Number(
-              evaluationResult
-                ?.overall_score
-            ) || 0,
+          score,
 
-          wordCount:
-            Number(
-              evaluationResult
-                ?.speech_stats
-                ?.word_count
-            ) || 0,
+          wordCount,
 
           wpm:
             Number(
@@ -1018,28 +1065,20 @@ function App() {
             ) || 0,
         };
 
-        // ------------------------------------------------------
-        // ADD NEW HISTORY ENTRY
-        // ------------------------------------------------------
-
-        const oldHistory =
-          Array.isArray(
-            previous.history
-          )
-            ? previous.history
-            : [];
 
         const history = [
           entry,
-          ...oldHistory,
-        ].slice(0, 100);
+          ...previous.history,
+        ].slice(
+          0,
+          100
+        );
 
-        // ------------------------------------------------------
-        // FINAL PROGRESS
-        // ------------------------------------------------------
 
         const updatedProgress = {
-          streak: newStreak,
+
+          streak:
+            newStreak,
 
           lastEvaluationDate:
             today,
@@ -1047,73 +1086,538 @@ function App() {
           history,
         };
 
-        // ------------------------------------------------------
-        // SAVE DIRECTLY
-        // ------------------------------------------------------
 
         saveUserProgress(
           currentUser,
           updatedProgress
         );
 
-        console.log(
-          "EVALUATION RECORDED:",
-          updatedProgress
-        );
 
         return updatedProgress;
       }
     );
+
+
+    // ----------------------------------------------------------
+    // UPDATE GAMIFICATION
+    // ----------------------------------------------------------
+
+    setGamification(
+      (previousGamification) => {
+
+        let updated =
+          normalizeGamification(
+            previousGamification
+          );
+
+
+        const previousBestScore =
+          updated.bestScore;
+
+        const previousDailyMission =
+          updated.dailyMission;
+
+
+        // ------------------------------------------------------
+        // BASIC STATS
+        // ------------------------------------------------------
+
+        updated = {
+          ...updated,
+
+          totalSessions:
+            updated.totalSessions + 1,
+
+          totalWords:
+            updated.totalWords +
+            wordCount,
+
+          bestScore:
+            Math.max(
+              updated.bestScore,
+              score
+            ),
+
+          streak:
+            Math.max(
+              updated.streak || 0,
+              newStreak
+            ),
+        };
+
+
+        // ------------------------------------------------------
+        // PRACTICE XP
+        // ------------------------------------------------------
+
+        updated =
+          addXp(
+            updated,
+            XP_REWARDS.COMPLETE_PRACTICE,
+            "complete-practice"
+          );
+
+
+        // ------------------------------------------------------
+        // SPEAKING DURATION XP
+        // ------------------------------------------------------
+
+        const practiceXp =
+          getPracticeXp(
+            speakingTime
+          );
+
+        if (
+          practiceXp > 0
+        ) {
+
+          updated =
+            addXp(
+              updated,
+              practiceXp,
+              "speaking-duration"
+            );
+        }
+
+
+        // ------------------------------------------------------
+        // DAILY MISSIONS
+        // ------------------------------------------------------
+
+        updated =
+          updateDailyMission(
+            updated,
+            {
+              practice: true,
+
+              oneMinute:
+                speakingTime >= 60,
+
+              score80:
+                score >= 80,
+            }
+          );
+
+
+        // ------------------------------------------------------
+        // DAILY GOAL BONUS
+        // ------------------------------------------------------
+
+        const dailyWasCompleted =
+          previousDailyMission
+            ?.completed === true;
+
+        const dailyIsCompleted =
+          updated.dailyMission
+            ?.completed === true;
+
+
+        if (
+          !dailyWasCompleted &&
+          dailyIsCompleted
+        ) {
+
+          updated =
+            addXp(
+              updated,
+              XP_REWARDS.DAILY_GOAL,
+              "daily-goal"
+            );
+        }
+
+
+        // ------------------------------------------------------
+        // WEEKLY RESET
+        // ------------------------------------------------------
+
+        updated =
+          resetWeeklyIfNeeded(
+            updated
+          );
+
+
+        // ------------------------------------------------------
+        // WEEKLY STATS
+        // ------------------------------------------------------
+
+        updated = {
+
+          ...updated,
+
+          weekly: {
+
+            ...updated.weekly,
+
+            sessions:
+              updated.weekly.sessions +
+              1,
+
+            xp:
+              updated.weekly.xp +
+              XP_REWARDS.COMPLETE_PRACTICE,
+          },
+        };
+
+
+        // ------------------------------------------------------
+        // PERSONAL BEST XP
+        // ------------------------------------------------------
+
+        if (
+          score >
+            previousBestScore &&
+          previousBestScore > 0
+        ) {
+
+          updated =
+            addXp(
+              updated,
+              XP_REWARDS.PERSONAL_BEST,
+              "personal-best"
+            );
+        }
+
+
+        // ------------------------------------------------------
+        // APPLY MILESTONE REWARDS
+        // ------------------------------------------------------
+
+        const milestoneResult =
+          applyMilestones(
+            updated
+          );
+
+
+        updated =
+          milestoneResult.gamification;
+
+
+        return normalizeGamification(
+          updated
+        );
+      }
+    );
   };
 
+
   // ============================================================
-  // SETTINGS HELPERS
+  // AUTHENTICATION
+  // ============================================================
+
+  const handleLogin = (
+    data
+  ) => {
+
+    console.log(
+      "LOGIN SUCCESS:",
+      data
+    );
+
+    if (
+      !data?.token ||
+      !data?.user
+    ) {
+
+      console.error(
+        "Invalid login response:",
+        data
+      );
+
+      return;
+    }
+
+
+    localStorage.setItem(
+      "skillenhancer_token",
+      data.token
+    );
+
+    localStorage.setItem(
+      "skillenhancer_user",
+      JSON.stringify(
+        data.user
+      )
+    );
+
+
+    cachedSession =
+      getSavedSession();
+
+
+    setCurrentUser(
+      data.user
+    );
+
+    setIsLoggedIn(
+      true
+    );
+
+    setProgress(
+      loadUserProgress(
+        data.user
+      )
+    );
+
+    setAuthModal(
+      null
+    );
+
+    setScreen(
+      "home"
+    );
+  };
+
+
+  const handleSignup = (
+    data
+  ) => {
+
+    console.log(
+      "SIGNUP SUCCESS:",
+      data
+    );
+
+    if (
+      !data?.token ||
+      !data?.user
+    ) {
+
+      console.error(
+        "Invalid signup response:",
+        data
+      );
+
+      return;
+    }
+
+
+    localStorage.setItem(
+      "skillenhancer_token",
+      data.token
+    );
+
+    localStorage.setItem(
+      "skillenhancer_user",
+      JSON.stringify(
+        data.user
+      )
+    );
+
+
+    cachedSession =
+      getSavedSession();
+
+
+    setCurrentUser(
+      data.user
+    );
+
+    setIsLoggedIn(
+      true
+    );
+
+    setProgress(
+      loadUserProgress(
+        data.user
+      )
+    );
+
+    setAuthModal(
+      null
+    );
+
+    setScreen(
+      "home"
+    );
+  };
+
+
+  const handleLogout = () => {
+
+    shouldListenRef.current =
+      false;
+
+    pendingEvaluationRef.current =
+      false;
+
+    evaluationStartedRef.current =
+      false;
+
+
+    try {
+
+      recognitionRef.current?.stop();
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+
+    clearInterval(
+      learningInterval.current
+    );
+
+    clearInterval(
+      speakingInterval.current
+    );
+
+
+    localStorage.removeItem(
+      "skillenhancer_token"
+    );
+
+    localStorage.removeItem(
+      "skillenhancer_user"
+    );
+
+
+    clearSavedSession();
+
+
+    setCurrentUser(
+      null
+    );
+
+    setIsLoggedIn(
+      false
+    );
+
+    setProgress(
+      createEmptyProgress()
+    );
+
+    setAuthModal(
+      null
+    );
+
+    setScreen(
+      "home"
+    );
+
+    setTopic(
+      null
+    );
+
+    setTranscript(
+      ""
+    );
+
+    transcriptRef.current =
+      "";
+
+    setInterimTranscript(
+      ""
+    );
+
+    setNotes(
+      ""
+    );
+
+    setResults(
+      null
+    );
+
+    setLearningRunning(
+      false
+    );
+
+    setSpeakingRunning(
+      false
+    );
+
+    setIsListening(
+      false
+    );
+
+    setShowSpeakingHintsPanel(
+      false
+    );
+  };
+
+
+  // ============================================================
+  // REQUIRE LOGIN
+  // ============================================================
+
+  const requireLogin = () => {
+
+    if (
+      isLoggedIn &&
+      currentUser
+    ) {
+
+      return true;
+    }
+
+    setAuthModal(
+      "login"
+    );
+
+    return false;
+  };
+
+
+  // ============================================================
+  // SETTINGS
   // ============================================================
 
   const showSettingsNotice = (
     message
   ) => {
+
     setSettingsMessage(
       message
     );
 
-    setTimeout(() => {
-      setSettingsMessage("");
-    }, 2500);
+    setTimeout(
+      () => {
+        setSettingsMessage("");
+      },
+      2500
+    );
   };
+
 
   const updateUserProfile = (
     updates
   ) => {
+
+    if (!currentUser) {
+      return;
+    }
+
     const updatedUser = {
       ...currentUser,
       ...updates,
     };
 
+
     setCurrentUser(
       updatedUser
     );
 
-    try {
-      localStorage.setItem(
-        "skillenhancer_user",
-        JSON.stringify(
-          updatedUser
-        )
-      );
-    } catch (error) {
-      console.error(
-        "Failed to update profile:",
-        error
-      );
-    }
+    localStorage.setItem(
+      "skillenhancer_user",
+      JSON.stringify(
+        updatedUser
+      )
+    );
   };
+
 
   const handleEnglishLevelChange = (
     level
   ) => {
-    setEnglishLevel(level);
-    setDifficulty(level);
+
+    setEnglishLevel(
+      level
+    );
+
+    setDifficulty(
+      level
+    );
 
     updateUserProfile({
       english_level:
@@ -1125,10 +1629,14 @@ function App() {
     );
   };
 
+
   const handleLearningGoalChange = (
     goal
   ) => {
-    setLearningGoal(goal);
+
+    setLearningGoal(
+      goal
+    );
 
     updateUserProfile({
       learning_goal:
@@ -1140,7 +1648,9 @@ function App() {
     );
   };
 
+
   const handleClearProgress = () => {
+
     const confirmed =
       window.confirm(
         "Clear all evaluation history and reset your streak? This cannot be undone."
@@ -1150,17 +1660,18 @@ function App() {
       return;
     }
 
-    const empty =
-      createEmptyProgress();
-
-    saveProgress(empty);
+    saveProgress(
+      createEmptyProgress()
+    );
 
     showSettingsNotice(
       "Progress history cleared."
     );
   };
 
+
   const handleResetSession = () => {
+
     const confirmed =
       window.confirm(
         "Reset your current challenge and return to home?"
@@ -1177,9 +1688,11 @@ function App() {
     );
   };
 
+
   const getUserInitials = (
     name
   ) => {
+
     if (!name) {
       return "?";
     }
@@ -1195,17 +1708,14 @@ function App() {
       .join("");
   };
 
+
   // ============================================================
   // DAILY STATS
-  //
-  // todayEvaluations = ARRAY
-  // todayEvaluationCount = NUMBER
-  //
-  // NEVER render todayEvaluations directly.
   // ============================================================
 
   const todayString =
     getLocalDateString();
+
 
   const todayEvaluations =
     Array.isArray(
@@ -1218,11 +1728,14 @@ function App() {
         )
       : [];
 
+
   const todayEvaluationCount =
     todayEvaluations.length;
 
+
   const todayCompleted =
     todayEvaluationCount > 0;
+
 
   const totalEvaluations =
     Array.isArray(
@@ -1230,6 +1743,7 @@ function App() {
     )
       ? progress.history.length
       : 0;
+
 
   const averageScore =
     totalEvaluations > 0
@@ -1246,75 +1760,200 @@ function App() {
         )
       : 0;
 
+
+  const totalWordsSpoken =
+    Array.isArray(
+      progress.history
+    )
+      ? progress.history.reduce(
+          (total, item) =>
+            total +
+            (Number(
+              item.wordCount ??
+                item.word_count ??
+                0
+            ) || 0),
+          0
+        )
+      : 0;
+
+
+  // ============================================================
+  // ACHIEVEMENTS
+  // ============================================================
+
+  const achievements = [
+
+    {
+      id:
+        "first-evaluation",
+
+      title:
+        "First Evaluation",
+
+      description:
+        "Complete your first speaking evaluation.",
+
+      unlocked:
+        totalEvaluations >= 1,
+    },
+
+
+    {
+      id:
+        "three-day-streak",
+
+      title:
+        "3 Day Streak",
+
+      description:
+        "Practice for 3 consecutive days.",
+
+      unlocked:
+        Number(
+          progress.streak
+        ) >= 3,
+    },
+
+
+    {
+      id:
+        "ten-evaluations",
+
+      title:
+        "10 Evaluations",
+
+      description:
+        "Complete 10 speaking evaluations.",
+
+      unlocked:
+        totalEvaluations >= 10,
+    },
+
+
+    {
+      id:
+        "eighty-score",
+
+      title:
+        "80+ Score",
+
+      description:
+        "Get a score of 80 or higher.",
+
+      unlocked:
+        Array.isArray(
+          progress.history
+        ) &&
+        progress.history.some(
+          (item) =>
+            Number(
+              item.score
+            ) >= 80
+        ),
+    },
+
+
+    {
+      id:
+        "hundred-words",
+
+      title:
+        "100 Words Spoken",
+
+      description:
+        "Speak at least 100 words.",
+
+      unlocked:
+        totalWordsSpoken >= 100,
+    },
+  ];
+
+
   // ============================================================
   // RANDOM TOPIC
   // ============================================================
 
   const generateTopic =
     async () => {
+
       if (loading) {
         return;
       }
 
       setLoading(true);
 
+
       try {
+
         const params =
           new URLSearchParams();
+
 
         if (
           category &&
           category !== "All"
         ) {
+
           params.append(
             "category",
             category
           );
         }
 
+
         if (
           difficulty &&
           difficulty !== "All"
         ) {
+
           params.append(
             "difficulty",
             difficulty
           );
         }
 
+
         const query =
           params.toString();
 
-        const url = query
-          ? `${API_BASE_URL}/api/random-topic?${query}`
-          : `${API_BASE_URL}/api/random-topic`;
+
+        const url =
+          query
+            ? `${API_BASE_URL}/api/random-topic?${query}`
+            : `${API_BASE_URL}/api/random-topic`;
+
 
         const response =
-          await fetch(url, {
-            method: "GET",
-            cache: "no-store",
-          });
+          await fetch(
+            url,
+            {
+              method: "GET",
+              cache: "no-store",
+            }
+          );
+
 
         if (!response.ok) {
+
           throw new Error(
             `HTTP ${response.status}`
           );
         }
 
+
         const data =
           await response.json();
 
-        console.log(
-          "DATABASE TOPIC:",
-          data
-        );
 
         if (!data.success) {
+
           throw new Error(
             data.message ||
-              "No topic available"
+            "No topic available"
           );
         }
+
 
         setTopic(
           data.topic
@@ -1322,15 +1961,17 @@ function App() {
 
         setCategory(
           data.topic.category ||
-            "General"
+          "General"
         );
 
         setDifficulty(
           data.topic.difficulty ||
-            "Intermediate"
+          "Intermediate"
         );
 
+
         setNotes("");
+
         setTranscript("");
 
         transcriptRef.current =
@@ -1340,7 +1981,9 @@ function App() {
 
         setResults(null);
 
-        setIsEvaluating(false);
+        setIsEvaluating(
+          false
+        );
 
         evaluationStartedRef.current =
           false;
@@ -1348,8 +1991,16 @@ function App() {
         pendingEvaluationRef.current =
           false;
 
-        setScreen("home");
+        setShowSpeakingHintsPanel(
+          false
+        );
+
+        setScreen(
+          "home"
+        );
+
       } catch (error) {
+
         console.error(
           "Failed to fetch topic:",
           error
@@ -1358,10 +2009,15 @@ function App() {
         alert(
           "Couldn't get a topic. Make sure your backend is running."
         );
+
       } finally {
-        setLoading(false);
+
+        setLoading(
+          false
+        );
       }
     };
+
 
   // ============================================================
   // FORMAT TIME
@@ -1370,29 +2026,81 @@ function App() {
   const formatTime = (
     seconds
   ) => {
+
+    const safeSeconds =
+      Math.max(
+        0,
+        Number(seconds) || 0
+      );
+
     const min =
       Math.floor(
-        seconds / 60
+        safeSeconds / 60
       );
 
     const sec =
-      seconds % 60;
+      safeSeconds % 60;
 
     return `${min}:${sec
       .toString()
       .padStart(2, "0")}`;
   };
 
+
+  // ============================================================
+  // START SPEAKING PHASE
+  // ============================================================
+
+  const startSpeakingPhase =
+    () => {
+
+      clearInterval(
+        learningInterval.current
+      );
+
+      setLearningRunning(
+        false
+      );
+
+      setSpeakingRemaining(
+        speakingTime
+      );
+
+      setSpeakingRunning(
+        true
+      );
+
+      setShowSpeakingHintsPanel(
+        false
+      );
+
+      setScreen(
+        "speaking"
+      );
+
+
+      setTimeout(
+        () => {
+          startListening();
+        },
+        500
+      );
+    };
+
+
   // ============================================================
   // SPEECH RECOGNITION
   // ============================================================
 
   useEffect(() => {
+
     const SpeechRecognition =
       window.SpeechRecognition ||
       window.webkitSpeechRecognition;
 
+
     if (!SpeechRecognition) {
+
       setSpeechSupported(
         false
       );
@@ -1400,8 +2108,10 @@ function App() {
       return;
     }
 
+
     const recognition =
       new SpeechRecognition();
+
 
     recognition.continuous =
       true;
@@ -1412,40 +2122,54 @@ function App() {
     recognition.lang =
       "en-US";
 
+
     recognition.onresult = (
       event
     ) => {
+
       let finalText = "";
+
       let interimText = "";
+
 
       for (
         let i =
           event.resultIndex;
+
         i <
         event.results.length;
+
         i++
       ) {
+
         const text =
           event.results[i][0]
             .transcript;
+
 
         if (
           event.results[i]
             .isFinal
         ) {
+
           finalText +=
             text + " ";
+
         } else {
+
           interimText +=
             text;
         }
       }
 
+
       if (
         finalText.trim()
       ) {
+
         setTranscript(
           (previous) => {
+
             const cleaned =
               previous.trim();
 
@@ -1456,32 +2180,40 @@ function App() {
                 : "") +
               finalText.trim();
 
+
             transcriptRef.current =
               updated;
+
 
             return updated;
           }
         );
       }
 
+
       setInterimTranscript(
         interimText
       );
     };
 
+
     recognition.onstart = () => {
+
       setIsListening(
         true
       );
     };
 
+
     recognition.onerror = (
       event
     ) => {
+
       console.error(
         "Speech recognition error:",
         event.error
       );
+
 
       if (
         event.error ===
@@ -1489,6 +2221,7 @@ function App() {
         event.error ===
           "service-not-allowed"
       ) {
+
         shouldListenRef.current =
           false;
 
@@ -1496,13 +2229,16 @@ function App() {
           false
         );
 
+
         alert(
           "Microphone permission was denied. Please allow microphone access."
         );
       }
     };
 
+
     recognition.onend = () => {
+
       setIsListening(
         false
       );
@@ -1511,61 +2247,100 @@ function App() {
         ""
       );
 
+
       if (
         shouldListenRef.current
       ) {
-        setTimeout(() => {
-          try {
-            recognition.start();
-          } catch (error) {
-            console.log(
-              "Recognition restart:",
-              error
-            );
-          }
-        }, 200);
+
+        setTimeout(
+          () => {
+
+            if (
+              !shouldListenRef.current
+            ) {
+              return;
+            }
+
+
+            try {
+
+              recognition.start();
+
+            } catch (error) {
+
+              console.log(
+                "Recognition restart:",
+                error
+              );
+            }
+
+          },
+          200
+        );
+
 
         return;
       }
 
+
       if (
         pendingEvaluationRef.current
       ) {
+
         pendingEvaluationRef.current =
           false;
 
-        setTimeout(() => {
-          evaluateSpeech(
-            transcriptRef.current
-          );
-        }, 150);
+
+        setTimeout(
+          () => {
+
+            evaluateSpeechRef.current?.(
+              transcriptRef.current
+            );
+
+          },
+          150
+        );
       }
     };
+
 
     recognitionRef.current =
       recognition;
 
+
     return () => {
+
       shouldListenRef.current =
         false;
 
+
       try {
+
         recognition.stop();
+
       } catch (error) {
+
         console.log(error);
+
       }
+
 
       recognitionRef.current =
         null;
     };
+
   }, []);
+
 
   // ============================================================
   // GENERAL CLEANUP
   // ============================================================
 
   useEffect(() => {
+
     return () => {
+
       clearInterval(
         learningInterval.current
       );
@@ -1577,103 +2352,155 @@ function App() {
       shouldListenRef.current =
         false;
 
+
       try {
+
         recognitionRef.current?.stop();
+
       } catch (error) {
+
         console.log(error);
+
       }
     };
+
   }, []);
+
 
   // ============================================================
   // LEARNING TIMER
   // ============================================================
 
   useEffect(() => {
+
     clearInterval(
       learningInterval.current
     );
+
 
     if (!learningRunning) {
       return;
     }
 
+
     learningInterval.current =
-      setInterval(() => {
-        setLearningRemaining(
-          (previous) => {
-            if (previous <= 1) {
-              clearInterval(
-                learningInterval.current
-              );
+      setInterval(
+        () => {
 
-              setLearningRunning(
-                false
-              );
+          setLearningRemaining(
+            (previous) => {
 
-              setTimeout(() => {
-                startSpeakingPhase();
-              }, 300);
+              if (
+                previous <= 1
+              ) {
 
-              return 0;
+                clearInterval(
+                  learningInterval.current
+                );
+
+                setLearningRunning(
+                  false
+                );
+
+
+                setTimeout(
+                  () => {
+                    startSpeakingPhase();
+                  },
+                  300
+                );
+
+
+                return 0;
+              }
+
+
+              return previous - 1;
             }
+          );
 
-            return previous - 1;
-          }
-        );
-      }, 1000);
+        },
+        1000
+      );
+
 
     return () => {
+
       clearInterval(
         learningInterval.current
       );
     };
-  }, [learningRunning]);
+
+  }, [
+    learningRunning
+  ]);
+
 
   // ============================================================
   // SPEAKING TIMER
   // ============================================================
 
   useEffect(() => {
+
     clearInterval(
       speakingInterval.current
     );
+
 
     if (!speakingRunning) {
       return;
     }
 
+
     speakingInterval.current =
-      setInterval(() => {
-        setSpeakingRemaining(
-          (previous) => {
-            if (previous <= 1) {
-              clearInterval(
-                speakingInterval.current
-              );
+      setInterval(
+        () => {
 
-              setSpeakingRunning(
-                false
-              );
+          setSpeakingRemaining(
+            (previous) => {
 
-              finishSpeaking(
-                true
-              );
+              if (
+                previous <= 1
+              ) {
 
-              return 0;
+                clearInterval(
+                  speakingInterval.current
+                );
+
+                setSpeakingRunning(
+                  false
+                );
+
+
+                finishSpeaking(
+                  true
+                );
+
+
+                return 0;
+              }
+
+
+              return previous - 1;
             }
+          );
 
-            return previous - 1;
-          }
-        );
-      }, 1000);
+        },
+        1000
+      );
+
 
     return () => {
+
       clearInterval(
         speakingInterval.current
       );
     };
-  }, [speakingRunning]);
+
+  }, [
+    speakingRunning
+  ]);
+
 
   // ============================================================
   // TIMER SETTINGS
@@ -1682,12 +2509,20 @@ function App() {
   const updateLearningTime = (
     seconds
   ) => {
+
+    const safeSeconds =
+      Math.max(
+        60,
+        Number(seconds) || 60
+      );
+
+
     setLearningTime(
-      seconds
+      safeSeconds
     );
 
     setLearningRemaining(
-      seconds
+      safeSeconds
     );
 
     setLearningRunning(
@@ -1699,15 +2534,24 @@ function App() {
     );
   };
 
+
   const updateSpeakingTime = (
     seconds
   ) => {
+
+    const safeSeconds =
+      Math.max(
+        60,
+        Number(seconds) || 60
+      );
+
+
     setSpeakingTime(
-      seconds
+      safeSeconds
     );
 
     setSpeakingRemaining(
-      seconds
+      safeSeconds
     );
 
     setSpeakingRunning(
@@ -1719,18 +2563,22 @@ function App() {
     );
   };
 
+
   // ============================================================
   // START CHALLENGE
   // ============================================================
 
   const startChallenge = () => {
+
     if (!topic) {
+
       alert(
         "Generate a topic first."
       );
 
       return;
     }
+
 
     setTranscript("");
 
@@ -1753,6 +2601,11 @@ function App() {
     pendingEvaluationRef.current =
       false;
 
+    setShowSpeakingHintsPanel(
+      false
+    );
+
+
     setLearningRemaining(
       learningTime
     );
@@ -1761,11 +2614,15 @@ function App() {
       speakingTime
     );
 
+
     if (
       mode === "speak-only"
     ) {
+
       startSpeakingPhase();
+
     } else {
+
       setScreen(
         "learning"
       );
@@ -1776,42 +2633,13 @@ function App() {
     }
   };
 
-  // ============================================================
-  // START SPEAKING
-  // ============================================================
-
-  const startSpeakingPhase =
-    () => {
-      clearInterval(
-        learningInterval.current
-      );
-
-      setLearningRunning(
-        false
-      );
-
-      setSpeakingRemaining(
-        speakingTime
-      );
-
-      setSpeakingRunning(
-        true
-      );
-
-      setScreen(
-        "speaking"
-      );
-
-      setTimeout(() => {
-        startListening();
-      }, 500);
-    };
 
   // ============================================================
   // LEARNING
   // ============================================================
 
   const skipLearning = () => {
+
     clearInterval(
       learningInterval.current
     );
@@ -1823,44 +2651,56 @@ function App() {
     startSpeakingPhase();
   };
 
+
   const toggleLearningTimer =
     () => {
+
       setLearningRunning(
         (previous) =>
           !previous
       );
     };
 
+
   // ============================================================
   // SPEECH
   // ============================================================
 
   const startListening = () => {
+
     if (
       !recognitionRef.current
     ) {
       return;
     }
 
+
     shouldListenRef.current =
       true;
 
+
     try {
+
       recognitionRef.current.start();
 
       setIsListening(
         true
       );
+
     } catch (error) {
+
       console.log(
         "Recognition already running."
       );
     }
   };
 
+
   const stopListening = () => {
+
     shouldListenRef.current =
       false;
+
 
     if (
       !recognitionRef.current
@@ -1868,11 +2708,17 @@ function App() {
       return;
     }
 
+
     try {
+
       recognitionRef.current.stop();
+
     } catch (error) {
+
       console.log(error);
+
     }
+
 
     setIsListening(
       false
@@ -1883,14 +2729,19 @@ function App() {
     );
   };
 
+
   const toggleSpeaking = () => {
+
     if (isListening) {
+
       stopListening();
 
       setSpeakingRunning(
         false
       );
+
     } else {
+
       setSpeakingRunning(
         true
       );
@@ -1899,6 +2750,20 @@ function App() {
     }
   };
 
+
+  // ============================================================
+  // SPEAKING HINTS
+  // ============================================================
+
+  const toggleSpeakingHints = () => {
+
+    setShowSpeakingHintsPanel(
+      (previous) =>
+        !previous
+    );
+  };
+
+
   // ============================================================
   // FINISH SPEAKING
   // ============================================================
@@ -1906,60 +2771,90 @@ function App() {
   const finishSpeaking = (
     fromTimer = false
   ) => {
+
     if (
       evaluationStartedRef.current
     ) {
       return;
     }
 
+
     clearInterval(
       speakingInterval.current
     );
+
 
     setSpeakingRunning(
       false
     );
 
+    setShowSpeakingHintsPanel(
+      false
+    );
+
+
     shouldListenRef.current =
       false;
+
 
     if (
       recognitionRef.current &&
       isListening
     ) {
+
       pendingEvaluationRef.current =
         true;
 
+
       try {
+
         recognitionRef.current.stop();
+
       } catch (error) {
+
         console.log(error);
+
       }
+
 
       setIsListening(
         false
       );
 
-      setTimeout(() => {
-        if (
-          pendingEvaluationRef.current
-        ) {
-          pendingEvaluationRef.current =
-            false;
 
-          evaluateSpeech(
-            transcriptRef.current
-          );
-        }
-      }, 1200);
+      setTimeout(
+        () => {
+
+          if (
+            pendingEvaluationRef.current
+          ) {
+
+            pendingEvaluationRef.current =
+              false;
+
+
+            evaluateSpeechRef.current?.(
+              transcriptRef.current
+            );
+          }
+
+        },
+        1200
+      );
+
 
       return;
     }
 
-    evaluateSpeech(
+
+    evaluateSpeechRef.current?.(
       transcriptRef.current
     );
+
+
+    void fromTimer;
   };
+
 
   // ============================================================
   // EVALUATION
@@ -1969,29 +2864,40 @@ function App() {
     async (
       finalTranscript = transcript
     ) => {
+
       if (
         evaluationStartedRef.current
       ) {
         return;
       }
 
+
       evaluationStartedRef.current =
         true;
 
+
       const cleanTranscript =
-        finalTranscript.trim();
+        (
+          finalTranscript || ""
+        ).trim();
+
 
       // ========================================================
       // NO SPEECH
       // ========================================================
 
-      if (!cleanTranscript) {
+      if (
+        !cleanTranscript
+      ) {
+
         const emptyResult = {
+
           source: "local",
 
           overall_score: 0,
 
           scores: {
+
             grammar: null,
             vocabulary: 0,
             fluency: 0,
@@ -2003,6 +2909,7 @@ function App() {
           },
 
           speech_stats: {
+
             word_count: 0,
             estimated_wpm: 0,
             filler_count: 0,
@@ -2010,8 +2917,6 @@ function App() {
           },
 
           filler_words: [],
-
-          repeated_words: [],
 
           grammar_corrections: [],
 
@@ -2024,7 +2929,9 @@ function App() {
           ],
 
           structure_analysis: {
+
             available: false,
+
             message:
               "Please try speaking again.",
           },
@@ -2033,12 +2940,15 @@ function App() {
             "We couldn't capture enough speech to analyze.",
 
           priority_improvements: [
+
             "Check your microphone.",
             "Speak clearly.",
           ],
 
           next_challenge: {
-            title: "Try Again",
+
+            title:
+              "Try Again",
 
             description:
               "Speak for at least 30 seconds.",
@@ -2048,6 +2958,7 @@ function App() {
             rules: [],
           },
         };
+
 
         setResults(
           emptyResult
@@ -2061,11 +2972,12 @@ function App() {
           "results"
         );
 
-        // No progress is recorded
-        // when no speech was captured.
+        evaluationStartedRef.current =
+          false;
 
         return;
       }
+
 
       // ========================================================
       // START EVALUATION
@@ -2079,7 +2991,13 @@ function App() {
         "results"
       );
 
+
       try {
+
+        // ======================================================
+        // API EVALUATION
+        // ======================================================
+
         const response =
           await fetch(
             `${API_BASE_URL}/api/evaluate`,
@@ -2092,6 +3010,7 @@ function App() {
               },
 
               body: JSON.stringify({
+
                 topic:
                   topic?.topic ||
                   "",
@@ -2117,45 +3036,64 @@ function App() {
             }
           );
 
-        if (!response.ok) {
+
+        // ======================================================
+        // API ERROR
+        // ======================================================
+
+        if (
+          !response.ok
+        ) {
+
           throw new Error(
             `Evaluation failed: ${response.status}`
           );
         }
 
+
+        // ======================================================
+        // GET RESULT
+        // ======================================================
+
         const result =
           await response.json();
+
 
         console.log(
           "EVALUATION RESULT:",
           result
         );
 
+
+        // ======================================================
+        // SAVE API RESULT
+        // ======================================================
+
         setResults(
           result
         );
 
-        // ======================================================
-        // RECORD SUCCESSFUL EVALUATION
-        // ======================================================
-
         recordEvaluation(
           result
         );
+
       } catch (error) {
+
+        // ======================================================
+        // LOCAL FALLBACK
+        // ======================================================
+
         console.error(
-          "Evaluation API error:",
+          "AI evaluation failed. Using local fallback:",
           error
         );
 
-        // ========================================================
-        // LOCAL FALLBACK
-        // ========================================================
 
         const words =
           cleanTranscript
             .split(/\s+/)
             .filter(Boolean);
+
 
         const lowerWords =
           words.map(
@@ -2168,6 +3106,7 @@ function App() {
                 )
           );
 
+
         const fillerList = [
           "um",
           "uh",
@@ -2178,25 +3117,32 @@ function App() {
           "i mean",
         ];
 
+
         const fillerWords =
           fillerList
-            .map((word) => {
-              const count =
-                lowerWords.filter(
-                  (item) =>
-                    item ===
-                    word
-                ).length;
+            .map(
+              (word) => {
 
-              return {
-                word,
-                count,
-              };
-            })
+                const count =
+                  lowerWords.filter(
+                    (item) =>
+                      item ===
+                      word
+                  ).length;
+
+
+                return {
+                  word,
+                  count,
+                };
+
+              }
+            )
             .filter(
               (item) =>
                 item.count > 0
             );
+
 
         const fillerCount =
           fillerWords.reduce(
@@ -2206,13 +3152,16 @@ function App() {
             0
           );
 
+
         const wordCount =
           words.length;
+
 
         const uniqueWordCount =
           new Set(
             lowerWords
           ).size;
+
 
         const vocabularyScore =
           Math.min(
@@ -2229,6 +3178,7 @@ function App() {
             )
           );
 
+
         const estimatedWpm =
           Math.round(
             wordCount /
@@ -2239,31 +3189,41 @@ function App() {
               )
           );
 
+
         let fluencyScore =
           75;
+
 
         if (
           estimatedWpm >= 90 &&
           estimatedWpm <= 150
         ) {
+
           fluencyScore =
             88;
+
         } else if (
           estimatedWpm >= 70 &&
           estimatedWpm < 90
         ) {
+
           fluencyScore =
             75;
+
         } else if (
           estimatedWpm > 150 &&
           estimatedWpm <= 180
         ) {
+
           fluencyScore =
             75;
+
         } else {
+
           fluencyScore =
             60;
         }
+
 
         fluencyScore -=
           Math.min(
@@ -2271,27 +3231,36 @@ function App() {
             fillerCount * 3
           );
 
+
         fluencyScore =
           Math.max(
             0,
             fluencyScore
           );
 
+
         const overall =
           Math.round(
             vocabularyScore *
               0.4 +
-              fluencyScore *
-                0.6
+            fluencyScore *
+              0.6
           );
 
+
+        // ======================================================
+        // FALLBACK RESULT
+        // ======================================================
+
         const fallbackResult = {
+
           source: "local",
 
           overall_score:
             overall,
 
           scores: {
+
             grammar: null,
 
             vocabulary:
@@ -2300,19 +3269,24 @@ function App() {
             fluency:
               fluencyScore,
 
-            clarity: 70,
+            clarity:
+              70,
 
-            coherence: null,
+            coherence:
+              null,
 
-            sentence_structure: 70,
+            sentence_structure:
+              70,
 
             topic_relevance:
               null,
 
-            naturalness: null,
+            naturalness:
+              null,
           },
 
           speech_stats: {
+
             word_count:
               wordCount,
 
@@ -2322,23 +3296,24 @@ function App() {
             filler_count:
               fillerCount,
 
-            repetition_count: 0,
+            repetition_count:
+              0,
           },
 
           filler_words:
             fillerWords,
-
-          repeated_words: [],
 
           grammar_corrections: [],
 
           vocabulary_upgrades: [],
 
           strengths: [
+
             "You completed the speaking challenge.",
           ],
 
           weaknesses:
+
             fillerCount > 3
               ? [
                   "Try reducing filler words.",
@@ -2348,6 +3323,7 @@ function App() {
                 ],
 
           structure_analysis: {
+
             available: false,
 
             message:
@@ -2358,49 +3334,74 @@ function App() {
             "AI analysis was temporarily unavailable, so basic speech metrics were used.",
 
           priority_improvements: [
+
             "Reduce filler words.",
+
             "Use more varied vocabulary.",
           ],
 
           next_challenge: {
+
             title:
               "Keep Practicing",
 
             description:
               "Speak for 90 seconds and focus on speaking naturally.",
 
-            duration: 90,
+            duration:
+              90,
 
             rules: [
+
               "Avoid unnecessary filler words.",
+
               "Use varied vocabulary.",
             ],
           },
         };
 
+
+        // ======================================================
+        // SAVE FALLBACK RESULT
+        // ======================================================
+
         setResults(
           fallbackResult
         );
-
-        // ======================================================
-        // RECORD FALLBACK EVALUATION
-        // ======================================================
 
         recordEvaluation(
           fallbackResult
         );
       } finally {
+
+        // ======================================================
+        // FINISH EVALUATION
+        // ======================================================
+
         setIsEvaluating(
           false
         );
+
+        evaluationStartedRef.current =
+          false;
       }
     };
 
+
   // ============================================================
-  // RESET
+  // EVALUATION REF
+  // ============================================================
+
+  evaluateSpeechRef.current =
+    evaluateSpeech;
+
+
+  // ============================================================
+  // RESET CHALLENGE
   // ============================================================
 
   const resetChallenge = () => {
+
     clearInterval(
       learningInterval.current
     );
@@ -2408,6 +3409,7 @@ function App() {
     clearInterval(
       speakingInterval.current
     );
+
 
     shouldListenRef.current =
       false;
@@ -2418,11 +3420,17 @@ function App() {
     evaluationStartedRef.current =
       false;
 
+
     try {
+
       recognitionRef.current?.stop();
+
     } catch (error) {
+
       console.log(error);
+
     }
+
 
     setLearningRunning(
       false
@@ -2435,6 +3443,7 @@ function App() {
     setIsListening(
       false
     );
+
 
     setTranscript("");
 
@@ -2451,6 +3460,19 @@ function App() {
       false
     );
 
+    setShowSpeakingHintsPanel(
+      false
+    );
+
+    setShowLearningOptions(
+      false
+    );
+
+    setShowSpeakingOptions(
+      false
+    );
+
+
     setLearningRemaining(
       learningTime
     );
@@ -2459,21 +3481,27 @@ function App() {
       speakingTime
     );
 
-    setScreen("home");
+
+    setScreen(
+      "home"
+    );
   };
+
 
   // ============================================================
   // RENDER
   // ============================================================
 
   return (
+
     <main className="app">
 
-      <div className="noise"></div>
+      <div className="noise" />
 
-      <div className="glow glow-one"></div>
+      <div className="glow glow-one" />
 
-      <div className="glow glow-two"></div>
+      <div className="glow glow-two" />
+
 
       {/* ======================================================
           HEADER
@@ -2483,16 +3511,25 @@ function App() {
 
         <div
           className="logo"
-          onClick={resetChallenge}
+          onClick={
+            resetChallenge
+          }
         >
           Speak<span>Up</span>
         </div>
 
+
         <div className="header-right">
+
+          {/* STREAK */}
 
           <div className="streak">
 
-            <span className="streak-dot"></span>
+            <span className="streak-indicator">
+
+              <span className="streak-indicator-core" />
+
+            </span>
 
             {isLoggedIn
               ? `${progress.streak || 0} day streak`
@@ -2500,42 +3537,93 @@ function App() {
 
           </div>
 
+
+          {/* LEVEL */}
+
+          {isLoggedIn && (
+
+            <div className="header-level">
+
+              <span>
+                LEVEL
+              </span>
+
+              <strong>
+                {getLevel(
+                  gamification.totalXp || 0
+                )}
+              </strong>
+
+            </div>
+
+          )}
+
+
+          {/* XP */}
+
+          {isLoggedIn && (
+
+            <div className="header-xp">
+
+              <span>
+                XP
+              </span>
+
+              <strong>
+                {Number(
+                  gamification.totalXp || 0
+                ).toLocaleString()}
+              </strong>
+
+            </div>
+
+          )}
+
+
           {/* PROGRESS */}
 
           <button
             className="header-button"
             onClick={() => {
-              if (!requireLogin()) {
+
+              if (
+                !requireLogin()
+              ) {
                 return;
               }
 
               setScreen(
                 "progress"
               );
+
             }}
           >
             Progress
           </button>
+
 
           {/* SETTINGS */}
 
           <button
             className="icon-button"
             onClick={() => {
-              if (!requireLogin()) {
+
+              if (
+                !requireLogin()
+              ) {
                 return;
               }
 
               setScreen(
                 "settings"
               );
+
             }}
             title="Settings"
           >
             ⚙
           </button>
 
-          {/* LOGIN / USER */}
 
           {!isLoggedIn ? (
 
@@ -2575,6 +3663,7 @@ function App() {
 
       </header>
 
+
       {/* ======================================================
           HOME
       ====================================================== */}
@@ -2591,7 +3680,6 @@ function App() {
 
           </div>
 
-          {/* MODE */}
 
           <div className="mode-switch">
 
@@ -2602,7 +3690,9 @@ function App() {
                   : ""
               }
               onClick={() =>
-                setMode("learn")
+                setMode(
+                  "learn"
+                )
               }
             >
               Learn + Speak
@@ -2625,7 +3715,6 @@ function App() {
 
           </div>
 
-          {/* CATEGORY */}
 
           <div className="category-row">
 
@@ -2672,7 +3761,6 @@ function App() {
 
           </div>
 
-          {/* TOPIC */}
 
           <div className="topic-area">
 
@@ -2691,6 +3779,7 @@ function App() {
                 <p className="description">
                   {topic.description}
                 </p>
+
 
                 {topic.questions &&
                   topic.questions.length >
@@ -2755,7 +3844,6 @@ function App() {
 
           </div>
 
-          {/* DIFFICULTY */}
 
           <div className="difficulty">
 
@@ -2769,7 +3857,8 @@ function App() {
                 <button
                   key={level}
                   className={
-                    difficulty === level
+                    difficulty ===
+                    level
                       ? "selected"
                       : ""
                   }
@@ -2787,7 +3876,6 @@ function App() {
 
           </div>
 
-          {/* CONTROLS */}
 
           <div className="controls">
 
@@ -2809,7 +3897,6 @@ function App() {
 
             </button>
 
-            {/* LEARNING TIMER */}
 
             {mode === "learn" && (
 
@@ -2841,6 +3928,7 @@ function App() {
 
                 </button>
 
+
                 {showLearningOptions && (
 
                   <div className="timer-menu">
@@ -2849,13 +3937,7 @@ function App() {
                       Learning time
                     </p>
 
-                    {[
-                      1,
-                      3,
-                      5,
-                      10,
-                      15,
-                    ].map(
+                    {LEARN_TIME_OPTIONS.map(
                       (min) => (
 
                         <button
@@ -2914,7 +3996,6 @@ function App() {
 
             )}
 
-            {/* SPEAKING TIMER */}
 
             <div className="timer-control">
 
@@ -2944,6 +4025,7 @@ function App() {
 
               </button>
 
+
               {showSpeakingOptions && (
 
                 <div className="timer-menu">
@@ -2952,13 +4034,7 @@ function App() {
                     Speaking time
                   </p>
 
-                  {[
-                    1,
-                    2,
-                    3,
-                    5,
-                    10,
-                  ].map(
+                  {SPEAK_TIME_OPTIONS.map(
                     (min) => (
 
                       <button
@@ -3017,7 +4093,6 @@ function App() {
 
           </div>
 
-          {/* START */}
 
           <button
             className="start-button"
@@ -3038,6 +4113,7 @@ function App() {
 
           </button>
 
+
           {!topic && (
 
             <button
@@ -3054,6 +4130,7 @@ function App() {
         </section>
 
       )}
+
 
       {/* ======================================================
           LEARNING
@@ -3093,6 +4170,7 @@ function App() {
 
             </div>
 
+
             <div className="learning-layout">
 
               <div className="learning-main">
@@ -3108,6 +4186,7 @@ function App() {
                 <p className="large-description">
                   {topic.description}
                 </p>
+
 
                 <div className="big-timer">
 
@@ -3140,6 +4219,7 @@ function App() {
 
                   </div>
 
+
                   <div className="timer-actions">
 
                     <button
@@ -3167,6 +4247,7 @@ function App() {
                 </div>
 
               </div>
+
 
               <aside className="learning-sidebar">
 
@@ -3200,9 +4281,9 @@ function App() {
 
                 </div>
 
-                {showVocabulary &&
-                  topic.useful_vocabulary?.length >
-                    0 && (
+
+                {topic.useful_vocabulary?.length >
+                  0 && (
 
                     <div className="side-card">
 
@@ -3212,7 +4293,7 @@ function App() {
 
                       <div className="vocabulary">
 
-                        {topic.useful_vocabulary?.map(
+                        {topic.useful_vocabulary.map(
                           (
                             word,
                             index
@@ -3232,6 +4313,7 @@ function App() {
                     </div>
 
                   )}
+
 
                 <div className="side-card notes-card">
 
@@ -3262,6 +4344,7 @@ function App() {
 
         )}
 
+
       {/* ======================================================
           SPEAKING
       ====================================================== */}
@@ -3283,6 +4366,10 @@ function App() {
                     false
                   );
 
+                  setShowSpeakingHintsPanel(
+                    false
+                  );
+
                   setScreen(
                     "home"
                   );
@@ -3291,6 +4378,7 @@ function App() {
               >
                 ← Exit
               </button>
+
 
               <div className="phase-indicator">
 
@@ -3310,6 +4398,7 @@ function App() {
 
             </div>
 
+
             <div className="speaking-header">
 
               <p className="topic-label">
@@ -3327,6 +4416,7 @@ function App() {
               </p>
 
             </div>
+
 
             <div className="speaking-timer">
 
@@ -3350,6 +4440,7 @@ function App() {
 
             </div>
 
+
             <div
               className={`mic-container ${
                 isListening
@@ -3358,7 +4449,7 @@ function App() {
               }`}
             >
 
-              <div className="mic-pulse"></div>
+              <div className="mic-pulse" />
 
               <button
                 className="mic-button"
@@ -3375,6 +4466,7 @@ function App() {
 
             </div>
 
+
             <div className="listening-status">
 
               <span
@@ -3383,13 +4475,14 @@ function App() {
                     ? "status-live"
                     : ""
                 }
-              ></span>
+              />
 
               {isListening
                 ? "Listening..."
                 : "Paused"}
 
             </div>
+
 
             {!speechSupported && (
 
@@ -3402,6 +4495,7 @@ function App() {
               </div>
 
             )}
+
 
             <div className="transcript-card">
 
@@ -3422,14 +4516,14 @@ function App() {
                           )
                           .filter(
                             Boolean
-                          )
-                          .length
+                          ).length
                       } words`
                     : "0 words"}
 
                 </span>
 
               </div>
+
 
               <div className="transcript-body">
 
@@ -3442,9 +4536,7 @@ function App() {
                 {interimTranscript && (
                   <span className="interim-text">
                     {" "}
-                    {
-                      interimTranscript
-                    }
+                    {interimTranscript}
                   </span>
                 )}
 
@@ -3459,6 +4551,120 @@ function App() {
               </div>
 
             </div>
+
+
+            {/* SPEAKING HINTS */}
+
+            {showSpeakingHints && (
+
+              <div className="speaking-hints">
+
+                <button
+                  type="button"
+                  className="speaking-hints-button"
+                  onClick={
+                    toggleSpeakingHints
+                  }
+                >
+
+                  <span>
+                    {showSpeakingHintsPanel
+                      ? "Hide Hints"
+                      : "Need a Hint?"}
+                  </span>
+
+                  <span className="speaking-hints-arrow">
+                    {showSpeakingHintsPanel
+                      ? "↑"
+                      : "↓"}
+                  </span>
+
+                </button>
+
+
+                {showSpeakingHintsPanel && (
+
+                  <div className="speaking-hints-panel">
+
+                    <div className="speaking-hints-header">
+
+                      <div>
+
+                        <span>
+                          YOUR NOTES
+                        </span>
+
+                        <small>
+                          Use these ideas if you get stuck.
+                        </small>
+
+                      </div>
+
+                    </div>
+
+
+                    {notes.trim() ? (
+
+                      <div className="speaking-hints-content">
+
+                        {notes
+                          .split("\n")
+                          .filter(
+                            (line) =>
+                              line.trim()
+                          )
+                          .map(
+                            (
+                              line,
+                              index
+                            ) => (
+
+                              <div
+                                className="speaking-hint-item"
+                                key={index}
+                              >
+
+                                <span>
+                                  +
+                                </span>
+
+                                <p>
+                                  {line}
+                                </p>
+
+                              </div>
+
+                            )
+                          )}
+
+                      </div>
+
+                    ) : (
+
+                      <div className="speaking-hints-empty">
+
+                        <span>
+                          ○
+                        </span>
+
+                        <p>
+                          No preparation notes yet.
+                          Use your ideas from the topic
+                          questions and keep speaking naturally.
+                        </p>
+
+                      </div>
+
+                    )}
+
+                  </div>
+
+                )}
+
+              </div>
+
+            )}
+
 
             <button
               className="finish-button"
@@ -3483,6 +4689,7 @@ function App() {
           </section>
 
         )}
+
 
       {/* ======================================================
           RESULTS
@@ -3514,6 +4721,7 @@ function App() {
 
             </div>
 
+
             {!isEvaluating && (
 
               <button
@@ -3529,11 +4737,12 @@ function App() {
 
           </div>
 
+
           {isEvaluating ? (
 
             <div className="evaluation-loading">
 
-              <div className="loading-orbit"></div>
+              <div className="loading-orbit" />
 
               <h3>
                 Analyzing your speech
@@ -3547,7 +4756,7 @@ function App() {
 
               <div className="analysis-status">
 
-                <span></span>
+                <span />
 
                 AI Coach is working
 
@@ -3564,12 +4773,10 @@ function App() {
                 {results.source ===
                 "cohere"
                   ? "AI ANALYSIS · COHERE"
-                  : results.source ===
-                    "gemini"
-                  ? "AI ANALYSIS"
                   : "BASIC ANALYSIS · LOCAL FALLBACK"}
 
               </div>
+
 
               <div className="score-section">
 
@@ -3589,6 +4796,7 @@ function App() {
                   </small>
 
                 </div>
+
 
                 <div className="score-message">
 
@@ -3612,6 +4820,7 @@ function App() {
                 </div>
 
               </div>
+
 
               <div className="metrics">
 
@@ -3665,6 +4874,7 @@ function App() {
 
               </div>
 
+
               <div className="speech-stats">
 
                 <div>
@@ -3717,91 +4927,6 @@ function App() {
 
               </div>
 
-              <div className="feedback-grid">
-
-                <div className="feedback-card">
-
-                  <h3>
-                    What went well
-                  </h3>
-
-                  {results.strengths?.length ? (
-
-                    results.strengths.map(
-                      (
-                        item,
-                        index
-                      ) => (
-
-                        <div
-                          className="feedback-item"
-                          key={index}
-                        >
-
-                          <span>
-                            +
-                          </span>
-
-                          {item}
-
-                        </div>
-
-                      )
-                    )
-
-                  ) : (
-
-                    <div className="feedback-item">
-
-                      <span>
-                        +
-                      </span>
-
-                      Keep practicing
-                      consistently.
-
-                    </div>
-
-                  )}
-
-                </div>
-
-                <div className="feedback-card">
-
-                  <h3>
-                    Work on next
-                  </h3>
-
-                  {(
-                    results.priority_improvements
-                      ?.length
-                      ? results.priority_improvements
-                      : results.weaknesses || []
-                  ).map(
-                    (
-                      item,
-                      index
-                    ) => (
-
-                      <div
-                        className="feedback-item"
-                        key={index}
-                      >
-
-                        <span>
-                          →
-                        </span>
-
-                        {item}
-
-                      </div>
-
-                    )
-                  )}
-
-                </div>
-
-              </div>
 
               {results.filler_words
                 ?.length > 0 && (
@@ -3848,50 +4973,6 @@ function App() {
 
               )}
 
-              {results.repeated_words
-                ?.length > 0 && (
-
-                <div className="corrections">
-
-                  <div className="section-heading">
-
-                    <div>
-
-                      <p>
-                        VOCABULARY
-                      </p>
-
-                      <h3>
-                        Words you repeated
-                      </h3>
-
-                    </div>
-
-                  </div>
-
-                  <div className="vocabulary">
-
-                    {results.repeated_words.map(
-                      (
-                        item,
-                        index
-                      ) => (
-
-                        <span
-                          key={index}
-                        >
-                          {item.word} ×
-                          {item.count}
-                        </span>
-
-                      )
-                    )}
-
-                  </div>
-
-                </div>
-
-              )}
 
               {results.grammar_corrections
                 ?.length > 0 && (
@@ -3985,6 +5066,7 @@ function App() {
 
               )}
 
+
               {results.vocabulary_upgrades
                 ?.length > 0 && (
 
@@ -4070,6 +5152,7 @@ function App() {
 
               )}
 
+
               {results.next_challenge && (
 
                 <div className="next-challenge-card">
@@ -4085,6 +5168,7 @@ function App() {
                   <p>
                     {results.next_challenge.description}
                   </p>
+
 
                   {results.next_challenge.rules
                     ?.length > 0 && (
@@ -4113,6 +5197,7 @@ function App() {
                 </div>
 
               )}
+
 
               <div className="results-actions">
 
@@ -4165,387 +5250,33 @@ function App() {
 
       )}
 
+
       {/* ======================================================
           PROGRESS
       ====================================================== */}
 
       {screen === "progress" && (
 
-        <main className="progress-screen">
-
-          {/* HEADER */}
-
-          <div className="progress-screen-header">
-
-            <div>
-
-              <p className="topic-label">
-                YOUR PROGRESS
-              </p>
-
-              <h1>
-                Keep your speaking streak alive.
-              </h1>
-
-              <p>
-                Nice work,{" "}
-                {currentUser?.name ||
-                  "there"}.
-                Keep practicing every day to build your confidence.
-              </p>
-
-            </div>
-
-            <button
-              className="back-button"
-              onClick={() =>
-                setScreen("home")
-              }
-            >
-              ← Back
-            </button>
-
-          </div>
-
-          {/* STAT CARDS */}
-
-          <div className="progress-stats">
-
-            {/* STREAK */}
-
-            <div className="progress-stat-card">
-
-              <div className="progress-stat-label">
-                Current streak
-              </div>
-
-              <div className="progress-stat-value">
-                {progress.streak ||
-                  0}
-              </div>
-
-              <div className="progress-stat-subtitle">
-                {progress.streak ===
-                1
-                  ? "day"
-                  : "days"}
-              </div>
-
-            </div>
-
-            {/* TODAY */}
-
-            <div className="progress-stat-card">
-
-              <div className="progress-stat-label">
-                Today
-              </div>
-
-              <div className="progress-stat-value">
-                {todayEvaluationCount}
-              </div>
-
-              <div className="progress-stat-subtitle">
-                {todayEvaluationCount ===
-                1
-                  ? "evaluation"
-                  : "evaluations"}
-              </div>
-
-            </div>
-
-            {/* TOTAL */}
-
-            <div className="progress-stat-card">
-
-              <div className="progress-stat-label">
-                Total
-              </div>
-
-              <div className="progress-stat-value">
-                {totalEvaluations}
-              </div>
-
-              <div className="progress-stat-subtitle">
-                {totalEvaluations ===
-                1
-                  ? "evaluation"
-                  : "evaluations"}
-              </div>
-
-            </div>
-
-            {/* AVERAGE */}
-
-            <div className="progress-stat-card">
-
-              <div className="progress-stat-label">
-                Average
-              </div>
-
-              <div className="progress-stat-value">
-                {averageScore}
-              </div>
-
-              <div className="progress-stat-subtitle">
-                /100
-              </div>
-
-            </div>
-
-          </div>
-
-    {/* DAILY PRACTICE */}
-
-    <section className="daily-practice-card">
-
-      <div className="daily-practice-top">
-
-        <div className="daily-practice-info">
-
-          <span className="daily-practice-eyebrow">
-            TODAY'S PRACTICE
-          </span>
-
-          <h2>
-            Build your speaking habit.
-          </h2>
-
-          <p>
-            Complete one speaking evaluation today
-            to keep your progress moving.
-          </p>
-
-        </div>
-
-        <div
-          className={
-            todayCompleted
-              ? "practice-check completed"
-              : "practice-check"
+        <Progress
+          progress={{
+            ...progress,
+            gamification,
+          }}
+          currentUser={
+            currentUser
           }
-        >
-          {todayCompleted ? "✓" : "1"}
-        </div>
 
-      </div>
-
-
-      <div className="practice-progress-section">
-
-        <div className="practice-progress-header">
-
-          <span>
-            Daily goal
-          </span>
-
-          <strong>
-            {todayCompleted ? "1 / 1" : "0 / 1"}
-          </strong>
-
-        </div>
-
-        <div className="practice-progress-track">
-
-          <div
-            className="practice-progress-fill"
-            style={{
-              width:
-                todayCompleted
-                  ? "100%"
-                  : "0%",
-            }}
-          />
-
-        </div>
-
-      </div>
-
-
-      <div className="practice-footer">
-
-        {todayCompleted ? (
-
-          <div className="practice-completed-message">
-
-            <div className="completed-icon">
-              ✓
-            </div>
-
-            <div>
-              <strong>
-                Practice complete
-              </strong>
-
-              <span>
-                Great job — you've done today's speaking practice.
-              </span>
-            </div>
-
-          </div>
-
-        ) : (
-
-          <div className="practice-start">
-
-            <div className="practice-start-text">
-
-              <strong>
-                Ready to speak?
-              </strong>
-
-              <span>
-                Take a few minutes to practice your English.
-              </span>
-
-            </div>
-
-            <button
-              className="practice-start-button"
-              onClick={() =>
-                setScreen("home")
-              }
-            >
-              Start Practice
-              <span>→</span>
-            </button>
-
-          </div>
-
-        )}
-
-      </div>
-
-    </section>
-
-          {/* RECENT ACTIVITY */}
-
-          <section className="recent-activity">
-
-            <div className="recent-activity-header">
-
-              <div>
-
-                <p className="topic-label">
-                  RECENT ACTIVITY
-                </p>
-
-                <h2>
-                  Your speaking history
-                </h2>
-
-              </div>
-
-              {totalEvaluations >
-                0 && (
-
-                <span className="activity-count">
-                  {totalEvaluations}{" "}
-                  {totalEvaluations ===
-                  1
-                    ? "session"
-                    : "sessions"}
-                </span>
-
-              )}
-
-            </div>
-
-            {totalEvaluations >
-            0 ? (
-
-              <div className="activity-list">
-
-                {progress.history
-                  .slice(0, 10)
-                  .map(
-                    (item) => (
-
-                      <div
-                        className="activity-item"
-                        key={item.id}
-                      >
-
-                        <div className="activity-date">
-                          {item.date}
-                        </div>
-
-                        <div className="activity-info">
-
-                          <div className="activity-topic">
-                            {item.topic}
-                          </div>
-
-                          <div className="activity-meta">
-                            {item.category ||
-                              "General"}
-
-                            {" · "}
-
-                            {item.difficulty ||
-                              "Beginner"}
-
-                            {item.wpm
-                              ? ` · ${item.wpm} WPM`
-                              : ""}
-                          </div>
-
-                        </div>
-
-                        <div className="activity-score">
-
-                          {item.score}
-
-                          <span>
-                            /100
-                          </span>
-
-                        </div>
-
-                      </div>
-
-                    )
-                  )}
-
-              </div>
-
-            ) : (
-
-              <div className="no-activity">
-
-                <div className="empty-history-icon">
-                  ○
-                </div>
-
-                <h3>
-                  No evaluations yet.
-                </h3>
-
-                <p>
-                  Complete your first speaking challenge
-                  and your progress will appear here.
-                </p>
-
-                <button
-                  className="primary-button"
-                  onClick={() =>
-                    setScreen(
-                      "home"
-                    )
-                  }
-                >
-                  Start First Evaluation →
-                </button>
-
-              </div>
-
-            )}
-
-          </section>
-
-        </main>
+          onBack={() => {
+            setScreen("home");
+          }}
+
+          onStartPractice={() => {
+            setScreen("home");
+          }}
+        />
 
       )}
+
 
       {/* ======================================================
           SETTINGS
@@ -4585,6 +5316,7 @@ function App() {
 
           </div>
 
+
           {settingsMessage && (
 
             <div className="settings-notice">
@@ -4592,6 +5324,7 @@ function App() {
             </div>
 
           )}
+
 
           <div className="settings-layout">
 
@@ -4602,9 +5335,11 @@ function App() {
               <div className="settings-profile-top">
 
                 <div className="settings-avatar">
+
                   {getUserInitials(
                     currentUser?.name
                   )}
+
                 </div>
 
                 <div className="settings-profile-info">
@@ -4627,6 +5362,7 @@ function App() {
                 </div>
 
               </div>
+
 
               <div className="settings-profile-stats">
 
@@ -4672,6 +5408,7 @@ function App() {
 
             </section>
 
+
             {/* LEARNING PROFILE */}
 
             <section className="settings-card">
@@ -4687,6 +5424,7 @@ function App() {
                 </p>
 
               </div>
+
 
               <div className="settings-field">
 
@@ -4723,6 +5461,7 @@ function App() {
                 </div>
 
               </div>
+
 
               <div className="settings-field">
 
@@ -4764,6 +5503,7 @@ function App() {
 
             </section>
 
+
             {/* PRACTICE DEFAULTS */}
 
             <section className="settings-card">
@@ -4779,6 +5519,7 @@ function App() {
                 </p>
 
               </div>
+
 
               <div className="settings-field">
 
@@ -4826,6 +5567,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-field">
 
                 <label>
@@ -4868,6 +5610,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-field">
 
                 <label>
@@ -4899,6 +5642,7 @@ function App() {
                     Learn + Speak
                   </button>
 
+
                   <button
                     type="button"
                     className={
@@ -4926,6 +5670,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-field-grid">
 
                 <div className="settings-field">
@@ -4944,14 +5689,11 @@ function App() {
                       event
                     ) => {
 
-                      const seconds =
+                      updateLearningTime(
                         Number(
                           event.target
                             .value
-                        ) * 60;
-
-                      updateLearningTime(
-                        seconds
+                        ) * 60
                       );
 
                       showSettingsNotice(
@@ -4978,6 +5720,7 @@ function App() {
 
                 </div>
 
+
                 <div className="settings-field">
 
                   <label>
@@ -4994,14 +5737,11 @@ function App() {
                       event
                     ) => {
 
-                      const seconds =
+                      updateSpeakingTime(
                         Number(
                           event.target
                             .value
-                        ) * 60;
-
-                      updateSpeakingTime(
-                        seconds
+                        ) * 60
                       );
 
                       showSettingsNotice(
@@ -5032,6 +5772,7 @@ function App() {
 
             </section>
 
+
             {/* APP PREFERENCES */}
 
             <section className="settings-card">
@@ -5047,6 +5788,7 @@ function App() {
                 </p>
 
               </div>
+
 
               <div className="settings-toggle-row">
 
@@ -5090,6 +5832,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-toggle-row">
 
                 <div>
@@ -5132,16 +5875,17 @@ function App() {
 
               </div>
 
+
               <div className="settings-toggle-row">
 
                 <div>
 
                   <strong>
-                    Show vocabulary hints
+                    Speaking hints
                   </strong>
 
                   <p>
-                    Display useful words on topic cards when available.
+                    Show your saved notes when you need help while speaking.
                   </p>
 
                 </div>
@@ -5149,22 +5893,32 @@ function App() {
                 <button
                   type="button"
                   className={
-                    showVocabulary
+                    showSpeakingHints
                       ? "settings-toggle on"
                       : "settings-toggle"
                   }
                   aria-pressed={
-                    showVocabulary
+                    showSpeakingHints
                   }
                   onClick={() => {
 
-                    setShowVocabulary(
+                    setShowSpeakingHints(
                       (previous) =>
                         !previous
                     );
 
+                    if (
+                      showSpeakingHints
+                    ) {
+
+                      setShowSpeakingHintsPanel(
+                        false
+                      );
+
+                    }
+
                     showSettingsNotice(
-                      "Vocabulary preference saved."
+                      "Speaking hints preference saved."
                     );
 
                   }}
@@ -5175,6 +5929,7 @@ function App() {
               </div>
 
             </section>
+
 
             {/* DATA & ACCOUNT */}
 
@@ -5191,6 +5946,7 @@ function App() {
                 </p>
 
               </div>
+
 
               <div className="settings-action-row">
 
@@ -5218,6 +5974,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-action-row">
 
                 <div>
@@ -5244,6 +6001,7 @@ function App() {
 
               </div>
 
+
               <div className="settings-actions">
 
                 <button
@@ -5264,6 +6022,7 @@ function App() {
         </main>
 
       )}
+
 
       {/* ======================================================
           FOOTER
@@ -5298,6 +6057,7 @@ function App() {
 
       </footer>
 
+
       {/* ======================================================
           LOGIN MODAL
       ====================================================== */}
@@ -5320,6 +6080,7 @@ function App() {
         />
 
       )}
+
 
       {/* ======================================================
           SIGNUP MODAL
@@ -5348,6 +6109,7 @@ function App() {
   );
 }
 
+
 // ============================================================
 // METRIC COMPONENT
 // ============================================================
@@ -5356,9 +6118,14 @@ function Metric({
   title,
   score,
 }) {
+
   const validScore =
     typeof score ===
-    "number";
+      "number" &&
+    Number.isFinite(
+      score
+    );
+
 
   const safeScore =
     validScore
@@ -5371,7 +6138,9 @@ function Metric({
         )
       : 0;
 
+
   return (
+
     <div className="metric">
 
       <div className="metric-top">
@@ -5388,11 +6157,13 @@ function Metric({
 
       </div>
 
+
       <div className="metric-bar">
 
         <div
           style={{
-            width: `${safeScore}%`,
+            width:
+              `${safeScore}%`,
           }}
         />
 
@@ -5401,5 +6172,6 @@ function Metric({
     </div>
   );
 }
+
 
 export default App;
