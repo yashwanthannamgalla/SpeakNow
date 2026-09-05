@@ -1,0 +1,8 @@
+/* Minimal base resets — App.css owns the full theme */
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,1602 @@
+[
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Smartphones and modern life",
+    "description": "Discuss how mobile phones have become an integral part of daily routines and personal communication.",
+    "about": "Smartphones combine computing, internet access, and communication into a single handheld device.",
+    "key_points": [
+      "Which apps do you use the most every day?",
+      "How would your day change without a smartphone?",
+      "Do you think people spend too much time looking at screens?",
+      "What is one feature you wish your phone had?"
+    ],
+    "useful_vocabulary": ["connectivity", "essential", "screen time", "device", "integration"],
+    "id": 1,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The rise of AI assistants",
+    "description": "Explore how artificial intelligence helpers are changing the way people work and organize tasks.",
+    "about": "AI assistants use machine learning and natural language processing to assist users with daily productivity.",
+    "key_points": [
+      "Do you regularly use voice assistants or chat tools?",
+      "How reliable are these assistants for complex tasks?",
+      "What privacy concerns come with using smart helpers?",
+      "How will AI change office work in the future?"
+    ],
+    "useful_vocabulary": ["automation", "productivity", "natural language", "privacy", "efficiency"],
+    "id": 2,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Is social media helping or hurting us?",
+    "description": "Discuss the dual nature of social platforms regarding connection, mental health, and information spread.",
+    "about": "Social networks connect billions of users globally but can also trigger anxiety and misinformation.",
+    "key_points": [
+      "Does social media make people feel more isolated or connected?",
+      "How does online comparison affect self-esteem?",
+      "What responsibilities do tech platforms have toward users?",
+      "Have you ever taken a break from social media?"
+    ],
+    "useful_vocabulary": ["isolation", "self-esteem", "misinformation", "platform", "mental health"],
+    "id": 3,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The future of electric vehicles",
+    "description": "Examine the transition from gasoline-powered transport to electric mobility worldwide.",
+    "about": "Electric vehicles (EVs) rely on battery power instead of internal combustion engines to reduce carbon emissions.",
+    "key_points": [
+      "What are the main advantages of driving an EV?",
+      "What challenges prevent people from buying electric cars?",
+      "Are charging stations widely available in your area?",
+      "How fast will traditional gas cars disappear?"
+    ],
+    "useful_vocabulary": ["emission", "battery", "infrastructure", "sustainable", "combustion engine"],
+    "id": 4,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Cybersecurity in everyday life",
+    "description": "Talk about simple habits people can use to stay safe online.",
+    "about": "Cybersecurity involves protecting internet-connected systems, hardware, software, and data from digital attacks.",
+    "key_points": [
+      "How often do you update your account passwords?",
+      "Have you ever received a suspicious message or phishing link?",
+      "Why is online security important for everyone?",
+      "What makes a strong password?"
+    ],
+    "useful_vocabulary": ["password", "phishing", "secure", "threat", "protection"],
+    "id": 5,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Can AI replace programmers?",
+    "description": "Analyze whether generative coding models will make software engineers obsolete.",
+    "about": "Advanced language models can write and debug code, sparking debates on the future of software development.",
+    "key_points": [
+      "Can machines understand complex system architecture requirements?",
+      "How does AI coding assistance change the role of a developer?",
+      "Will writing code become a basic automated utility?",
+      "What skills will human software engineers need to focus on?"
+    ],
+    "useful_vocabulary": ["obsolete", "architecture", "debugging", "utility", "automation"],
+    "id": 6,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The future of space exploration",
+    "description": "Discuss commercial space travel, Mars colonization, and deep-space research.",
+    "about": "Private aerospace innovation has revived global interest in permanent lunar bases and interplanetary travel.",
+    "key_points": [
+      "Is colonizing Mars a practical goal for humanity?",
+      "Should governments or private corporations lead space exploration?",
+      "What are the major dangers of long-term space travel?",
+      "How does satellite technology benefit daily life on Earth?"
+    ],
+    "useful_vocabulary": ["colonization", "interplanetary", "aerospace", "satellite", "exploration"],
+    "id": 7,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Should robots have rights?",
+    "description": "Explore the ethical boundaries of granting legal status to advanced autonomous machines.",
+    "about": "As artificial intelligence grows more sophisticated, questions arise regarding moral patienthood and machine rights.",
+    "key_points": [
+      "What criteria would prove an artificial system deserves rights?",
+      "How would legal rights for machines alter human liability laws?",
+      "Is property ownership applicable to sentient software?",
+      "What ethical risks emerge from creating entities that can suffer?"
+    ],
+    "useful_vocabulary": ["autonomous", "moral patienthood", "liability", "entity", "sophisticated"],
+    "id": 8,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The influence of TikTok-style short videos",
+    "description": "Talk about how short-form video apps impact attention spans and entertainment.",
+    "about": "Short vertical video platforms have transformed content creation and media consumption habits worldwide.",
+    "key_points": [
+      "Do you enjoy watching short video clips?",
+      "How do short videos affect your ability to focus?",
+      "Have you ever tried making a viral video?",
+      "Why are these platforms so addictive?"
+    ],
+    "useful_vocabulary": ["attention span", "addictive", "content creation", "consumption", "clip"],
+    "id": 9,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Technology and human loneliness",
+    "description": "Examine the paradox of being globally connected online while feeling isolated in real life.",
+    "about": "Digital interaction often replaces face-to-face community building, contributing to rising loneliness rates.",
+    "key_points": [
+      "Can online friendships fully replace physical interaction?",
+      "Why do modern societies report higher levels of loneliness?",
+      "How can people use technology to build real connections?",
+      "What role do community spaces play in curing isolation?"
+    ],
+    "useful_vocabulary": ["paradox", "isolated", "community", "interaction", "epidemic"],
+    "id": 10,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "India’s role in global politics",
+    "description": "Analyze India's diplomatic strategy, economic growth, and regional influence.",
+    "about": "India acts as a major bridge between developing nations and major global superpowers.",
+    "key_points": [
+      "How does India maintain strategic autonomy in foreign policy?",
+      "What economic factors drive India's growing global importance?",
+      "How does leadership in multilateral forums shape India's image?",
+      "What regional security challenges impact India's diplomatic stance?"
+    ],
+    "useful_vocabulary": ["strategic autonomy", "multilateral", "diplomatic", "superpower", "foreign policy"],
+    "id": 11,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The rise of China as a global power",
+    "description": "Discuss the economic, technological, and military expansion of China on the world stage.",
+    "about": "China's rapid industrialization and infrastructure investments have reshaped international trade balances.",
+    "key_points": [
+      "How has the Belt and Road Initiative influenced developing economies?",
+      "What technological advantages drive modern competition with China?",
+      "How do global supply chains depend on Chinese manufacturing?",
+      "What are the geopolitical consequences of rising economic might?"
+    ],
+    "useful_vocabulary": ["industrialization", "infrastructure", "supply chain", "geopolitical", "expansion"],
+    "id": 12,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "US-China relations",
+    "description": "Evaluate the complex dynamics of economic interdependence and strategic rivalry between two giants.",
+    "about": "The bilateral relationship between Washington and Beijing defines the current global economic and security landscape.",
+    "key_points": [
+      "Is a new Cold War inevitable between the US and China?",
+      "How do trade tariffs and tech restrictions impact global markets?",
+      "Can both nations cooperate on global challenges like climate change?",
+      "What role does economic decoupling play in current diplomatic strategies?"
+    ],
+    "useful_vocabulary": ["interdependence", "bilateral", "tariff", "decoupling", "rivalry"],
+    "id": 13,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "India and the United States",
+    "description": "Examine the strengthening partnership between New Delhi and Washington in defense and technology.",
+    "about": "Strategic convergence on regional security and technological collaboration has drawn India and the US closer.",
+    "key_points": [
+      "What drives the defense and technology partnership between both nations?",
+      "How do shared democratic values influence bilateral cooperation?",
+      "Are there areas of divergence in international trade or foreign policy?",
+      "What role does the Indian diaspora play in strengthening ties?"
+    ],
+    "useful_vocabulary": ["convergence", "partnership", "diaspora", "defense", "collaboration"],
+    "id": 14,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "India and its relationship with neighboring countries",
+    "description": "Discuss regional diplomacy, border security, and economic cooperation in South Asia.",
+    "about": "India's foreign policy prioritizes neighborhood stability through trade, aid, and security dialogues.",
+    "key_points": [
+      "How does regional diplomacy impact domestic security in South Asia?",
+      "What economic initiatives help build trust among neighboring states?",
+      "How do historical border disputes complicate bilateral relations?",
+      "What is the role of cultural exchange in regional harmony?"
+    ],
+    "useful_vocabulary": ["diplomacy", "regional stability", "border dispute", "harmony", "cooperation"],
+    "id": 15,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The Russia-Ukraine war and its global impact",
+    "description": "Analyze the geopolitical, economic, and humanitarian fallout of the conflict in Eastern Europe.",
+    "about": "The conflict disrupted global energy markets, food security, and international security alliances.",
+    "key_points": [
+      "How did the war alter European energy dependence on Russia?",
+      "What effect did the conflict have on global grain and food prices?",
+      "How have international economic sanctions affected the global economy?",
+      "What lessons does the war offer regarding modern military deterrence?"
+    ],
+    "useful_vocabulary": ["sanctions", "humanitarian", "deterrence", "energy dependence", "fallout"],
+    "id": 16,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The Israel-Palestine conflict and international politics",
+    "description": "Examine the historical roots and global diplomatic efforts surrounding the Middle East crisis.",
+    "about": "The longstanding dispute involves complex territorial claims, national identities, and international intervention.",
+    "key_points": [
+      "What are the core historical obstacles to a lasting peace agreement?",
+      "How do international superpowers influence the diplomatic deadlock?",
+      "What role does public opinion play globally regarding the conflict?",
+      "Can a two-state solution still be viable in modern politics?"
+    ],
+    "useful_vocabulary": ["territorial", "intervention", "deadlock", "sovereignty", "mediation"],
+    "id": 17,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "NATO and its role in global security",
+    "description": "Discuss the evolution and collective defense commitments of the North Atlantic Treaty Organization.",
+    "about": "NATO provides a military alliance framework for North American and European nations against external threats.",
+    "key_points": [
+      "How has NATO adapted to modern cyber and hybrid warfare threats?",
+      "Should member nations face strict penalties for low defense spending?",
+      "What prompts new European countries to seek alliance membership?",
+      "How does NATO maintain consensus among diverse sovereign states?"
+    ],
+    "useful_vocabulary": ["alliance", "collective defense", "consensus", "hybrid warfare", "sovereign"],
+    "id": 18,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The future of the United Nations",
+    "description": "Evaluate the effectiveness and structural challenges facing international diplomacy institutions.",
+    "about": "The UN aims to maintain international peace but often struggles with veto gridlocks and enforcement power.",
+    "key_points": [
+      "Does the UN Security Council require structural reform?",
+      "How effective is the UN in preventing major international conflicts?",
+      "What role do humanitarian agencies play during global crises?",
+      "Can international organizations adapt to multipolar world powers?"
+    ],
+    "useful_vocabulary": ["veto gridlock", "multipolar", "enforcement", "humanitarian", "reform"],
+    "id": 19,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Why do countries impose economic sanctions?",
+    "description": "Analyze the mechanics and effectiveness of financial penalties as tools of foreign policy.",
+    "about": "Sanctions aim to pressure foreign governments by restricting trade, financial access, and investment.",
+    "key_points": [
+      "Do economic sanctions successfully alter targeted government behavior?",
+      "How do ordinary citizens suffer unintended consequences from sanctions?",
+      "Can nations create workarounds to bypass international financial restrictions?",
+      "When do sanctions fail to achieve their diplomatic objectives?"
+    ],
+    "useful_vocabulary": ["financial penalty", "restriction", "workaround", "objective", "pressure"],
+    "id": 20,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The future of BRICS",
+    "description": "Discuss the expansion and economic ambitions of the BRICS bloc of emerging economies.",
+    "about": "BRICS seeks to challenge Western financial dominance and promote multipolar governance structures.",
+    "key_points": [
+      "Can BRICS successfully create an alternative international currency?",
+      "How does internal rivalry affect unity within the bloc?",
+      "What attracts new emerging nations to join the organization?",
+      "Will BRICS reshape global trade and monetary institutions?"
+    ],
+    "useful_vocabulary": ["bloc", "emerging economy", "monetary", "dominance", "alternative"],
+    "id": 21,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Global trade wars",
+    "description": "Examine the rise of protectionism, tariffs, and retaliatory measures between nations.",
+    "about": "Trade wars disrupt global supply chains and increase consumer costs in pursuit of domestic industrial protection.",
+    "key_points": [
+      "Why do governments resort to protectionist trade policies?",
+      "How do retaliatory tariffs hurt domestic export industries?",
+      "Can global trade ever return to open-market principles?",
+      "Who ultimately pays the cost of international trade disputes?"
+    ],
+    "useful_vocabulary": ["protectionism", "retaliatory", "open-market", "dispute", "export"],
+    "id": 22,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Why countries fight over natural resources",
+    "description": "Analyze how water, minerals, and arable land drive geopolitical conflict.",
+    "about": "Resource scarcity intensifies competition, leading to diplomatic friction or military engagement.",
+    "key_points": [
+      "Which natural resource will spark the most conflict in the future?",
+      "How does water scarcity threaten regional stability?",
+      "Can international law prevent resource exploitation wars?",
+      "How do green energy transitions change mineral demand?"
+    ],
+    "useful_vocabulary": ["scarcity", "friction", "exploitation", "mineral", "arable land"],
+    "id": 23,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The politics of oil",
+    "description": "Discuss how petroleum production, pricing cartels, and reserves influence world power.",
+    "about": "Energy security and fossil fuel dependencies have dictated foreign policy decisions for a century.",
+    "key_points": [
+      "How do international cartels control global petroleum pricing?",
+      "What happens to oil-dependent economies during green transitions?",
+      "How does control over pipelines shape regional conflicts?",
+      "Will renewable energy end the strategic power of oil?"
+    ],
+    "useful_vocabulary": ["cartel", "petroleum", "dependency", "pipeline", "strategic power"],
+    "id": 24,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Geopolitics of semiconductors",
+    "description": "Examine how advanced microchip manufacturing became the central battleground of tech supremacy.",
+    "about": "Microchips power everything from smartphones to missiles, concentrating production in vulnerable regions.",
+    "key_points": [
+      "Why is chip manufacturing concentrated in specific geographic zones?",
+      "How vulnerable is the global economy to a semiconductor shortage?",
+      "Can nations successfully build domestic chip foundries?",
+      "How do microchips act as a tool of geopolitical leverage?"
+    ],
+    "useful_vocabulary": ["microchip", "foundry", "concentration", "leverage", "vulnerable"],
+    "id": 25,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Taiwan and global security",
+    "description": "Discuss the political status of Taiwan and its critical importance to international technology and peace.",
+    "about": "Taiwan is a major democratic tech hub whose sovereignty remains a primary flashpoint in superpower relations.",
+    "key_points": [
+      "Why is Taiwan essential to the global technology supply chain?",
+      "How do international powers navigate strategic ambiguity?",
+      "What are the global economic consequences of a potential conflict?",
+      "How does public opinion in Taiwan shape cross-strait relations?"
+    ],
+    "useful_vocabulary": ["ambiguity", "flashpoint", "sovereignty", "cross-strait", "hub"],
+    "id": 26,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The South China Sea dispute",
+    "description": "Analyze territorial claims, shipping lanes, and military posturing in a vital maritime zone.",
+    "about": "The South China Sea carries trillions in global trade, making competing territorial claims highly volatile.",
+    "key_points": [
+      "What are the competing territorial claims in the region?",
+      "Why are freedom of navigation lanes critical for world trade?",
+      "How do artificial island military bases change maritime power?",
+      "Can international maritime law resolve overlapping claims?"
+    ],
+    "useful_vocabulary": ["maritime", "territorial claim", "shipping lane", "volatile", "navigation"],
+    "id": 27,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The future of India’s global influence",
+    "description": "Explore economic growth, demographic advantages, and cultural diplomacy shaping India's future.",
+    "about": "India's young population and digital infrastructure position it as a rising anchor of global stability.",
+    "key_points": [
+      "How does a young demographic dividend benefit economic output?",
+      "What role does digital public infrastructure play in India's soft power?",
+      "How can manufacturing expansion match service-sector success?",
+      "What leadership role will India assume in climate and tech governance?"
+    ],
+    "useful_vocabulary": ["demographic dividend", "soft power", "infrastructure", "governance", "output"],
+    "id": 28,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Migration and border politics",
+    "description": "Discuss the drivers of global migration, refugee crises, and national border security policies.",
+    "about": "Economic disparity, conflict, and climate change drive mass population movements across international borders.",
+    "key_points": [
+      "What are the primary economic push and pull factors for migration?",
+      "How can governments balance humanitarian duties with border security?",
+      "What contributions do migrants make to aging host economies?",
+      "How does climate change influence future migration patterns?"
+    ],
+    "useful_vocabulary": ["migration", "disparity", "humanitarian", "refugee", "integration"],
+    "id": 29,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Can diplomacy prevent wars?",
+    "description": "Evaluate the limits and successes of negotiation in resolving international hostilities.",
+    "about": "Diplomatic channels aim to de-escalate tensions, though deterrence and power dynamics often intervene.",
+    "key_points": [
+      "When does diplomacy fail in the face of aggressive expansion?",
+      "What makes a mediator effective in high-stakes negotiations?",
+      "How do backchannel communications prevent accidental conflicts?",
+      "Can international treaties survive shifts in domestic political leadership?"
+    ],
+    "useful_vocabulary": ["de-escalate", "negotiation", "mediator", "backchannel", "hostilities"],
+    "id": 30,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "My favorite singer",
+    "description": "Talk about a musical artist whose voice, style, and songs you deeply enjoy.",
+    "about": "Musical artists connect with audiences through personal lyrics, vocal talent, and performance energy.",
+    "key_points": [
+      "Who is your favorite singer or band?",
+      "What makes their voice or style unique?",
+      "What is your favorite song by them and why?",
+      "Have you ever attended one of their live concerts?"
+    ],
+    "useful_vocabulary": ["artist", "vocal", "performance", "style", "concert"],
+    "id": 31,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why music affects our emotions",
+    "description": "Explore how melodies, rhythms, and lyrics can instantly change our moods.",
+    "about": "Music triggers neurological responses that evoke joy, sadness, nostalgia, and excitement.",
+    "key_points": [
+      "How does upbeat music change your energy level?",
+      "Why do sad songs sometimes make people feel comforted?",
+      "What kind of music helps you focus or relax?",
+      "Can animals or plants respond to music?"
+    ],
+    "useful_vocabulary": ["neurological", "melody", "rhythm", "nostalgia", "comfort"],
+    "id": 32,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Music and memories",
+    "description": "Discuss how specific songs can instantly transport you back to past life events.",
+    "about": "Auditory memory links songs with emotional milestones, making tunes powerful memory triggers.",
+    "key_points": [
+      "What song instantly reminds you of your childhood?",
+      "Why do old tracks evoke such strong emotional reactions?",
+      "Is there a song tied to a specific vacation or friend?",
+      "How does memory shape our musical taste?"
+    ],
+    "useful_vocabulary": ["auditory", "milestone", "trigger", "childhood", "recollection"],
+    "id": 33,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The evolution of Indian music",
+    "description": "Examine how classical traditions, folk, and modern fusion shaped Indian music.",
+    "about": "Indian music spans thousands of years of classical ragas, vibrant regional folk, and modern Bollywood hits.",
+    "key_points": [
+      "What are the main differences between Carnatic and Hindustani music?",
+      "How has fusion music blended traditional instruments with Western beats?",
+      "What role does regional folk music play in cultural identity?",
+      "How do modern independent artists innovate within Indian genres?"
+    ],
+    "useful_vocabulary": ["classical", "raga", "fusion", "folk", "heritage"],
+    "id": 34,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Bollywood music vs Western music",
+    "description": "Compare the style, storytelling, and production of Indian cinematic songs versus Western pop.",
+    "about": "Bollywood music often emphasizes theatrical orchestration and lyrics, while Western pop focuses on diverse mainstream hooks.",
+    "key_points": [
+      "What makes Bollywood songs so danceable and emotional?",
+      "How do Western pop songs differ in structure from film songs?",
+      "Do you prefer listening to lyrics in your native language?",
+      "How has global cross-cultural collaboration changed pop music?"
+    ],
+    "useful_vocabulary": ["orchestration", "theatrical", "mainstream", "hook", "cross-cultural"],
+    "id": 35,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Streaming platforms and the music industry",
+    "description": "Discuss how services like Spotify and Apple Music transformed how artists release songs.",
+    "about": "Streaming replaced physical albums with instant digital access, changing artist earnings and listening habits.",
+    "key_points": [
+      "Do you prefer streaming music or buying physical records?",
+      "How do streaming algorithms help you discover new artists?",
+      "Is it fair that streaming platforms pay artists very little per play?",
+      "How has playlist culture changed album listening?"
+    ],
+    "useful_vocabulary": ["streaming", "algorithm", "royalty", "playlist", "distribution"],
+    "id": 36,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Are lyrics becoming less meaningful?",
+    "description": "Analyze whether modern chart hits prioritize catchy beats over deep poetic storytelling.",
+    "about": "Pop music trends often favor repetitive hooks and simple phrasing designed for quick online engagement.",
+    "key_points": [
+      "Do modern songs lack the depth of older classic tracks?",
+      "Why do repetitive hooks perform better on social media?",
+      "Can simple lyrics still carry powerful emotional messages?",
+      "What makes a song lyric truly timeless?"
+    ],
+    "useful_vocabulary": ["repetitive", "poetic", "engagement", "timeless", "composition"],
+    "id": 37,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The rise of independent artists",
+    "description": "Talk about how bedroom producers and indie musicians bypass traditional record labels.",
+    "about": "Digital recording tools and social media allow independent artists to reach global audiences directly.",
+    "key_points": [
+      "How do independent musicians promote their music online?",
+      "Is it better to be signed to a major label or stay independent?",
+      "What advantages do bedroom producers have today?",
+      "How do fans support indie creators directly?"
+    ],
+    "useful_vocabulary": ["independent", "producer", "record label", "audience", "creative freedom"],
+    "id": 38,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why do songs become viral?",
+    "description": "Discuss the elements that turn a random track into an internet sensation.",
+    "about": "Viral songs often feature dance challenges, relatable themes, or catchy hooks amplified by social media algorithms.",
+    "key_points": [
+      "What role do dance challenges play in making a song viral?",
+      "Can record labels manufacture a viral hit intentionally?",
+      "What was the last song you heard everywhere online?",
+      "Do viral songs stay popular or fade away quickly?"
+    ],
+    "useful_vocabulary": ["viral", "sensation", "challenge", "amplify", "fad"],
+    "id": 39,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "AI-generated music",
+    "description": "Explore the ethical and artistic implications of software creating fully produced songs.",
+    "about": "Generative AI can mimic artist voices and compose complex melodies in seconds, challenging copyright norms.",
+    "key_points": [
+      "Should AI-generated music be allowed to win mainstream awards?",
+      "Does using someone's voice model without permission constitute theft?",
+      "Can computer-composed songs have genuine emotional soul?",
+      "How will AI change the job market for human songwriters?"
+    ],
+    "useful_vocabulary": ["generative", "copyright", "impersonation", "composer", "authenticity"],
+    "id": 40,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "My favorite movie",
+    "description": "Describe a film you love watching over and over again.",
+    "about": "Favorite films combine engaging plots, memorable characters, and brilliant cinematography.",
+    "key_points": [
+      "What is the title of your favorite movie?",
+      "Who are the main characters and actors?",
+      "What is your favorite scene in the film?",
+      "Why do you never get tired of watching it?"
+    ],
+    "useful_vocabulary": ["cinematography", "character", "scene", "plot", "favorite"],
+    "id": 41,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Movies that changed my perspective",
+    "description": "Discuss a film that made you look at life, society, or human nature differently.",
+    "about": "Thought-provoking cinema challenges personal beliefs and exposes viewers to new philosophical viewpoints.",
+    "key_points": [
+      "What movie completely shifted your worldview?",
+      "How can storytelling address difficult societal issues?",
+      "Do you prefer movies with happy endings or realistic lessons?",
+      "What makes a cinematic message stay with you for days?"
+    ],
+    "useful_vocabulary": ["perspective", "worldview", "thought-provoking", "philosophy", "impact"],
+    "id": 42,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Bollywood vs Hollywood",
+    "description": "Compare the cinematic styles, budgets, and storytelling of Indian and American film industries.",
+    "about": "Hollywood emphasizes high-budget visual effects and global distribution, while Bollywood features vibrant songs and family drama.",
+    "key_points": [
+      "What are the biggest differences between Bollywood and Hollywood films?",
+      "Do you enjoy song-and-dance sequences in movies?",
+      "How has Hollywood influenced global action movie trends?",
+      "Which industry produces better emotional dramas?"
+    ],
+    "useful_vocabulary": ["budget", "sequence", "distribution", "drama", "production"],
+    "id": 43,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The rise of streaming movies",
+    "description": "Talk about how Netflix, Prime Video, and Disney+ changed home entertainment.",
+    "about": "Streaming services provide immediate access to thousands of movies, reducing the need for traditional theaters.",
+    "key_points": [
+      "How often do you watch movies on streaming platforms?",
+      "Do streaming apps make it harder to choose what to watch?",
+      "Are original streaming movies as good as theatrical releases?",
+      "How much money do you save by skipping theaters?"
+    ],
+    "useful_vocabulary": ["subscription", "theatrical", "original release", "convenience", "catalog"],
+    "id": 44,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Are cinemas dying?",
+    "description": "Examine the challenges movie theaters face in the age of home streaming and big screens.",
+    "about": "The theater industry struggles to attract audiences back unless films offer a unique spectacle.",
+    "key_points": [
+      "Do you prefer watching movies in a theater or at home?",
+      "Why are ticket and snack prices so high at cinemas?",
+      "What kind of movie experience forces you to go to a theater?",
+      "Will traditional movie theaters become obsolete in the future?"
+    ],
+    "useful_vocabulary": ["spectacle", "audience", "ticket price", "experience", "obsolete"],
+    "id": 45,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why superhero movies became so popular",
+    "description": "Discuss the global obsession with comic book adaptations and cinematic universes.",
+    "about": "Super-hero franchises dominate global box offices by combining serial storytelling with grand visual spectacle.",
+    "key_points": [
+      "Are you a fan of superhero movies or are you tired of them?",
+      "What makes characters like Batman or Spider-Man so relatable?",
+      "How do interconnected cinematic universes keep fans engaged?",
+      "Why do special effects drive modern box office success?"
+    ],
+    "useful_vocabulary": ["franchise", "universe", "adaptation", "box office", "relatable"],
+    "id": 46,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The importance of good storytelling",
+    "description": "Analyze what makes a narrative compelling across books, movies, and conversations.",
+    "about": "Compelling storytelling relies on clear stakes, flawed characters, and satisfying emotional arcs.",
+    "key_points": [
+      "What elements make a story unforgettable?",
+      "Why do humans love sharing narratives?",
+      "Can a movie have great visuals but terrible storytelling?",
+      "How do good storytellers hook an audience immediately?"
+    ],
+    "useful_vocabulary": ["narrative", "stakes", "arc", "compelling", "hook"],
+    "id": 47,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Movies based on true stories",
+    "description": "Talk about the appeal of biographical films and historical dramas.",
+    "about": "Biographical movies dramatize real historical events and human achievements for entertainment and education.",
+    "key_points": [
+      "Do you prefer fiction or movies based on real events?",
+      "How much do biographical films exaggerate the truth for drama?",
+      "What is the best historical movie you have seen?",
+      "Why are real-life stories often inspiring?"
+    ],
+    "useful_vocabulary": ["biographical", "dramatize", "historical", "exaggerate", "inspiring"],
+    "id": 48,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Book adaptations: better or worse?",
+    "description": "Compare novels to their screen adaptations and discuss why differences always occur.",
+    "about": "Adapting books to film requires condensing plots, which frequently satisfies or disappoints readers.",
+    "key_points": [
+      "Is the book almost always better than the movie?",
+      "Why do filmmakers change plot details when adapting novels?",
+      "How does reading a book first change your view of a film?",
+      "Can a bad book become a great movie?"
+    ],
+    "useful_vocabulary": ["adaptation", "condense", "reader", "filmmaker", "expectation"],
+    "id": 49,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Can AI create great movies?",
+    "description": "Evaluate whether generative video models will replace human directors and screenwriters.",
+    "about": "Text-to-video AI tools threaten to disrupt traditional film production by synthesizing complete scenes from prompts.",
+    "key_points": [
+      "Can an algorithm understand human emotional depth in screenwriting?",
+      "How will AI video generation impact Hollywood stunt workers and actors?",
+      "Will indie filmmakers use AI to compete with massive studio budgets?",
+      "What is lost when cinema is generated without human lived experience?"
+    ],
+    "useful_vocabulary": ["synthesize", "disrupt", "stunt worker", "indie", "lived experience"],
+    "id": 50,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The influence of celebrities",
+    "description": "Discuss how famous actors, athletes, and musicians shape public opinion and trends.",
+    "about": "Celebrities wield immense cultural power, influencing fashion, consumer habits, and political causes.",
+    "key_points": [
+      "Why do people care so much about celebrity lifestyles?",
+      "Should famous people use their platform to talk about politics?",
+      "How does media coverage shape our view of stars?",
+      "Who was a celebrity you admired when you were younger?"
+    ],
+    "useful_vocabulary": ["influence", "lifestyle", "platform", "media coverage", "admire"],
+    "id": 51,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Celebrity culture on social media",
+    "description": "Explore how Instagram and X let fans feel like they know famous personalities personally.",
+    "about": "Direct access to celebrity feeds creates a false sense of intimacy between stars and followers.",
+    "key_points": [
+      "Do social media posts make celebrities feel more approachable?",
+      "Is it healthy for fans to obsess over online celebrity drama?",
+      "How do stars carefully curate their online image?",
+      "What are the downsides of living life in the public eye?"
+    ],
+    "useful_vocabulary": ["intimacy", "curate", "obsess", "public eye", "approachetable"],
+    "id": 52,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why people follow influencers",
+    "description": "Talk about the rise of online content creators and lifestyle vloggers.",
+    "about": "Influencers build loyal communities by sharing daily routines, advice, and sponsored product reviews.",
+    "key_points": [
+      "Do you follow any lifestyle or tech influencers?",
+      "Why do people trust online creators more than traditional advertisers?",
+      "Are influencer product recommendations usually honest?",
+      "What makes someone qualified to be an influencer?"
+    ],
+    "useful_vocabulary": ["vlogger", "sponsored", "trust", "recommendation", "community"],
+    "id": 53,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Cancel culture",
+    "description": "Discuss online accountability, public shaming, and the consequences of past mistakes.",
+    "about": "Cancel culture uses social media boycotts to hold public figures accountable for offensive statements or actions.",
+    "key_points": [
+      "Is online cancel culture a form of justice or mob mentality?",
+      "Can people who make mistakes ever truly redeem themselves?",
+      "Where is the line between holding someone accountable and bullying?",
+      "Does cancel culture prevent open discussion and free speech?"
+    ],
+    "useful_vocabulary": ["accountability", "boycott", "mob mentality", "redeem", "offending"],
+    "id": 54,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Internet fame and privacy",
+    "description": "Examine the price of going viral and losing personal anonymity in the digital age.",
+    "about": "Sudden internet celebrity often brings harassment, doxxing, and a complete loss of privacy.",
+    "key_points": [
+      "Would you want to become famous overnight on the internet?",
+      "How does internet fame affect a person's mental health?",
+      "What protections exist against online stalking and harassment?",
+      "Is privacy an impossible luxury in modern society?"
+    ],
+    "useful_vocabulary": ["anonymity", "harassment", "doxxing", "stalking", "luxury"],
+    "id": 55,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Memes as a form of communication",
+    "description": "Talk about how internet jokes, images, and formats became a global language.",
+    "about": "Memes combine cultural references and humor to convey complex social commentary quickly.",
+    "key_points": [
+      "What is your favorite type of internet meme?",
+      "How do memes help people bond over shared experiences?",
+      "Can serious news be communicated effectively through memes?",
+      "Why do internet memes change and fade so fast?"
+    ],
+    "useful_vocabulary": ["humor", "format", "commentary", "convey", "bond"],
+    "id": 56,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why trends disappear so quickly",
+    "description": "Discuss the fast-paced cycle of internet challenges, fashion styles, and viral fads.",
+    "about": "Digital connectivity accelerates consumer culture, causing trends to peak and die out within weeks.",
+    "key_points": [
+      "What recent internet trend do you think was silly?",
+      "Why do people feel pressured to keep up with fast trends?",
+      "How does fast fashion contribute to short-lived styles?",
+      "Is it better to ignore trends and stick to classics?"
+    ],
+    "useful_vocabulary": ["fad", "accelerate", "pressure", "consumer culture", "classic"],
+    "id": 57,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The influence of K-pop globally",
+    "description": "Talk about the massive international success of Korean pop music and culture.",
+    "about": "K-pop conquered global charts through synchronized choreography, high-production videos, and dedicated fandoms.",
+    "key_points": [
+      "Why has K-pop become so popular outside of Korea?",
+      "How do fan communities support their favorite bands online?",
+      "What can other music industries learn from the K-pop model?",
+      "Have you ever listened to groups like BTS or Blackpink?"
+    ],
+    "useful_vocabulary": ["choreography", "fandom", "synchronization", "global success", "dedication"],
+    "id": 58,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The global popularity of anime",
+    "description": "Discuss why Japanese animation attracts millions of dedicated fans of all ages worldwide.",
+    "about": "Anime offers diverse genres, complex emotional storytelling, and distinct visual art styles.",
+    "key_points": [
+      "What is your favorite anime series or movie?",
+      "Why do animated stories appeal to adult viewers just as much as kids?",
+      "How has streaming made anime mainstream globally?",
+      "What makes Japanese storytelling unique?"
+    ],
+    "useful_vocabulary": ["animation", "mainstream", "genre", "appeal", "distinct"],
+    "id": 59,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Fandom culture",
+    "description": "Explore the passion, creativity, and community found inside online fan groups.",
+    "about": "Fandoms unite people over shared love for movies, games, or bands, fostering fan art, fiction, and events.",
+    "key_points": [
+      "Are you part of any online fan community?",
+      "How do fans express their creativity through art or writing?",
+      "Can extreme fandom behavior ever become toxic?",
+      "Why do people find comfort in belonging to a fandom?"
+    ],
+    "useful_vocabulary": ["passion", "fan fiction", "toxic", "belonging", "community"],
+    "id": 60,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The future of college education",
+    "description": "Discuss how universities must adapt to online learning, rising costs, and changing career needs.",
+    "about": "Traditional brick-and-mortar campuses face pressure from flexible micro-credentials and remote digital programs.",
+    "key_points": [
+      "Will physical university campuses become obsolete?",
+      "How should colleges address skyrocketing tuition debt?",
+      "Are short online certifications better than a four-year degree?",
+      "What is the true value of the college social experience?"
+    ],
+    "useful_vocabulary": ["tuition", "micro-credential", "campus", "flexibility", "debt"],
+    "id": 61,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Is a degree still necessary?",
+    "description": "Examine whether modern employers care more about practical skills or university diplomas.",
+    "about": "Tech giants and startups increasingly hire based on portfolio projects rather than formal degrees.",
+    "key_points": [
+      "Do university degrees still guarantee good job opportunities?",
+      "What fields require formal degrees versus practical skills?",
+      "How do portfolios and bootcamps challenge traditional education?",
+      "Why do many companies still ask for a college diploma?"
+    ],
+    "useful_vocabulary": ["diploma", "portfolio", "bootcamp", "guarantee", "employer"],
+    "id": 62,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Should students use AI for assignments?",
+    "description": "Debate the line between using AI as a study helper versus cheating on homework.",
+    "about": "Generative tools force schools to rethink homework policies and test authentic student understanding.",
+    "key_points": [
+      "Is using AI to write essays considered cheating?",
+      "How can teachers use AI as a positive learning tool?",
+      "Will students lose critical thinking skills if AI writes for them?",
+      "How should academic integrity adapt to modern software?"
+    ],
+    "useful_vocabulary": ["integrity", "cheating", "essay", "critical thinking", "policy"],
+    "id": 63,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Internships vs academic grades",
+    "description": "Talk about whether real-world work experience matters more than high classroom scores.",
+    "about": "Practical internships give students hands-on skills that classroom exams often fail to measure.",
+    "key_points": [
+      "Do employers care more about your GPA or your internship experience?",
+      "How hard is it for students to find good internships?",
+      "What did you learn from working in a real job environment?",
+      "Can school grades accurately predict career success?"
+    ],
+    "useful_vocabulary": ["internship", "gpa", "hands-on", "experience", "success"],
+    "id": 64,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Skills vs certificates",
+    "description": "Compare the value of demonstrated practical abilities against paper qualifications.",
+    "about": "In fast-moving industries like tech and design, proven execution beats formal certificates every time.",
+    "key_points": [
+      "Can someone be an expert without holding a formal certificate?",
+      "How do employers test real skills during an interview?",
+      "Why do paper qualifications still matter in traditional fields?",
+      "What is the best way to prove your abilities online?"
+    ],
+    "useful_vocabulary": ["qualification", "execution", "expert", "interview", "demonstrated"],
+    "id": 65,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why students procrastinate",
+    "description": "Discuss the psychological reasons behind delaying tasks and how to overcome them.",
+    "about": "Procrastination often stems from anxiety, perfectionism, or lack of clear structure.",
+    "key_points": [
+      "Why do people wait until the last minute to finish tasks?",
+      "What tricks help you beat procrastination and start working?",
+      "How does smartphone distraction make delaying tasks worse?",
+      "Do you work better under pressure?"
+    ],
+    "useful_vocabulary": ["procrastination", "perfectionism", "distraction", "pressure", "delay"],
+    "id": 66,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Competitive college culture",
+    "description": "Explore the pressure students face to achieve top ranks and prestigious admissions.",
+    "about": "Hyper-competitive academic environments often trigger severe stress and mental health struggles.",
+    "key_points": [
+      "Is the obsession with being top of the class healthy?",
+      "How does parental expectation fuel academic pressure?",
+      "What happens to students who burn out under heavy competition?",
+      "Can schools foster success without intense rivalry?"
+    ],
+    "useful_vocabulary": ["hyper-competitive", "prestige", "burnout", "rivalry", "expectation"],
+    "id": 67,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The importance of communication skills",
+    "description": "Talk about why speaking clearly and listening well are essential life tools.",
+    "about": "Effective communication prevents misunderstandings and builds strong personal and professional relationships.",
+    "key_points": [
+      "Why are good speaking skills important for job interviews?",
+      "How can someone become a more confident speaker?",
+      "What is the biggest mistake people make during conversations?",
+      "Is public speaking terrifying for you?"
+    ],
+    "useful_vocabulary": ["confident", "public speaking", "misunderstanding", "professional", "clarity"],
+    "id": 68,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Studying abroad: advantages and challenges",
+    "description": "Discuss the cultural adjustments and academic benefits of moving to another country for school.",
+    "about": "International study fosters independence and global perspective while introducing homesickness and financial costs.",
+    "key_points": [
+      "Would you like to study at a university in another country?",
+      "What are the biggest challenges of moving abroad?",
+      "How does living in a new culture change a person?",
+      "Is studying abroad worth the financial expense?"
+    ],
+    "useful_vocabulary": ["homesickness", "independence", "adjustment", "expense", "perspective"],
+    "id": 69,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The future of online education",
+    "description": "Examine how digital platforms make learning accessible to anyone around the globe.",
+    "about": "MOOCs and video tutorials allow students everywhere to study elite courses without relocating.",
+    "key_points": [
+      "Can online courses match the quality of in-person classes?",
+      "Why do so many students drop out of online classes?",
+      "How does self-paced learning benefit working professionals?",
+      "What features make an online learning platform engaging?"
+    ],
+    "useful_vocabulary": ["accessible", "self-paced", "relocating", "engagement", "platform"],
+    "id": 70,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The four-day workweek",
+    "description": "Discuss the growing corporate experiment of giving employees three days off every week.",
+    "about": "Trials show that working fewer hours can boost productivity, mental health, and employee retention.",
+    "key_points": [
+      "Would a four-day workweek improve overall productivity?",
+      "How would service industries adapt to shorter weekly hours?",
+      "Could employees finish five days of work in four days without stress?",
+      "Why are traditional companies hesitant to adopt this schedule?"
+    ],
+    "useful_vocabulary": ["productivity", "retention", "experiment", "schedule", "hesitant"],
+    "id": 71,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Remote work vs office work",
+    "description": "Compare the freedom of working from home with the collaboration of a physical office.",
+    "about": "Remote work eliminates commutes and adds flexibility, while office spaces foster spontaneous teamwork.",
+    "key_points": [
+      "Do you prefer working from home or going to an office?",
+      "What are the main distractions when working remotely?",
+      "How does a lack of face-to-face contact hurt teamwork?",
+      "Is the daily commute a waste of valuable time?"
+    ],
+    "useful_vocabulary": ["commute", "flexibility", "teamwork", "distraction", "coordination"],
+    "id": 72,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "AI and the future of jobs",
+    "description": "Analyze which professions are safe from automation and how workers must adapt.",
+    "about": "Artificial intelligence automation threatens white-collar and blue-collar roles alike, requiring massive workforce retraining.",
+    "key_points": [
+      "Which job sectors are most vulnerable to AI replacement?",
+      "Will AI create more jobs than it destroys in the long run?",
+      "How can governments prepare society for technological unemployment?",
+      "What human traits will remain impossible for AI to replicate?"
+    ],
+    "useful_vocabulary": ["vulnerable", "unemployment", "retraining", "replicate", "automation"],
+    "id": 73,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The rise of freelancing",
+    "description": "Talk about working independently on contract projects rather than holding a traditional job.",
+    "about": "Freelancing offers schedule autonomy and diverse clients, but lacks steady benefits and job security.",
+    "key_points": [
+      "What are the pros and cons of being your own boss?",
+      "How do freelancers find clients and manage unstable income?",
+      "Why are younger generations choosing freelancing over corporate jobs?",
+      "What skills are needed to succeed as a freelancer?"
+    ],
+    "useful_vocabulary": ["autonomy", "contract", "freelance", "unstable income", "security"],
+    "id": 74,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Starting a business as a student",
+    "description": "Discuss the challenges and rewards of launching a startup while still in school.",
+    "about": "Student entrepreneurs juggle academic demands with building products and testing market ideas.",
+    "key_points": [
+      "What are the biggest challenges of launching a business while studying?",
+      "How does college provide a great network for startup founders?",
+      "Can a student balance exams and venture funding successfully?",
+      "What is the best age to start your first company?"
+    ],
+    "useful_vocabulary": ["entrepreneur", "startup", "venture", "network", "founder"],
+    "id": 75,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Why startups fail",
+    "description": "Examine the common business mistakes that cause new companies to run out of money.",
+    "about": "Most startups collapse due to lack of market need, poor cash management, or founder conflict.",
+    "key_points": [
+      "What is the primary reason new companies go bankrupt?",
+      "Why do founders sometimes ignore customer feedback?",
+      "How can a business pivot before it runs out of cash?",
+      "What can entrepreneurs learn from a failed venture?"
+    ],
+    "useful_vocabulary": ["bankrupt", "pivot", "cash management", "feedback", "venture"],
+    "id": 76,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Entrepreneurship vs stable employment",
+    "description": "Compare the high risk and reward of building a company against the safety of a corporate paycheck.",
+    "about": "Choosing between launching a venture and working a steady job depends on personal risk tolerance.",
+    "key_points": [
+      "Would you rather take risks as an entrepreneur or enjoy a steady salary?",
+      "Why do some people fear job security above all else?",
+      "Does corporate employment stifle creativity compared to startups?",
+      "What defines a successful career path today?"
+    ],
+    "useful_vocabulary": ["risk tolerance", "salary", "stifle", "venture", "paycheck"],
+    "id": 77,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The importance of networking",
+    "description": "Talk about why building professional relationships is crucial for career opportunities.",
+    "about": "Networking connects professionals with mentors, job openings, and valuable industry insights.",
+    "key_points": [
+      "How comfortable are you talking to strangers at professional events?",
+      "Can a strong network matter more than your resume?",
+      "How has LinkedIn changed professional networking?",
+      "What makes a genuine professional connection?"
+    ],
+    "useful_vocabulary": ["mentor", "industry insight", "resume", "professional", "connection"],
+    "id": 78,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Work-life balance",
+    "description": "Discuss how to separate professional responsibilities from personal rest and family time.",
+    "about": "Maintaining clear boundaries prevents burnout and ensures long-term physical and mental health.",
+    "key_points": [
+      "How do you ensure work does not consume your entire life?",
+      "Why do people find it hard to stop checking emails after hours?",
+      "What hobbies help you recharge away from your job?",
+      "What does an ideal balanced day look like for you?"
+    ],
+    "useful_vocabulary": ["boundaries", "recharge", "burnout", "responsibilities", "balance"],
+    "id": 79,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The future of corporate culture",
+    "description": "Examine how company values, flat hierarchies, and employee well-being are transforming offices.",
+    "about": "Modern corporate culture values mental health support, inclusivity, and purpose-driven work over strict hierarchy.",
+    "key_points": [
+      "Do employees care more about company mission or salary today?",
+      "How do flat corporate hierarchies improve team innovation?",
+      "What toxic office behaviors are disappearing in modern workplaces?",
+      "How can companies build real loyalty among staff?"
+    ],
+    "useful_vocabulary": ["hierarchy", "inclusivity", "purpose-driven", "loyalty", "innovation"],
+    "id": 80,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Climate change and extreme weather",
+    "description": "Discuss the increasing frequency of storms, heatwaves, and droughts across the globe.",
+    "about": "Global temperature rises disrupt weather systems, causing severe ecological and economic damage.",
+    "key_points": [
+      "Have you noticed unusual weather patterns in your local area?",
+      "How do extreme heatwaves impact daily city life and agriculture?",
+      "What responsibilities do industrial nations have for climate damage?",
+      "How can communities adapt to worsening natural disasters?"
+    ],
+    "useful_vocabulary": ["heatwave", "drought", "disrupt", "ecological", "agriculture"],
+    "id": 81,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Plastic pollution",
+    "description": "Talk about the environmental damage caused by single-use plastics and waste in oceans.",
+    "about": "Non-biodegradable plastics accumulate in landfills and marine ecosystems for hundreds of years.",
+    "key_points": [
+      "How often do you use single-use plastic bags or bottles?",
+      "What can individuals do to reduce plastic waste at home?",
+      "Why is marine life particularly vulnerable to plastic debris?",
+      "Should stores completely ban plastic packaging?"
+    ],
+    "useful_vocabulary": ["non-biodegradable", "landfill", "marine ecosystem", "packaging", "debris"],
+    "id": 82,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Renewable energy",
+    "description": "Explore solar, wind, and hydro power as clean alternatives to coal and oil.",
+    "about": "Transitioning to infinite natural energy sources is essential to curbing global carbon emissions.",
+    "key_points": [
+      "Why is the transition to renewable energy happening slowly?",
+      "Are solar panels and wind turbines reliable in all weather conditions?",
+      "How can homeowners afford to install clean energy systems?",
+      "What role does battery storage play in green energy?"
+    ],
+    "useful_vocabulary": ["renewable", "solar power", "turbine", "emission", "storage"],
+    "id": 83,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Electric vehicles and the environment",
+    "description": "Talk about whether electric cars truly solve environmental problems or just shift emissions.",
+    "about": "While EVs produce zero tailpipe emissions, manufacturing batteries still requires heavy mining and power.",
+    "key_points": [
+      "Are electric cars completely clean for the planet?",
+      "What environmental damage does lithium battery mining cause?",
+      "How is electricity generated to charge electric cars in your country?",
+      "Would you buy an electric car as your next vehicle?"
+    ],
+    "useful_vocabulary": ["tailpipe", "lithium mining", "manufacturing", "charge", "eco-friendly"],
+    "id": 84,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Water scarcity",
+    "description": "Examine how growing populations and climate shifts threaten access to clean drinking water.",
+    "about": "Freshwater supplies are dwindling in many regions, threatening agriculture and human survival.",
+    "key_points": [
+      "Which parts of the world face the worst water shortages?",
+      "How can cities improve water conservation and recycling?",
+      "Could future wars be fought over fresh water supplies?",
+      "What wasteful habits do people practice with water daily?"
+    ],
+    "useful_vocabulary": ["scarcity", "freshwater", "conservation", "shortage", "survival"],
+    "id": 85,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Should governments ban single-use plastics?",
+    "description": "Debate the effectiveness of legislative bans on plastic bags, straws, and cutlery.",
+    "about": "Government bans force businesses to find biodegradable alternatives, though enforcement varies.",
+    "key_points": [
+      "Do plastic bans actually change consumer habits?",
+      "How hard is it for small businesses to switch away from plastic?",
+      "Are paper and wooden alternatives truly better for nature?",
+      "Should plastic manufacturers pay fines for pollution?"
+    ],
+    "useful_vocabulary": ["legislative", "ban", "biodegradable", "cutlery", "enforcement"],
+    "id": 86,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Sustainable cities",
+    "description": "Discuss urban planning centered around green spaces, public transport, and recycling.",
+    "about": "Sustainable cities reduce carbon footprints by prioritizing walking, cycling, and energy-efficient buildings.",
+    "key_points": [
+      "What makes a city truly green and livable?",
+      "How important are public parks in crowded urban areas?",
+      "Can old cities be redesigned to be eco-friendly?",
+      "What role do smart buildings play in reducing energy waste?"
+    ],
+    "useful_vocabulary": ["urban planning", "carbon footprint", "livable", "eco-friendly", "efficiency"],
+    "id": 87,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "The future of nuclear energy",
+    "description": "Evaluate atomic power as a high-output, low-emission solution versus safety and waste risks.",
+    "about": "Nuclear fission provides reliable baseload power without carbon, but radioactive waste storage remains controversial.",
+    "key_points": [
+      "Can nuclear energy safely replace fossil fuels on a global scale?",
+      "How have modern reactor designs minimized meltdown risks?",
+      "What is the long-term solution for radioactive waste disposal?",
+      "Why do public fears persist regarding nuclear power plants?"
+    ],
+    "useful_vocabulary": ["fission", "baseload", "radioactive", "meltdown", "disposal"],
+    "id": 88,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Wildlife conservation",
+    "description": "Talk about protecting endangered animals and preserving natural habitats from destruction.",
+    "about": "Human expansion and poaching threaten global biodiversity, requiring protected reserves and laws.",
+    "key_points": [
+      "Why is it important to protect endangered animal species?",
+      "How do national parks help preserve wild animals?",
+      "What causes animals to lose their natural homes?",
+      "Have you ever visited a wildlife sanctuary or zoo?"
+    ],
+    "useful_vocabulary": ["endangered", "habitat", "biodiversity", "sanctuary", "poaching"],
+    "id": 89,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "Can technology solve climate change?",
+    "description": "Examine whether geoengineering and carbon capture can save the planet or if lifestyle changes are required.",
+    "about": "Technological optimism contrasts with scientific warnings that emission reductions and consumption cuts are mandatory.",
+    "key_points": [
+      "Can carbon capture machines remove enough CO2 from the air?",
+      "What are the risks of geoengineering experiments like solar blocking?",
+      "Is relying on future technology an excuse for inaction today?",
+      "Can economic growth coexist with a shrinking carbon budget?"
+    ],
+    "useful_vocabulary": ["geoengineering", "carbon capture", "optimism", "reduction", "inaction"],
+    "id": 90,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The psychology of first impressions",
+    "description": "Discuss how people judge others within seconds of meeting and whether those views change.",
+    "about": "First impressions form rapidly based on appearance, body language, and tone of voice.",
+    "key_points": [
+      "How quickly do you form an opinion about someone new?",
+      "Are first impressions usually accurate or misleading?",
+      "What can you do to project confidence when meeting people?",
+      "Have you ever changed your mind completely about someone?"
+    ],
+    "useful_vocabulary": ["impression", "body language", "misleading", "confidence", "judgment"],
+    "id": 91,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why people compare themselves with others",
+    "description": "Talk about the habit of measuring personal success against friends or strangers online.",
+    "about": "Social comparison theory explains how humans evaluate their own worth by looking at peers.",
+    "key_points": [
+      "Why do people constantly compare their lives with others?",
+      "How does social media worsen the habit of comparison?",
+      "Can comparison ever be a healthy source of motivation?",
+      "How can you focus on your own personal growth instead?"
+    ],
+    "useful_vocabulary": ["comparison", "self-worth", "peer", "motivation", "growth"],
+    "id": 92,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Building self-confidence",
+    "description": "Discuss ways to overcome self-doubt and believe in your own abilities.",
+    "about": "Self-confidence grows through taking on challenges, accepting failures, and practicing self-compassion.",
+    "key_points": [
+      "What helps you feel more confident before doing something hard?",
+      "How does overcoming failure build inner strength?",
+      "Why do talented people sometimes suffer from self-doubt?",
+      "What advice would you give to someone lacking confidence?"
+    ],
+    "useful_vocabulary": ["self-doubt", "compassion", "strength", "ability", "overcome"],
+    "id": 93,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "The importance of discipline",
+    "description": "Talk about why self-control and consistent routines matter more than fleeting motivation.",
+    "about": "Discipline allows people to complete hard tasks even when they feel uninspired or tired.",
+    "key_points": [
+      "What is the difference between motivation and discipline?",
+      "How do daily routines help build strong personal habits?",
+      "Is it hard to stay disciplined when working alone?",
+      "What happens when someone relies only on mood to get things done?"
+    ],
+    "useful_vocabulary": ["self-control", "consistent", "fleeting", "routine", "uninspired"],
+    "id": 94,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Why friendships change over time",
+    "description": "Discuss why some friendships fade as people grow up and take different paths.",
+    "about": "Changing life stages, moving cities, and evolving interests naturally alter social circles.",
+    "key_points": [
+      "Why do childhood friends sometimes grow apart?",
+      "Is it normal to lose touch with people as you age?",
+      "How can you maintain long-distance friendships?",
+      "What makes a friendship strong enough to last decades?"
+    ],
+    "useful_vocabulary": ["fade", "grow apart", "social circle", "long-distance", "stage"],
+    "id": 95,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "Money and happiness",
+    "description": "Examine the relationship between wealth, financial security, and personal well-being.",
+    "about": "Studies show money buys basic comfort and security, but beyond a certain point, it does not increase daily joy.",
+    "key_points": [
+      "Can money buy happiness or just remove financial stress?",
+      "How much money do you actually need to feel secure?",
+      "Why do wealthy people sometimes struggle with unhappiness?",
+      "Does spending money on experiences bring more joy than material goods?"
+    ],
+    "useful_vocabulary": ["financial security", "well-being", "comfort", "wealth", "experience"],
+    "id": 96,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Beginner",
+    "topic": "Is modern life becoming too fast?",
+    "description": "Talk about the constant rush of notifications, work deadlines, and busy schedules.",
+    "about": "The pace of modern life leaves many people feeling exhausted, prompting movements toward slower living.",
+    "key_points": [
+      "Do you feel like days pass by too quickly?",
+      "How do constant notifications increase your daily stress?",
+      "What is the 'slow living' movement and does it appeal to you?",
+      "How can people find moments of peace in a busy day?"
+    ],
+    "useful_vocabulary": ["exhausted", "pace", "notification", "slow living", "schedule"],
+    "id": 97,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "The importance of lifelong learning",
+    "description": "Discuss why curiosity and continuous skill development matter long after leaving school.",
+    "about": "A growth mindset ensures individuals stay adaptable and intellectually fulfilled throughout their lives.",
+    "key_points": [
+      "Why should education not stop when you graduate?",
+      "What new skill or hobby would you like to learn next?",
+      "How does curiosity keep the mind sharp as people age?",
+      "What makes a person eager to keep learning new things?"
+    ],
+    "useful_vocabulary": ["curiosity", "growth mindset", "adaptable", "fulfillment", "continuous"],
+    "id": 98,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Intermediate",
+    "topic": "What does success really mean?",
+    "description": "Explore personal definitions of achievement beyond wealth, titles, and social status.",
+    "about": "True success often encompasses inner peace, healthy relationships, and personal fulfillment rather than public applause.",
+    "key_points": [
+      "How do society's views of success differ from personal happiness?",
+      "Can someone be wealthy yet considered unsuccessful?",
+      "What is your personal definition of a successful life?",
+      "Does chasing other people's goals lead to emptiness?"
+    ],
+    "useful_vocabulary": ["achievement", "inner peace", "fulfillment", "status", "applause"],
+    "id": 99,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  },
+  {
+    "category": "General",
+    "difficulty": "Advanced",
+    "topic": "What will the world look like in 2050?",
+    "description": "Speculate on technological advancements, climate adaptation, and societal changes mid-century.",
+    "about": "Future projections anticipate renewable energy grids, advanced automation, and altered geopolitical structures.",
+    "key_points": [
+      "How will artificial intelligence transform daily human existence by 2050?",
+      "Will humanity successfully reverse carbon emissions or adapt to warming?",
+      "What medical breakthroughs might change human lifespan and health?",
+      "Will cities look completely different in the middle of the century?"
+    ],
+    "useful_vocabulary": ["projection", "breakthrough", "lifespan", "mid-century", "existence"],
+    "id": 100,
+    "generated_at": "2026-09-04T22:00:00.000000"
+  }
+]
