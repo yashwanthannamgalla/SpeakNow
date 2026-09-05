@@ -74,7 +74,6 @@ pyasn1_modules==0.4.2
 pycparser==3.0
 pydantic==2.13.4
 pydantic_core==2.46.4
-pygame==2.6.1
 pyglet==2.1.16
 pyglm==2.8.3
 Pygments==2.21.0
