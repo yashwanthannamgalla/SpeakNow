@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
+import { apiUrl } from "./config/api";
 import Login from "./components/login";
 import Signup from "./components/Signup";
 import Progress from "./components/Progress";
@@ -11,13 +12,11 @@ import {
   addXp,
   getPracticeXp,
   updateDailyMission,
-  resetDailyMissionIfNeeded,
   resetWeeklyIfNeeded,
   applyMilestones,
   getLevel,
 } from "./utils/gamification";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
 
 const CATEGORIES = [
   "All",
@@ -1733,10 +1732,6 @@ function App() {
     todayEvaluations.length;
 
 
-  const todayCompleted =
-    todayEvaluationCount > 0;
-
-
   const totalEvaluations =
     Array.isArray(
       progress.history
@@ -1920,8 +1915,8 @@ function App() {
 
         const url =
           query
-            ? `${API_BASE_URL}/api/random-topic?${query}`
-            : `${API_BASE_URL}/api/random-topic`;
+            ? apiUrl(`/api/random-topic?${query}`)
+            : apiUrl("/api/random-topic")
 
 
         const response =
@@ -3000,7 +2995,7 @@ function App() {
 
         const response =
           await fetch(
-            `${API_BASE_URL}/api/evaluate`,
+            apiUrl("/api/evaluate"),
             {
               method: "POST",
 

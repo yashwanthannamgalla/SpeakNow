@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: speaknow
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: COHERE_API_KEY
+        sync: false

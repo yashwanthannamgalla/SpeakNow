@@ -11,8 +11,10 @@ from fastapi import (
     Request,
 )
 
+from pathlib import Path
+
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from dotenv import load_dotenv
@@ -31,6 +33,7 @@ from services.local_evaluator import local_evaluate
 
 from database import engine, Base, get_db
 from models import Topic, TopicUsage, User
+from migrate_topics import migrate
 
 
 # ============================================================
@@ -104,6 +107,8 @@ MAX_REQUEST_BYTES = int(
 Base.metadata.create_all(
     bind=engine
 )
+
+migrate()
 
 
 # ============================================================
@@ -1284,15 +1289,36 @@ def health():
 
 
 # ============================================================
-# ROOT
+# FRONTEND
 # ============================================================
+
+FRONTEND_DIST = Path(__file__).resolve().parent.parent / "dist"
+FRONTEND_INDEX = FRONTEND_DIST / "index.html"
 
 
 @app.get("/")
 def root():
 
+    if FRONTEND_INDEX.exists():
+        return FileResponse(FRONTEND_INDEX)
+
     return {
-
         "message": "SpeakUp API",
-
     }
+
+
+@app.get("/{full_path:path}")
+def serve_frontend(full_path: str):
+
+    if not FRONTEND_INDEX.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="Not found",
+        )
+
+    candidate = FRONTEND_DIST / full_path
+
+    if full_path and candidate.is_file():
+        return FileResponse(candidate)
+
+    return FileResponse(FRONTEND_INDEX)

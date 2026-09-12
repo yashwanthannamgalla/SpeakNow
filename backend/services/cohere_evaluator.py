@@ -18,19 +18,12 @@ COHERE_API_KEY = os.getenv(
     "COHERE_API_KEY"
 )
 
-if not COHERE_API_KEY:
-    raise RuntimeError(
-        "COHERE_API_KEY is not configured."
+client = None
+
+if COHERE_API_KEY:
+    client = cohere.ClientV2(
+        api_key=COHERE_API_KEY
     )
-
-
-# ============================================================
-# COHERE CLIENT
-# ============================================================
-
-client = cohere.ClientV2(
-    api_key=COHERE_API_KEY
-)
 
 
 # ============================================================
@@ -820,6 +813,11 @@ async def cohere_evaluate(
     data,
     local_result
 ):
+
+    if client is None:
+        raise RuntimeError(
+            "COHERE_API_KEY is not configured."
+        )
 
     prompt = build_prompt(
         data,

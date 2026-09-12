@@ -1,0 +1,15 @@
+.git
+.github
+node_modules
+dist
+venv
+.venv
+.env
+.env.*
+backend/.env
+backend/speakup.db
+backend/gpt.py
+backend/__pycache__
+**/__pycache__
+*.pyc
+.DS_Store
